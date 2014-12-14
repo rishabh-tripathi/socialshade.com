@@ -1,0 +1,64 @@
+<%= form_remote_tag :url => submit_qu_url,                              
+                    :loading => "showTrans();",                     
+                    :complete => "hideTrans()",                                                                
+                    :failure => "alert('Error in saving, please refresh to retry');",
+                    :update => "qu-form",                                 
+                    :html => {:id => "save-qu-form"}  
+%>          
+<input type="hidden" id="qu-txt" name="qu" value="" />   
+<div class="sp20"></div>
+<div class="main" >
+  <div id="qu-form" class="form-group">
+    <div style="position:relative;"> 
+      <div id="quta" class="lead" contenteditable="true" placeholder="Ask anything to anyone"></div>
+      <a href="javascript:;" onclick="addOption();" class="pull-right" style="position:absolute;bottom:0px;right:0px;">Add&nbsp;answer&nbsp;to&nbsp;choose</a>    
+    </div>
+    <div id="optdiv"></div>
+    <hr style="margin-top:0px;">
+    <center><input type="button" onclick="save_qu();" class="btn btn-block btn-success" style="font-size:2em" value="Ask this question" /></center>   
+  </div>
+</div>
+<%= end_form %>
+
+<script type="text/template" id="optionTemp">
+  <div class="lead opt-body">
+    <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>
+    <div class="pull-left unchecked">&nbsp;</div>
+    <div id="opt-{{= id }}" class="pull-left opt-txt" contenteditable="true" placeholder="Enter Option Text"></div>
+    <div style="clear:both;"></div>
+  </div>
+</script>    
+
+<script type="text/javascript">
+  var opt = 0;
+  function addOption() {
+      opt += 1;
+      var opthtml = _.template($("#optionTemp").html(), {id: opt});	
+      ele("optdiv").innerHTML += opthtml;
+      if(opt == 1) {
+        addOption(); 
+      }   
+      if(opt == 2) {
+        ele("opt-1").focus();    
+      } else {
+        ele("opt-"+opt).focus();
+      }     
+  }
+
+  function save_qu() {
+    var qutxt = $("#quta").text();
+    if((qutxt == null) || (qutxt.length < 10))
+      return false;					  
+    ele("qu-txt").value = qutxt;
+    if(opt > 0) {
+      for(var i=1;i<=opt;i++) {
+        ele("opth-"+i).value = $("#opt-"+i).text();
+      }
+    }					  
+    submit_ajax_form('save-qu-form');
+  }
+
+  window.onload = function() {
+  ele("quta").focus();
+  };
+</script>

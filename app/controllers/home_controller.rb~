@@ -1,0 +1,39 @@
+class HomeController < ApplicationController
+
+  def index    
+  end
+  
+  def ask    
+  end
+  
+  def submit_qu
+    @qu = Qu.new
+    @qu.text = params[:qu]
+    if(!params[:opt].nil? && !params[:opt].blank?)
+      @qu.qu_type = Qu::TYPE_SINGLE
+      @qu.ans = 0
+      @qu.likes = 0
+      @qu.views = 0
+      @qu.save
+      params[:opt].each do|key, value|
+        opt = Option.new
+        opt.qu_id = @qu.id
+        opt.content = value
+        opt.seq = key
+        opt.save
+      end
+    else
+      @qu.qu_type = Qu::TYPE_TEXT
+      @qu.ans = 0
+      @qu.likes = 0
+      @qu.views = 0
+      @qu.save      
+    end
+    render(:partial => "qu_save_res")
+  end
+    
+  def answer
+    @qu = Qu.find(params[:id])
+  end
+  
+end

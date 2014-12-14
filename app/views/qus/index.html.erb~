@@ -1,0 +1,33 @@
+<h1>Listing qus</h1>
+
+<table>
+  <tr>
+    <th>Uid</th>
+    <th>Text</th>
+    <th>Type</th>
+    <th>Views</th>
+    <th>Likes</th>
+    <th>Ans</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @qus.each do |qu| %>
+  <tr>
+    <td><%= qu.uid %></td>
+    <td><%= qu.text %></td>
+    <td><%= qu.qu_type %></td>
+    <td><%= qu.views %></td>
+    <td><%= qu.likes %></td>
+    <td><%= qu.ans %></td>
+    <td><%= link_to 'Show', qu %></td>
+    <td><%= link_to 'Edit', edit_qu_path(qu) %></td>
+    <td><%= link_to 'Destroy', qu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Qu', new_qu_path %>

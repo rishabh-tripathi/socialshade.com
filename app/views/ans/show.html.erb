@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @an.question_id %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @an.value %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @an.ip %>
+</p>
+
+<p>
+  <b>Req details:</b>
+  <%= @an.req_details %>
+</p>
+
+
+<%= link_to 'Edit', edit_an_path(@an) %> |
+<%= link_to 'Back', ans_path %>

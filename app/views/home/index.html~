@@ -1,0 +1,8 @@
+<div class="sp30"></div>
+<center>
+  <h1>Open Answer to Questions</h1>
+  <h2 class="lead">No Registration, just post your question or answer others</h2>
+  <div class="sp50"></div>
+  <a href="<%= ask_url %>" class="btn btn-lg btn-success">Ask Your Question</a>&nbsp;&nbsp;
+  <a href=""  class="btn btn-lg btn-info">Answer Others Questions</a>
+</center>

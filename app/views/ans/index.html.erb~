@@ -1,0 +1,29 @@
+<h1>Listing ans</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Value</th>
+    <th>Ip</th>
+    <th>Req details</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ans.each do |an| %>
+  <tr>
+    <td><%= an.question_id %></td>
+    <td><%= an.value %></td>
+    <td><%= an.ip %></td>
+    <td><%= an.req_details %></td>
+    <td><%= link_to 'Show', an %></td>
+    <td><%= link_to 'Edit', edit_an_path(an) %></td>
+    <td><%= link_to 'Destroy', an, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New An', new_an_path %>

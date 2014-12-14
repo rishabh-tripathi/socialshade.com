@@ -1,0 +1,83 @@
+class AnsController < ApplicationController
+  # GET /ans
+  # GET /ans.json
+  def index
+    @ans = An.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @ans }
+    end
+  end
+
+  # GET /ans/1
+  # GET /ans/1.json
+  def show
+    @an = An.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @an }
+    end
+  end
+
+  # GET /ans/new
+  # GET /ans/new.json
+  def new
+    @an = An.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @an }
+    end
+  end
+
+  # GET /ans/1/edit
+  def edit
+    @an = An.find(params[:id])
+  end
+
+  # POST /ans
+  # POST /ans.json
+  def create
+    @an = An.new(params[:an])
+
+    respond_to do |format|
+      if @an.save
+        format.html { redirect_to @an, notice: 'An was successfully created.' }
+        format.json { render json: @an, status: :created, location: @an }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @an.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /ans/1
+  # PUT /ans/1.json
+  def update
+    @an = An.find(params[:id])
+
+    respond_to do |format|
+      if @an.update_attributes(params[:an])
+        format.html { redirect_to @an, notice: 'An was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @an.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /ans/1
+  # DELETE /ans/1.json
+  def destroy
+    @an = An.find(params[:id])
+    @an.destroy
+
+    respond_to do |format|
+      format.html { redirect_to ans_url }
+      format.json { head :no_content }
+    end
+  end
+end

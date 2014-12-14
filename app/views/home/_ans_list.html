@@ -1,0 +1,51 @@
+<% if(@ans.present? && @show_ans) %>
+<div class="sp50"></div>
+<% if(@options.present?) 
+   total = @ans.size   
+   h = {}
+   for a in @ans
+     if(!(h.has_key? a.value.to_i))
+       h[a.value.to_i] = 0
+     end
+     h[a.value.to_i] += 1
+   end
+   o = {}
+   for opt in @options
+     o[opt.id] = opt.content
+   end   
+%>
+<span class="lead">Based on <b><%= @ans.size %></b> response</span>
+<script type="text/javascript">
+  function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Answer', 'count'],
+  <% h.each do|key, value| %>    
+  ['<%= o[key] %>', <%= value %>],  
+  <% end %>
+  ['', 0]
+  ]);    
+  var options = {
+  'width':600,
+  'height':400
+  };  
+  var chart = new google.visualization.PieChart(ele('res-chart'));
+  chart.draw(data, options);
+  }  
+</script>
+<div id="res-chart" style="width:650px;margin:0px auto;"></div>
+<% else %>
+Showing&nbsp;&nbsp;<span style="font-size:25px;"><%= @ans.size %></span>&nbsp;&nbsp;answer
+<hr style="width:50%;margin-top:0px;">
+<% for a in @ans %>
+  <span class="lead" style="font-size:22px;"><%= raw a.value %></span>
+  <div class="sp1"></div>
+  <span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
+  <hr style="width:30%;">
+<% end %>
+<% end %>
+<% end %>
+
+<% if(!@show_ans && @ans.present?) %>
+<div class="sp50"></div>
+<span><b><%= @ans.size %></b> response so far, answer first to see result</span>
+<% end %>

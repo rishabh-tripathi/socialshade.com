@@ -1,4 +1,16 @@
-SocialshadeCom::Application.routes.draw do
+OpenansCom::Application.routes.draw do
+  root :to => 'home#index'  
+  resources :qus
+  resources :ans
+  resources :options
+  match "/ask" => "home#ask", :as => :ask
+  match "/submit-qu" => "home#submit_qu", :as => :submit_qu
+  match "/submit-ans/:id" => "home#submit_ans", :as => :submit_ans
+  match "/search-qu" => "home#search", :as => :search
+  match "/:id" => "home#answer", :as => :answer
+  
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +60,7 @@ SocialshadeCom::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+
 
   # See how all your routes lay out with "rake routes"
 

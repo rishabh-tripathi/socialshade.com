@@ -1,0 +1,2 @@
+module QusHelper
+end

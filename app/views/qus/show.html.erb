@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Uid:</b>
+  <%= @qu.uid %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @qu.text %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @qu.type %>
+</p>
+
+<p>
+  <b>Views:</b>
+  <%= @qu.views %>
+</p>
+
+<p>
+  <b>Likes:</b>
+  <%= @qu.likes %>
+</p>
+
+<p>
+  <b>Ans:</b>
+  <%= @qu.ans %>
+</p>
+
+
+<%= link_to 'Edit', edit_qu_path(@qu) %> |
+<%= link_to 'Back', qus_path %>

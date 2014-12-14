@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-SocialshadeCom::Application.config.secret_token = '79994aed68a9efa3f691f56af4f9c3e744071618499f8ba6359c8704635073aa8d8c810c0718c2c6126a04cbeed7849aa67b3740cbc3e3e15e42e58cf86f6dba'
+OpenansCom::Application.config.secret_token = '9a053cd9dcd45e6f917efa5f10de5856e75871c8971fa0fdf136f1c1a8fb8f491c1bce64d30bd941707e0482c64ebc970ce8f4f25e93e5e90cec1158d245590d'

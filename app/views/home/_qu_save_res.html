@@ -1,0 +1,21 @@
+<div class="sp30"></div>
+<center>
+  <h1 class="lead m-null" style="font-size:50px">Your question is saved</h1>
+  <h2 class="lead m-null" style="font-size:20px"><a href="<%= answer_url(@qu.id) %>">Your question</a> will be answered by our random anonymus user</h2>
+  <div class="sp20"></div>
+  <span class="lead m-null" style="font-size:20px">Track this question,</span>
+  <div class="sp2"></div>
+  <input type="button" class="btn btn-lg btn-info m-10" value="Save in Browser" title="Save question detail in your browser for future" />
+  <input type="button" class="btn btn-lg btn-success m-10" value="Email Question Detail" title="Email question url for tracking"/>
+  <input type="button" class="btn btn-lg btn-danger m-10" value="Bookmark" title="Bookmark question url" />
+  <div class="sp20"></div>
+  <span class="lead m-null">or you can note your question id for tracking</span>
+  <div class="sp10"></div>
+  <h1 class="m-null save-qu-id">#<%= @qu.id %></h1>
+  <div class="sp30"></div>
+  <span class="lead m-null">Check your question in few hour to find your answer</span>
+  <div class="sp10"></div>
+  <a href="<%= root_path %>" class="btn btn-lg btn-primary m-10">Answer Questions</a>
+  <a href="<%= ask_url %>" class="btn btn-lg btn-inverse m-10">Ask More Question</a>
+</center>
+

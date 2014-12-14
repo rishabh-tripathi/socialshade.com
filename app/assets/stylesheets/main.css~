@@ -1,0 +1,268 @@
+/* spacing */
+.sp1 {
+    height: 1px;
+    line-height: 1px;
+}
+
+.sp2 {
+    height: 2px;
+    line-height: 2px;
+}
+
+.sp3 {
+    height: 3px;
+    line-height: 3px;
+}
+
+.sp5 {
+    height: 5px;
+    line-height: 5px;
+}
+
+.sp10 {
+    height: 10px;
+    line-height: 10px;
+}
+
+.sp15 {
+    height: 15px;
+    line-height: 15px;
+}
+
+.sp20 {
+    height: 20px;
+    line-height: 20px;
+}
+
+.sp25 {
+    height: 25px;
+    line-height: 25px;
+}
+
+.sp30 {
+    height: 30px;
+    line-height: 30px;
+}
+
+.sp50 {
+    height: 50px;
+    line-height: 50px;
+}
+
+.sp100 {
+    height: 100px;
+    line-height: 100px;
+}
+
+.sp200 {
+    height: 200px;
+    line-height: 200px;
+}
+
+.sp500 {
+    height: 500px;
+    line-height: 500px;
+}
+
+/* border classes */
+.b-top {
+    border-top: 1px solid #2C3E50;
+}
+
+.b-right {
+    border-right: 1px solid #2C3E50;
+}
+
+.b-left {
+    border-left: 1px solid #2C3E50;
+}
+
+.b-bottom {
+    border-bottom: 1px solid #2C3E50;
+}
+
+.b-top-left {
+    border-top: 1px solid #2C3E50;
+    border-left: 1px solid #2C3E50;
+}
+
+.b-top-right {
+    border-top: 1px solid #2C3E50;
+    border-right: 1px solid #2C3E50;
+}
+
+.b-bottom-left {
+    border-top: 1px solid #2C3E50;
+    border-left: 1px solid #2C3E50;
+}
+
+.b-bottom-right {
+    border-top: 1px solid #2C3E50;
+    border-right: 1px solid #2C3E50;
+}
+
+.b-all {
+    border: 1px solid #2C3E50;
+}
+
+.p-null {
+    padding: 0px;
+}
+
+.p-2 {
+    padding: 2px;
+}
+
+.p-3 {
+    padding: 3px;
+}
+
+.p-5 {
+    padding: 5px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.p-30 {
+    padding: 30px;
+}
+
+.m-null {
+    margin: 0px;
+}
+
+.m-5 {
+    margin: 5px;
+}
+
+.m-10 {
+    margin: 10px;
+}
+
+.m-20 {
+    margin: 20px;
+}
+
+.m-30 {
+    margin: 30px;
+}
+
+.pm-null {
+    padding: 0px;
+    margin: 0px;
+}
+
+.error {
+    color: red;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.fill-width {
+    width: 100%;
+}
+
+.fill-height {
+    height: 100%;
+}
+
+#transLayer {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+}
+ 
+.main {
+    margin: 0px auto;
+    padding: 0px 5em;
+}
+
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color: #898C90;
+}
+
+#quta {
+    overflow: hidden;
+    min-height: 80px;
+    font-size: 3em;
+    margin: 0px;
+    border: none;
+    outline: none;
+    line-height: 1.2;
+}
+
+.unchecked {
+    background: url(/assets/unchecked.png);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.checked {
+    background: url(/assets/checked.png);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.opt-body {
+    background: #eaeaea;
+    padding: 10px;
+    border: 1px solid #d3d3d3;    
+}
+
+.opt-txt {
+    margin-left: 20px;
+    height: 50px;
+    font-size: 35px;
+    outline: none;
+}
+
+.save-qu-id {
+    border: 1px solid #d3d3d3;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.ans-header {
+    width: 100%;
+    padding: 10px;
+    background: #2C3E50;
+    color: #ffffff;
+}
+
+.left-arrow {
+    padding: 10px;
+    cursor: pointer;
+    vertical-align: middle;   
+}
+
+.right-arrow {
+    padding: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.left-arrow:hover, .right-arrow:hover {
+    background: #f6f6f6;
+}
+
+#ans-txt {
+    text-align: left;
+    outline: none;
+    padding: 0px 10px;
+}
