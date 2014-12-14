@@ -79,12 +79,16 @@ class HomeController < ApplicationController
 
   def search
     if(!params[:query].nil? && !params[:query].blank?) 
-      qus = Qu.find(:all, :conditions => ["id = ? or text like '%?%'", params[:query], params[:query]])
+      qus = Qu.find(:all, :conditions => ["id = ? or text like ?", params[:query], "%#{params[:query]}%"])
       if(!qus.nil?)
-        r = Random.new    
-        qus_ids = qus.map{|a| a.id }
-        qu = r.rand(qus_ids)        
-        redirect_to answer_url(qu)
+        if(qus.size > 1)
+          r = Random.new    
+          qus_ids = qus.map{|a| a.id }
+          qu = r.rand(0..qus_ids.size)           
+          redirect_to answer_url(qus_ids[qu])
+        else
+          redirect_to answer_url(qus.first.id)
+        end
       else
         redirect_to root_path  
       end
