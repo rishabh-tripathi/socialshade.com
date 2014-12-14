@@ -5,10 +5,9 @@ class QusController < ApplicationController
   # GET /qus.json
   def index
     @qus = Qu.all
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @qus }
+      format.json { render :json => @qus }
     end
   end
 
@@ -19,7 +18,7 @@ class QusController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @qu }
+      format.json { render :json => @qu }
     end
   end
 
@@ -30,7 +29,7 @@ class QusController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @qu }
+      format.json { render :json => @qu }
     end
   end
 
@@ -46,11 +45,11 @@ class QusController < ApplicationController
 
     respond_to do |format|
       if @qu.save
-        format.html { redirect_to @qu, notice: 'Qu was successfully created.' }
-        format.json { render json: @qu, status: :created, location: @qu }
+        format.html { redirect_to @qu, :notice => 'Qu was successfully created.' }
+        format.json { render :json => @qu, :status => :created, :location => @qu }
       else
-        format.html { render action: "new" }
-        format.json { render json: @qu.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @qu.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -59,14 +58,13 @@ class QusController < ApplicationController
   # PUT /qus/1.json
   def update
     @qu = Qu.find(params[:id])
-
     respond_to do |format|
       if @qu.update_attributes(params[:qu])
-        format.html { redirect_to @qu, notice: 'Qu was successfully updated.' }
+        format.html { redirect_to @qu, :notice => 'Qu was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @qu.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @qu.errors, :status => :unprocessable_entity }
       end
     end
   end

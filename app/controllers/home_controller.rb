@@ -2,8 +2,10 @@ class HomeController < ApplicationController
 
   def index    
     all_qu_count = Qu.count
-    r = Random.new    
-    qu_id = r.rand(1...all_qu_count)
+    qu_id = 0
+    while(qu_id == 0)
+      qu_id = rand(all_qu_count)
+    end
     @qu = Qu.find(qu_id)
     @qu.views += 1
     @qu.save
@@ -12,8 +14,10 @@ class HomeController < ApplicationController
     @show_ans = false
     @next = @qu.id
     while(@next == @qu.id)
-      r = Random.new    
-      @next = r.rand(1...all_qu_count)
+      @next = 0
+      while(@next == 0)
+        @next = rand(all_qu_count)
+      end
     end
   end
   
@@ -56,8 +60,10 @@ class HomeController < ApplicationController
     @show_ans = false
     @next = @qu.id
     while(@next == @qu.id)
-      r = Random.new    
-      @next = r.rand(1...all_qu_count)
+      @next = 0
+      while(@next == 0)
+        @next = rand(all_qu_count)
+      end
     end
   end
 
@@ -82,9 +88,11 @@ class HomeController < ApplicationController
       qus = Qu.find(:all, :conditions => ["id = ? or text like ?", params[:query], "%#{params[:query]}%"])
       if(!qus.nil?)
         if(qus.size > 1)
-          r = Random.new    
           qus_ids = qus.map{|a| a.id }
-          qu = r.rand(0..qus_ids.size)           
+          qu = 0
+          while(qu == 0)
+            qu = rand(qus_ids.size - 1)           
+          end
           redirect_to answer_url(qus_ids[qu])
         else
           redirect_to answer_url(qus.first.id)

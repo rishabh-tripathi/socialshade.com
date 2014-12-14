@@ -5,10 +5,9 @@ class OptionsController < ApplicationController
   # GET /options.json
   def index
     @options = Option.all
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @options }
+      format.json { render :json => @options }
     end
   end
 
@@ -19,7 +18,7 @@ class OptionsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @option }
+      format.json { render :json => @option }
     end
   end
 
@@ -30,7 +29,7 @@ class OptionsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @option }
+      format.json { render :json => @option }
     end
   end
 
@@ -46,11 +45,11 @@ class OptionsController < ApplicationController
 
     respond_to do |format|
       if @option.save
-        format.html { redirect_to @option, notice: 'Option was successfully created.' }
-        format.json { render json: @option, status: :created, location: @option }
+        format.html { redirect_to @option, :notice => 'Option was successfully created.' }
+        format.json { render :json => @option, :status => :created, :location => @option }
       else
-        format.html { render action: "new" }
-        format.json { render json: @option.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @option.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -62,11 +61,11 @@ class OptionsController < ApplicationController
 
     respond_to do |format|
       if @option.update_attributes(params[:option])
-        format.html { redirect_to @option, notice: 'Option was successfully updated.' }
+        format.html { redirect_to @option, :notice => 'Option was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @option.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @option.errors, :status => :unprocessable_entity }
       end
     end
   end

@@ -8,7 +8,7 @@ class AnsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @ans }
+      format.json { render :json => @ans }
     end
   end
 
@@ -19,7 +19,7 @@ class AnsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @an }
+      format.json { render :json => @an }
     end
   end
 
@@ -30,7 +30,7 @@ class AnsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @an }
+      format.json { render :json => @an }
     end
   end
 
@@ -46,11 +46,11 @@ class AnsController < ApplicationController
 
     respond_to do |format|
       if @an.save
-        format.html { redirect_to @an, notice: 'Ans was successfully created.' }
-        format.json { render json: @an, status: :created, location: @an }
+        format.html { redirect_to @an, :notice => 'Ans was successfully created.' }
+        format.json { render :json => @an, :status => :created, :location => @an }
       else
-        format.html { render action: "new" }
-        format.json { render json: @an.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @an.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -62,11 +62,11 @@ class AnsController < ApplicationController
 
     respond_to do |format|
       if @an.update_attributes(params[:an])
-        format.html { redirect_to @an, notice: 'Ans was successfully updated.' }
+        format.html { redirect_to @an, :notice => 'Ans was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @an.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @an.errors, :status => :unprocessable_entity }
       end
     end
   end
