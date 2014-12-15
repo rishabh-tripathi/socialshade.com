@@ -23,7 +23,7 @@
     <td><%= qu.ans %></td>
     <td><%= link_to 'Show', qu %></td>
     <td><%= link_to 'Edit', edit_qu_path(qu) %></td>
-    <td><%= link_to 'Destroy', qu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', qu, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

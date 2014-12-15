@@ -19,7 +19,7 @@
     <td><%= an.req_details %></td>
     <td><%= link_to 'Show', an %></td>
     <td><%= link_to 'Edit', edit_an_path(an) %></td>
-    <td><%= link_to 'Destroy', an, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', an, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
