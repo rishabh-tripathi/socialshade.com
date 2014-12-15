@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-SocialshadeCom::Application.load_tasks
+OpenansCom::Application.load_tasks

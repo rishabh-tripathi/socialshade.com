@@ -2,10 +2,7 @@ class HomeController < ApplicationController
 
   def index    
     all_qu_count = Qu.count
-    qu_id = 0
-    while(qu_id == 0)
-      qu_id = rand(all_qu_count)
-    end
+    qu_id = ([*1..all_qu_count]).sample
     @qu = Qu.find(qu_id)
     @qu.views += 1
     @qu.save
@@ -14,10 +11,7 @@ class HomeController < ApplicationController
     @show_ans = false
     @next = @qu.id
     while(@next == @qu.id)
-      @next = 0
-      while(@next == 0)
-        @next = rand(all_qu_count)
-      end
+      @next = ([*1..all_qu_count]).sample
     end
   end
   
@@ -60,10 +54,7 @@ class HomeController < ApplicationController
     @show_ans = false
     @next = @qu.id
     while(@next == @qu.id)
-      @next = 0
-      while(@next == 0)
-        @next = rand(all_qu_count)
-      end
+      @next = ([*1..all_qu_count]).sample
     end
   end
 
@@ -89,10 +80,7 @@ class HomeController < ApplicationController
       if(!qus.nil?)
         if(qus.size > 1)
           qus_ids = qus.map{|a| a.id }
-          qu = 0
-          while(qu == 0)
-            qu = rand(qus_ids.size - 1)           
-          end
+          qu = ([*1..qus_ids.size]).sample
           redirect_to answer_url(qus_ids[qu])
         else
           redirect_to answer_url(qus.first.id)
