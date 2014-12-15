@@ -60,18 +60,31 @@ class HomeController < ApplicationController
 
   def submit_ans
     @qu = Qu.find(params[:id])
+    @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
+    wrong_ans = false
     if(!params[:ans].blank?) 
       ans = Ans.new
       ans.question_id = @qu.id
       ans.value = params[:ans]
-      ans.ip = request.ip
-      ans.req_details = ""
-      ans.save
+      if(@qu.qu_type == Qu::TYPE_SINGLE)
+        opts = @options.map{|a| a.id }
+        if(!(opts.include? ans.value.to_i))
+          wrong_ans = true
+        end
+      end  
+      if(!wrong_ans)
+        ans.ip = request.ip
+        ans.req_details = ""
+        ans.save
+      end
     end
-    @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
-    @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
-    @show_ans = true
-    render(:partial => "ans_list")
+    if(wrong_ans)
+      render(:text => "Don't Play Smart Hacker! Its an open platform. If you can't appriciate this initiative better get out") 
+    else
+      @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
+      @show_ans = true
+      render(:partial => "ans_list")
+    end
   end
 
   def search

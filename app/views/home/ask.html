@@ -19,7 +19,6 @@
   </div>
 </div>
 <%= end_form %>
-
 <script type="text/template" id="optionTemp">
   <div class="lead opt-body">
     <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>
@@ -28,7 +27,6 @@
     <div style="clear:both;"></div>
   </div>
 </script>    
-
 <script type="text/javascript">
   var opt = 0;
   function addOption() {
@@ -44,20 +42,28 @@
         ele("opt-"+opt).focus();
       }     
   }
-
   function save_qu() {
     var qutxt = $("#quta").text();
     if((qutxt == null) || (qutxt.length < 10))
       return false;					  
-    ele("qu-txt").value = qutxt;
+    ele("qu-txt").value = qutxt;    					  
     if(opt > 0) {
+      var blankopt = false;
       for(var i=1;i<=opt;i++) {
-        ele("opth-"+i).value = $("#opt-"+i).text();
+        var opttext = $("#opt-"+i).text();
+        if(opttext.length > 0) {			      
+          ele("opth-"+i).value = opttext;
+        } else {
+          blankopt = true;
+          break;                
+        }
+      }
+      if(blankopt) {
+        return false;
       }
     }					  
     submit_ajax_form('save-qu-form');
   }
-
   window.onload = function() {
   ele("quta").focus();
   };

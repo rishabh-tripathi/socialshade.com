@@ -1,7 +1,8 @@
 <%= render(:partial => "ans_header") %>
 <table style="width:100%;height:100%;">
   <tr>
-    <td class="p-30" style="text-align:center;vertical-align: top;">
+    <td class="p-10" style="text-align:center;vertical-align: top;">
+      <div class="sp10"></div>
       <img src="/assets/quote.png" style="width:50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <span class="lead" style="color:#5AD427">
 	<%= @qu.text %>
@@ -34,6 +35,17 @@
       <div id="ans-list">
 	<%= render(:partial => "ans_list") %>
       </div>
+      <div style="clear:both"></div>
+      <div class="sp50"></div>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- SocialShade Banner ad1 -->
+      <ins class="adsbygoogle"
+	   style="display:inline-block;width:728px;height:90px"
+	   data-ad-client="ca-pub-3833946424381349"
+	   data-ad-slot="5732836094"></ins>
+      <script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </td>
     <td class="right-arrow">
       <a href="<%= answer_url(@next) %>">
