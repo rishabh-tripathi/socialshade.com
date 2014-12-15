@@ -53,6 +53,8 @@ class HomeController < ApplicationController
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
     @show_ans = false
     @next = @qu.id
+    @title = "#{@qu.text} asked on SocialShade"
+    @desc = "#{@qu.text} asked on SocialShade, open space for open minded people. Ask anything to anyone without login"
     while(@next == @qu.id)
       @next = ([*1..all_qu_count]).sample
     end

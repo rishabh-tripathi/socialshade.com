@@ -1,7 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Social Shade - Open place for open minded people</title>
+<head>  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+  <meta http-equiv="content-language" content="en-us">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta http-equiv="Cache-control" content="public">
+  <meta name="robots" content="all"/>
+  <meta name="application-name" content="SocialShade"/>
+  <link rel="canonical" href="<%= request.original_url %>" />
+  <link rel="shortcut icon" href=""/>  
+  <meta name="copyright" content="socialshade.com"/>
+  <meta name="author" content="anonymous"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= (!@title.nil?)? @title : "Open space for open minded people" %></title>
+  <meta name="keywords" content="Open questions and answers, Questions, Answers"/>
+  <meta name="description" content="<%= (!@desc.nil?)? @desc : 'Open space for open minded people, ask any questions to anyone. No Login Required, one of its kind platform where your browser is your login.' %>"/>
+  <!-- schema.org -->
+  <meta itemprop="name" content="SocialShade">
+  <meta itemprop="description" content="<%= (!@desc.nil?)? @desc : 'Open space for open minded people, ask any questions to anyone. No Login Required, one of its kind platform where your browser is your login.' %>">
+  <meta itemprop="image" content="">    
+  <!-- twitter card -->
+  <meta name="twitter:card" content="SocialShade">
+  <meta name="twitter:url" content="<%= request.original_url %>">
+  <meta name="twitter:description" content="<%= (!@desc.nil?)? @desc : 'Open space for open minded people, ask any questions to anyone. No Login Required, one of its kind platform where your browser is your login.' %>">
+  <meta name="twitter:title" content="<%= (!@title.nil?)? @title : 'Open space for open minded people' %>">
+  <meta name="twitter:image" content="/img/antisocial.jpg"> 
+  <!-- facebook open graph -->
+  <meta property="og:title" content="<%= (!@title.nil?)? @title : 'Open space for open minded people' %>"/>
+  <meta property="og:description" content="<%= (!@desc.nil?)? @desc : 'Open space for open minded people, ask any questions to anyone. No Login Required, one of its kind platform where your browser is your login.' %>"/>
+  <meta property="og:type" content="Article"/>
+  <meta property="og:image" content="/img/antisocial.jpg"/>
+  <meta property="og:site_name" content="SocialShade"/>    
+  <meta property="og:url" content="<%= request.original_url %>"/>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -18,6 +48,7 @@
   <script type="text/javascript">
     google.load("visualization", "1", {packages:["corechart"]});
   </script> 
+
 </head>
 <body>
   <div id="transLayer" style="display:none;">
