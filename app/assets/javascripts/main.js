@@ -17,3 +17,12 @@ function submitOptAns(id, all) {
 function drawChart() {
     console.log('no need to draw any chart');
 }
+
+function afterSave() {
+    hideTrans();
+    if(ele('qu-txt') != null)
+	ele_del('qu-txt');
+    if(ele('qu-opt') != null) 
+	ele_del('qu-opt');
+    drawChart();
+}

@@ -15,6 +15,10 @@ function ele_hide(id) {
     document.getElementById(id).style.display="none";
 }
 
+function ele_del(id) {
+    $("#"+id).remove(); 
+}
+
 function ele_toggle(id) {
     if(document.getElementById(id).style.display=="none") {
 	document.getElementById(id).style.display="";

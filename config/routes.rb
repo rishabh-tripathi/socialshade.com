@@ -8,8 +8,6 @@ OpenansCom::Application.routes.draw do
   match "/submit-ans/:id" => "home#submit_ans", :as => :submit_ans
   match "/search-qu" => "home#search", :as => :search
   match "/:id" => "home#answer", :as => :answer
-  
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
