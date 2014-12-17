@@ -47,6 +47,9 @@ class HomeController < ApplicationController
   def answer
     all_qu_count = Qu.count
     @qu = Qu.find(params[:id])
+    if(@qu.nil?)
+      redirect_to answer_url
+    end
     @qu.views += 1
     @qu.save
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
