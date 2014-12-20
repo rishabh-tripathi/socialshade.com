@@ -1,0 +1,2 @@
+module QuesViewsHelper
+end

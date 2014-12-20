@@ -1,22 +1,14 @@
 class HomeController < ApplicationController
 
   def index    
-    all_qu_count = Qu.count
-    qu_id = ([*1..all_qu_count]).sample
-    begin
-      @qu = Qu.find(qu_id)
-    rescue
-      @qu = Qu.last
-    end
+    @qu = Qu.get_next_question(nil, get_user_bid)
     @qu.views += 1
     @qu.save
+    QuesView.add_view(get_user_bid, @qu.id)
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
     @show_ans = false
-    @next = @qu.id
-    while(@next == @qu.id)
-      @next = ([*1..all_qu_count]).sample
-    end
+    @next = Qu.get_next_question(@qu, get_user_bid)
   end
   
   def ask    
@@ -53,20 +45,18 @@ class HomeController < ApplicationController
     begin
       @qu = Qu.find(params[:id])
     rescue      
-      @qu = Qu.last
+      @qu = Qu.get_next_question(nil, get_user_bid)
       redirect_to answer_url(@qu.id)
     end
     @qu.views += 1
     @qu.save
+    QuesView.add_view(get_user_bid, @qu.id)
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
     @show_ans = false
-    @next = @qu.id
     @title = "#{@qu.text} asked on SocialShade"
-    @desc = "#{@qu.text} asked on SocialShade, open space for open minded people. Ask anything to anyone without login"
-    while(@next == @qu.id)
-      @next = ([*1..all_qu_count]).sample
-    end
+    @desc = "#{@qu.text} asked on SocialShade, open space for open minded people. Ask anything to anyone without login"    
+    @next = Qu.get_next_question(@qu, get_user_bid)
   end
 
   def submit_ans
@@ -83,17 +73,33 @@ class HomeController < ApplicationController
           wrong_ans = true
         end
       end  
-      if(!wrong_ans)
-        ans.ip = request.ip
-        ans.req_details = ""
-        ans.save
+      if(!wrong_ans)        
+        uid = get_user_bid
+        if(!params[:uid].nil? && (uid == params[:uid]))
+          ans.ip = request.ip
+          ans.uid = params[:uid]
+          ans.req_details = ""
+          ans.save
+          if(@qu.ans.nil?)
+            @qu.ans = 1 
+          else
+            @qu.ans += 1
+          end
+          @qu.save
+        else
+          wrong_ans = true
+        end
       end
     end
     if(wrong_ans)
       render(:text => "Don't Play Smart Hacker! Its an open platform. If you can't appriciate this initiative better get out") 
     else
-      @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
-      @show_ans = true
+      if(!params[:ans].blank?)         
+        @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
+        @show_ans = true
+      else
+        @wrong_ans = true
+      end
       render(:partial => "ans_list")
     end
   end

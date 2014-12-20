@@ -8,7 +8,7 @@
 	  <span class="lead" style="color:#ffffff;font-size:45px;">
 	    <%= @qu.text %>
 	  </span>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/wquote-r.png" style="width:50px;"/>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/wquote-r.png" style="width:45px;"/>
 	</div>
 	<% if(@options.present?) %>
 	<div class="sp30"></div>
@@ -32,7 +32,7 @@
 	</div>
 	<% end %>
       </div>
-      <div id="ans-list">
+      <div id="ans-list" class="p-10">
 	<%= render(:partial => "ans_list") %>
       </div>
       <div style="clear:both"></div>
@@ -71,12 +71,14 @@
                     :html => {:id => "save-ans-form"}  
 %>          
 <input type="hidden" id="ans" name="ans" /> 
+<input type="hidden" id="buid" name="uid" value=""/> 
 <%= end_form %>
 
 <%= render(:partial => "ans_header") %>
 
 <script type="text/javascript">
   window.onload = function() {
+  getBuid("soclshd");
   $("#nxtbtn").height($(window).height());
   if(ele("ans-txt") != null) {
     ele("ans-txt").focus();	    

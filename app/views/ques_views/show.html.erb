@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Qu:</b>
+  <%= @ques_view.qu_id %>
+</p>
+
+<p>
+  <b>Uid:</b>
+  <%= @ques_view.uid %>
+</p>
+
+<p>
+  <b>Count:</b>
+  <%= @ques_view.count %>
+</p>
+
+
+<%= link_to 'Edit', edit_ques_view_path(@ques_view) %> |
+<%= link_to 'Back', ques_views_path %>

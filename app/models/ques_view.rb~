@@ -1,0 +1,3 @@
+class QuesView < ActiveRecord::Base
+  attr_accessible :count, :qu_id, :uid
+end
