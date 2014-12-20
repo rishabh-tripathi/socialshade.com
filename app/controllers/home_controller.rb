@@ -3,7 +3,11 @@ class HomeController < ApplicationController
   def index    
     all_qu_count = Qu.count
     qu_id = ([*1..all_qu_count]).sample
-    @qu = Qu.find(qu_id)
+    begin
+      @qu = Qu.find(qu_id)
+    rescue
+      @qu = Qu.last
+    end
     @qu.views += 1
     @qu.save
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
@@ -46,7 +50,12 @@ class HomeController < ApplicationController
     
   def answer
     all_qu_count = Qu.count
-    @qu = Qu.find(params[:id])
+    begin
+      @qu = Qu.find(params[:id])
+    rescue      
+      @qu = Qu.last
+      redirect_to answer_url(@qu.id)
+    end
     @qu.views += 1
     @qu.save
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
