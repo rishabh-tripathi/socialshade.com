@@ -219,7 +219,7 @@ body {
 }
 
 .opt-body {
-    background: #eaeaea;
+    background: #F7F7F7;
     padding: 10px;
     border: 1px solid #d3d3d3;    
 }
@@ -242,6 +242,9 @@ body {
     padding: 10px;
     background: #2C3E50;
     color: #ffffff;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
 }
 
 .left-arrow {
@@ -255,19 +258,43 @@ body {
     cursor: pointer;
     vertical-align: top;
     width: 150px;
-    background: #f6f6f6;
+    background: #ffffff;
 }
 
 .left-arrow:hover, .right-arrow:hover {
-    background: #e0e0e0;    
+    background: #DBDDDE;    
 }
 
 #ans-txt {
     text-align: left;
     outline: none;
     padding: 0px 10px;
+    border-left: 1px solid #DBDDDE;
+    min-height: 120px;
+    margin-left:3px;
 }
 
 .pointer {
     cursor: pointer;
+}
+
+#qu-div {
+    width: 100%;
+    height: 100%;
+    background: #1D77EF;    
+}
+
+#qu-txt {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    padding: 0px 20px;
+}
+
+#nxtbtn {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    vertical-align: middle;
+    border-left: 1px solid #eaeaea;
 }

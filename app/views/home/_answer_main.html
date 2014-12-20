@@ -1,14 +1,15 @@
-<%= render(:partial => "ans_header") %>
 <table style="width:100%;height:100%;">
   <tr>
-    <td class="p-10" style="text-align:center;vertical-align: top;">
+    <td style="text-align:center;vertical-align: top;">
       <div id="qu-div">
-	<div class="sp10"></div>
-	<img src="/assets/quote.png" style="width:50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<span class="lead" style="color:#5AD427">
-	  <%= @qu.text %>
-	</span>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/quote-r.png" style="width:50px;"/>
+	<div class="p-10">
+	  <div class="sp10"></div>
+	  <img src="/assets/wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <span class="lead" style="color:#ffffff;font-size:45px;">
+	    <%= @qu.text %>
+	  </span>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/wquote-r.png" style="width:50px;"/>
+	</div>
 	<% if(@options.present?) %>
 	<div class="sp30"></div>
 	<center id="qu-opt">
@@ -20,20 +21,15 @@
 	    <div style="clear:both;"></div>
 	  </div>
           <% end %>
+	  <div class="sp20"></div>
 	</center>
 	<% else %>
 	<div id="qu-txt">
 	  <div class="sp20"></div>
 	  <div id="ans-txt" class="lead m-null" contenteditable="true" placeholder="Write your answer"></div>	    
-	  <div class="sp20"></div>     
-	  <hr>
-	  <input type="button" class="btn btn-lg btn-success" onclick="saveTextAnswer();" value="Submit Your Answer" />
-	  <script type="text/javascript">
-	    window.onload = function() {
-	    ele("ans-txt").focus();
-	    };
-	  </script>
-	  </div>
+	  <div class="sp20"></div>
+	  <input type="button" class="btn btn-block btn-success" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Openion" />
+	</div>
 	<% end %>
       </div>
       <div id="ans-list">
@@ -49,16 +45,20 @@
 	   data-ad-slot="5732836094"></ins>
       <script>
 	(adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+      </script>      
+      <div class="sp50"></div>
     </td>
     <td class="right-arrow">
       <a href="<%= answer_url(@next) %>">
-	<div class="sp200"></div>
-	<center>
-	  <img style="margin-left:20px;" src="/assets/right.png" />
-	</center>
-	<div class="sp200"></div>
-	<div class="sp100"></div>
+	<div id="nxtbtn" class="right-arrow">
+	  <div class="sp200"></div>
+	  <div class="sp50"></div>
+	  <center>
+	    <img style="margin-left:20px;" src="/assets/right.png" />
+	  </center>
+	  <div class="sp500"></div>
+	  <div class="sp100"></div>
+	</div>
       </a>
     </td>
   </tr>
@@ -72,3 +72,15 @@
 %>          
 <input type="hidden" id="ans" name="ans" /> 
 <%= end_form %>
+
+<%= render(:partial => "ans_header") %>
+
+<script type="text/javascript">
+  window.onload = function() {
+  $("#nxtbtn").height($(window).height());
+  if(ele("ans-txt") != null) {
+    ele("ans-txt").focus();	    
+    setPasteEvent("ans-txt");
+  }  
+  };
+</script>

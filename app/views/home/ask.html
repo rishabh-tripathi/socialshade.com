@@ -1,6 +1,6 @@
 <%= form_remote_tag :url => submit_qu_url,                              
                     :loading => "showTrans();",                     
-                    :complete => "hideTrans()",                                                                
+                    :complete => "hideTrans();",                                                                
                     :failure => "alert('Error in saving, please refresh to retry');",
                     :update => "qu-form",                                 
                     :html => {:id => "save-qu-form"}  
@@ -19,6 +19,38 @@
   </div>
 </div>
 <%= end_form %>
+
+
+<center>
+  <div class="sp50"></div>
+  <table>
+    <tr>
+      <td class="p-10">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Social Shade Rect 1 -->
+	<ins class="adsbygoogle"
+	     style="display:inline-block;width:336px;height:280px"
+	     data-ad-client="ca-pub-3833946424381349"
+	     data-ad-slot="6239036898"></ins>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+      </td>
+      <td class="p-10">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Social Shade Rect 1 -->
+	<ins class="adsbygoogle"
+	     style="display:inline-block;width:336px;height:280px"
+	     data-ad-client="ca-pub-3833946424381349"
+	     data-ad-slot="6239036898"></ins>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	</td>
+    </tr>
+  </table>
+</center>
+
 <script type="text/template" id="optionTemp">
   <div class="lead opt-body">
     <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>
@@ -38,8 +70,10 @@
       }   
       if(opt == 2) {
         ele("opt-1").focus();    
+        setPasteEvent("opt-1");
       } else {
         ele("opt-"+opt).focus();
+        setPasteEvent("opt-"+opt);
       }     
   }
   function save_qu() {
@@ -65,6 +99,7 @@
     submit_ajax_form('save-qu-form');
   }
   window.onload = function() {
-  ele("quta").focus();
+    ele("quta").focus();
+    setPasteEvent("quta");
   };
 </script>

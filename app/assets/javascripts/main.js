@@ -1,3 +1,27 @@
+function getPasteEvent(e) {
+    e.preventDefault();
+    if(e.clipboardData) {
+	content = (e.originalEvent || e).clipboardData.getData('text/plain');
+	document.execCommand('insertText', false, content);
+    }
+    else if(window.clipboardData) {
+	content = window.clipboardData.getData('Text');
+	document.selection.createRange().pasteHTML(content);
+    }   
+}
+
+function setPasteEvent(id) {
+    if(ele(id) != null) { 
+	ele(id).addEventListener("paste", function(e) { getPasteEvent(e) });
+    }
+}
+
+function removePasteEvent(id) {
+    if(ele(id) != null) { 
+	ele(id).removeEventListener("paste", function(e) { getPasteEvent(e) });
+    }
+}
+
 function saveTextAnswer() {
     ele('ans').value = ele('ans-txt').innerHTML;
     submit_ajax_form('save-ans-form');
