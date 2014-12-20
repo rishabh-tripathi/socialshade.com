@@ -63,10 +63,15 @@
   <span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
   <hr style="width:30%;">
 <% end %>
+<img src="/assets/anon.jpg"/>
 <% end %>
 <% end %>
-
-<% if(!@show_ans && @ans.present?) %>
+<% if(!@show_ans && !@ans.nil? && !@ans.blank?) %>
 <div class="sp50"></div>
 <span class="lead"><b><%= @ans.size %></b> response so far, answer first to see result</span>
+<% end %>
+
+<% if(!@wrong_ans.nil?) %>
+<div class="sp50"></div>
+<span class="lead">Your answer is not appropriate, please <a href="<%= answer_url(@qu.id) %>">retry</a></span>
 <% end %>

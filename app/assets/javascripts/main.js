@@ -24,7 +24,8 @@ function removePasteEvent(id) {
 
 function saveTextAnswer() {
     ele('ans').value = ele('ans-txt').innerHTML;
-    submit_ajax_form('save-ans-form');
+    ele('buid').value = getBuid("soclshd");
+    submit_ajax_form('save-ans-form');    
 }
 
 function submitOptAns(id, all) {
@@ -35,6 +36,7 @@ function submitOptAns(id, all) {
     $('#'+id+'-icon').removeClass('unchecked');
     $('#'+id+'-icon').addClass('checked');    
     ele('ans').value = id;
+    ele('buid').value = getBuid("soclshd");
     submit_ajax_form('save-ans-form');
 }
 

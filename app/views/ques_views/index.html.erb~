@@ -1,0 +1,27 @@
+<h1>Listing ques_views</h1>
+
+<table>
+  <tr>
+    <th>Qu</th>
+    <th>Uid</th>
+    <th>Count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ques_views.each do |ques_view| %>
+  <tr>
+    <td><%= ques_view.qu_id %></td>
+    <td><%= ques_view.uid %></td>
+    <td><%= ques_view.count %></td>
+    <td><%= link_to 'Show', ques_view %></td>
+    <td><%= link_to 'Edit', edit_ques_view_path(ques_view) %></td>
+    <td><%= link_to 'Destroy', ques_view, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ques view', new_ques_view_path %>

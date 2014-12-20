@@ -1,0 +1,4 @@
+class AddUidToAns < ActiveRecord::Migration
+  def change
+  end
+end
