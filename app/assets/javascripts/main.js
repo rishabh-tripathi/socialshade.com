@@ -52,3 +52,19 @@ function afterSave() {
 	ele_del('qu-opt');
     drawChart();
 }
+
+function googleTranslationTextbox(id, value) {
+    if(ele(id) != null) 
+	google.setOnLoadCallback(translateTextboxValue(id, value));
+}
+
+function translateTextboxValue(textboxId, destLang) {
+    var options = {
+        sourceLanguage: 'en',
+        destinationLanguage: [destLang],
+        transliterationEnabled: true
+    };
+    var control = new google.elements.transliteration.TransliterationControl(options);
+    var ids = [textboxId];
+    control.makeTransliteratable(ids);
+}

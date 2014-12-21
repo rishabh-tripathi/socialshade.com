@@ -47,8 +47,11 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript">
     google.load("visualization", "1", {packages:["corechart"]});
-  </script> 
-
+    // Load the Google Transliteration API
+    google.load("elements", "1", {
+    packages: "transliteration"
+    });
+  </script>
 </head>
 <body>
   <div id="transLayer" style="display:none;">

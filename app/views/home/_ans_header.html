@@ -1,14 +1,27 @@
 <div class="ans-header">
-  <form class="navbar-form navbar-left p-null" action="<%= search_url %>" role="search">
-    <div class="form-group" style="margin-top:5px;width:250px;">
-      <div class="input-group">
-        <input class="form-control" name="query" type="search" placeholder="Search Question">
-        <span class="input-group-btn">
-          <button type="submit" class="btn"><span class="fui-search"></span></button>
-        </span>
-      </div>
-    </div>
-  </form>
-  <a href="<%= ask_url %>" class="btn btn-lg btn-danger pull-right">Ask Your Question</a>
+  <table style="width:100%;">
+    <tr>
+      <td style="width:250px;">
+
+      </td>
+      <td>
+	<center>
+	  <a href="<%= ask_url %>" class="btn btn-lg btn-danger" style="width:300px;padding-top:5px;padding-bottom:5px;font-size: 25px;">Ask Your Question</a>
+	</center>
+      </td>
+      <td style="width:250px;">
+	<form class="navbar-form navbar-left p-null" action="<%= search_url %>" role="search">
+	  <div class="form-group" style="margin-top:5px;width:200px;">
+	    <div class="input-group">
+              <input class="form-control" name="query" type="search" placeholder="Search Question">
+              <span class="input-group-btn">
+		<button type="submit" class="btn"><span class="fui-search"></span></button>
+              </span>
+	    </div>
+	  </div>
+	</form>	
+      </td>
+    </tr>
+  </table>
   <div style="clear:both"></div>
 </div>

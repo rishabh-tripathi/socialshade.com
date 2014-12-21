@@ -10,7 +10,12 @@
 <div class="main" >
   <div id="qu-form" class="form-group">
     <div style="position:relative;"> 
-      <div id="quta" class="lead" contenteditable="true" placeholder="Ask anything to anyone"></div>
+      <div style="position:relative;">
+	<div id="quta" class="lead" contenteditable="true" placeholder="Ask anything to anyone"></div>
+	<select id="ask-lang-sel" style="top:0px;bottom:none;" onchange="googleTranslationTextbox('quta', this.value)">
+	  <%= render(:partial => "lang_list") %>
+	</select>	
+      </div>
       <a href="javascript:;" onclick="addOption();" class="pull-right" style="position:absolute;bottom:0px;right:0px;">Add&nbsp;answer&nbsp;to&nbsp;choose</a>    
     </div>
     <div id="optdiv"></div>
@@ -71,10 +76,17 @@
       if(opt == 2) {
         ele("opt-1").focus();    
         setPasteEvent("opt-1");
+        setPasteEvent("opt-2");
+        if(ele('ask-lang-sel').value != "en") {
+          googleTranslationTextbox('opt-1', ele('ask-lang-sel').value);
+          googleTranslationTextbox('opt-2', ele('ask-lang-sel').value);
+        }
       } else {
         ele("opt-"+opt).focus();
         setPasteEvent("opt-"+opt);
-      }     
+        if(ele('ask-lang-sel').value != "en")
+          googleTranslationTextbox('opt-'+opt, ele('ask-lang-sel').value)    
+    }     
   }
   function save_qu() {
     var qutxt = $("#quta").text();

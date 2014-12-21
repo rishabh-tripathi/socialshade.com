@@ -16,17 +16,19 @@ class HomeController < ApplicationController
   
   def submit_qu
     @qu = Qu.new
-    @qu.text = params[:qu]
+    @qu.text = Ans.remove_bad_words(params[:qu])
     if(!params[:opt].nil? && !params[:opt].blank?)
       @qu.qu_type = Qu::TYPE_SINGLE
       @qu.ans = 0
       @qu.likes = 0
       @qu.views = 0
+      uid = get_user_bid
+      @qu.uid = uid if(!uid.nil? && !uid.blank?)
       @qu.save
       params[:opt].each do|key, value|
         opt = Option.new
         opt.qu_id = @qu.id
-        opt.content = value
+        opt.content = Ans.remove_bad_words(value)
         opt.seq = key
         opt.save
       end
@@ -66,7 +68,7 @@ class HomeController < ApplicationController
     if(!params[:ans].blank?) 
       ans = Ans.new
       ans.question_id = @qu.id
-      ans.value = params[:ans]
+      ans.value = Ans.remove_bad_words(params[:ans])
       if(@qu.qu_type == Qu::TYPE_SINGLE)
         opts = @options.map{|a| a.id }
         if(!(opts.include? ans.value.to_i))

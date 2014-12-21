@@ -298,3 +298,23 @@ body {
     vertical-align: middle;
     border-left: 1px solid #eaeaea;
 }
+
+#lang-sel, #ask-lang-sel {
+    color: #3b3e45;
+    font-size: 12px;
+    position: absolute;
+    right: 0px;
+    opacity: 0.3;
+}
+
+#lang-sel {
+    bottom: 0px;
+}
+
+#ask-lang-sel {
+    top: 0px;
+}
+
+#lang-sel:hover, #ask-lang-sel:hover {
+    opacity: 1;
+}

@@ -26,7 +26,12 @@
 	<% else %>
 	<div id="qu-txt">
 	  <div class="sp20"></div>
-	  <div id="ans-txt" class="lead m-null" contenteditable="true" placeholder="Write your answer"></div>	    
+	  <div style="position:relative;">
+	    <div id="ans-txt" class="lead m-null" contenteditable="true" placeholder="Write your answer"></div>	    	    
+	    <select id="lang-sel" onchange="googleTranslationTextbox('ans-txt', this.value)">
+	      <%= render(:partial => "lang_list") %>
+	    </select>
+	  </div>
 	  <div class="sp20"></div>
 	  <input type="button" class="btn btn-block btn-success" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Openion" />
 	</div>

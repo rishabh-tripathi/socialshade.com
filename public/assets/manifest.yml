@@ -31,9 +31,9 @@ wquote-r.png: wquote-r-cf1057ee5dc6b2c197cfa009b10e8c8e.png
 wquote-r/index.png: wquote-r-cf1057ee5dc6b2c197cfa009b10e8c8e.png
 wquote.png: wquote-2379881871ee3beb1841439d3d19cfef.png
 wquote/index.png: wquote-2379881871ee3beb1841439d3d19cfef.png
-application.js: application-765b5dacdbce82aaf16d40d93dc8ad6e.js
-application/index.js: application-765b5dacdbce82aaf16d40d93dc8ad6e.js
-application.css: application-aec27f205dccfc3f2f2645093614e706.css
-application/index.css: application-aec27f205dccfc3f2f2645093614e706.css
+application.js: application-50dcda51adeef3baf73e4a97f2f3659d.js
+application/index.js: application-50dcda51adeef3baf73e4a97f2f3659d.js
+application.css: application-b340bb454e84d0d465962bb56fc50ccf.css
+application/index.css: application-b340bb454e84d0d465962bb56fc50ccf.css
 jquery.min.map: jquery.min-c5a89be96c8d2def857e2657b2c155c0.map
 jquery/index.min.map: jquery.min-c5a89be96c8d2def857e2657b2c155c0.map
