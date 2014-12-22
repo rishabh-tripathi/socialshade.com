@@ -5,29 +5,33 @@
 	<div style="position:relative;">	  
 	  <img class="img-circle menu-icon" src="/assets/prof.jpg" onclick="closeAllMenu();ele_toggle('prof-menu');" style="height:45px;"/>
 	  <div id="prof-menu" class="ss-menu" style="left:20px;display:none;">
-	    <div class="ss-menu-item">
+	    <div class="ss-menu-item" onclick="window.open('<%= show_profile_url %>','_self')">
 	      Profile
 	    </div>
-	    <div class="ss-menu-item">
-	      Email profile
-	    </div>
-	    <div class="ss-menu-item" onclick="clearBuid('soclshd')">
+	    <% if(@uid) %>
+	    <a href="mailto:youremail?subject=Your profile at socialshade.com&body=Click here to get your session on socialshade <%= keep_profile_url(@uid) %>">
+	      <div class="ss-menu-item">
+		Email profile
+	      </div>
+	    </a>
+	    <% end %>
+	    <div class="ss-menu-item" onclick="clearProfile()">
 	      Clear Profile
 	    </div>
 	  </div>
 	  <img class="img-circle menu-icon" src="/assets/noti.png" onclick="closeAllMenu();ele_toggle('noti-menu');"/>	  
-	  <div class="noti-icon">1</div>
-	  <div id="noti-menu" class="ss-menu" style="left:80px;display:none;">
-	    <div class="ss-menu-item">
-	      Profile
-	    </div>
-	    <div class="ss-menu-item">
-	      Email profile
-	    </div>
-	    <div class="ss-menu-item">
-	      Clear Profile
-	    </div>
+	  <% if(!@noti.nil? && !@noti.blank?) %>
+	  <div class="noti-icon"><%= @noti.size %></div>
+	  <div id="noti-menu" class="ss-menu" style="left:80px;width:400px;display:none;">	    
+	    <% @noti.each do|n| %>
+	    <a href="<%= answer_url(n[0]) %>">
+	      <div class="ss-menu-item">
+		<%= n[1] %>
+	      </div>
+	    </a>
+	    <% end %>
 	  </div>
+	  <% end %>
 	</div>
       </td>
       <td>
@@ -37,7 +41,7 @@
       </td>
       <td style="width:250px;">
 	<form class="navbar-form navbar-left p-null pull-right" action="<%= search_url %>" role="search">
-	  <div class="form-group" style="margin-top:5px;width:200px;">
+	  <div class="form-group" style="width:200px;">
 	    <div class="input-group">
               <input class="form-control" name="query" type="search" placeholder="Search Question">
               <span class="input-group-btn">
@@ -50,15 +54,21 @@
       <td style="width:50px;">	
 	<img class="img-circle menu-icon" src="/assets/help.png" onclick="closeAllMenu();ele_toggle('help-menu');" style="background:#ffffff;margin:0px 20px;"/>
 	<div id="help-menu" class="ss-menu" style="right:20px;display:none;">
-	  <div class="ss-menu-item">
-	    What is this
-	  </div>
-	  <div class="ss-menu-item">
-	    
-	  </div>
-	  <div class="ss-menu-item" onclick="clearBuid('soclshd')">
-	    Clear Profile
-	  </div>
+	  <a href="<%= how_to_url %>">
+	    <div class="ss-menu-item">
+	      How to use
+	    </div>
+	  </a>
+	  <a href="<%= terms_url %>">
+	    <div class="ss-menu-item">
+	      Terms of usage
+	    </div>
+	  </a>
+	  <a href="<%= privacy_url %>">
+	    <div class="ss-menu-item">
+	      Privacy
+	    </div>
+	  </a>
 	</div>
       </td>
     </tr>

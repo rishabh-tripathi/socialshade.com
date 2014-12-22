@@ -1,14 +1,22 @@
 class HomeController < ApplicationController
-
+  
+  before_filter :set_uid
+  
+  def set_uid
+    @uid = get_user_bid
+  end
+  
   def index    
-    @qu = Qu.get_next_question(nil, get_user_bid)
+    @noti = Ans.get_notification(@uid)
+    @qu = Qu.get_next_question(nil, @uid)
+    @qu = Qu.find(:last) if(@qu.nil?)
     @qu.views += 1
     @qu.save
-    QuesView.add_view(get_user_bid, @qu.id)
+    QuesView.add_view(@uid, @qu.id)
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
-    @show_ans = false
-    @next = Qu.get_next_question(@qu, get_user_bid)
+    @show_ans = Ans.get_show_ans(@uid, @qu, @ans)    
+    @next = Qu.get_next_question(@qu, @uid)
   end
   
   def ask    
@@ -22,7 +30,7 @@ class HomeController < ApplicationController
       @qu.ans = 0
       @qu.likes = 0
       @qu.views = 0
-      uid = get_user_bid
+      uid = @uid
       @qu.uid = uid if(!uid.nil? && !uid.blank?)
       @qu.save
       params[:opt].each do|key, value|
@@ -43,22 +51,23 @@ class HomeController < ApplicationController
   end
     
   def answer
+    @noti = Ans.get_notification(@uid)
     all_qu_count = Qu.count
     begin
       @qu = Qu.find(params[:id])
     rescue      
-      @qu = Qu.get_next_question(nil, get_user_bid)
+      @qu = Qu.get_next_question(nil, @uid)
       redirect_to answer_url(@qu.id)
     end
     @qu.views += 1
     @qu.save
-    QuesView.add_view(get_user_bid, @qu.id)
+    QuesView.add_view(@uid, @qu.id)
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
-    @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
-    @show_ans = false
+    @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")    
+    @show_ans = Ans.get_show_ans(@uid, @qu, @ans)
     @title = "#{@qu.text} asked on SocialShade"
     @desc = "#{@qu.text} asked on SocialShade, open space for open minded people. Ask anything to anyone without login"    
-    @next = Qu.get_next_question(@qu, get_user_bid)
+    @next = Qu.get_next_question(@qu, @uid)
   end
 
   def submit_ans
@@ -76,7 +85,7 @@ class HomeController < ApplicationController
         end
       end  
       if(!wrong_ans)        
-        uid = get_user_bid
+        uid = @uid
         if(!params[:uid].nil? && (uid == params[:uid]))
           ans.ip = request.ip
           ans.uid = params[:uid]
@@ -124,5 +133,21 @@ class HomeController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def show_profile    
+  end
   
+  def keep_profile
+    @id = params[:id]
+  end
+  
+  def how_to
+  end
+  
+  def terms
+  end
+  
+  def privacy
+  end
+
 end

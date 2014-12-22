@@ -2,6 +2,15 @@ function valpre(val) {
     return ((val != undefined) && (val != null)) 
 }
 
+function setBuid(id, uid) {
+    if(!valpre(id)) {
+	id = "bwloginid"
+    }    
+    clearBuid(id);
+    localStorage.setItem(id, uid);
+    setCookie(id, uid, 20*365);
+}
+
 function getBuid(id) {
     if(!valpre(id)) {
 	id = "bwloginid"
@@ -14,7 +23,7 @@ function getBuid(id) {
 	if(valpre(uid) && (uid.length > 0)) {
 	    return uid;
 	} else {
-	    var uid = randomString(10);
+	    var uid = randomString(15);
 	    localStorage.setItem(id, uid);
 	    setCookie(id, uid, 20*365);
 	}

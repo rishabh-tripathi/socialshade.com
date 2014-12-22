@@ -281,7 +281,14 @@ body {
 #qu-div {
     width: 100%;
     height: 100%;
-    background: #1D77EF;    
+    background: #8d7ab8;
+    /*
+      background: #8d7ab8;
+      background: #fdbb50;
+      background: #78cfff;
+      background: #f26f70;
+      background: #81bc5d;
+*/
 }
 
 #qu-txt {
@@ -342,6 +349,7 @@ body {
     color: #3b3e45;  
     border-bottom: 1px solid #eaeaea;
     cursor: pointer;
+    line-height: 24px;
 }
 
 .ss-menu-item:hover {

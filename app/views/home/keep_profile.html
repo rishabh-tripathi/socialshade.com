@@ -1,0 +1,20 @@
+<script type="text/javascript">
+  var cur_uid = getBuid("soclshd");
+  if(valpre(cur_uid) && (cur_uid != "<%= @id %>")) {
+    r = window.confirm("This browser has one more session, do you want to overwrite it with your session?")
+    if(r == true) {
+      setBuid("soclshd", "<%= @id %>");
+      alert("Your session is restored, redirecting...");
+    }
+  } else {
+      if(cur_uid != "<%= @id %>") {
+        setBuid("soclshd", "<%= @id %>");
+        alert("Your session is restored, redirecting...");
+      }      
+  }
+  window.open("<%= root_path %>","_self");
+</script>
+<div class="sp100"></div>
+<center>
+  <img src="/assets/anon.jpg"/>
+</center>

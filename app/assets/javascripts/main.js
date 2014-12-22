@@ -77,3 +77,12 @@ function closeAllMenu() {
     if(ele('help-menu').style.display != "none") 
 	ele_hide('help-menu');
 }
+
+function clearProfile() {
+    r = window.confirm("Do you really want to clear this session? all the question you ask will be untrackable in notification, Do you agree?")
+    if(r == true) {
+	clearBuid('soclshd');
+	alert("Now you are like a new user, your old session is removed from this browser");
+    }
+    closeAllMenu();
+}

@@ -1,12 +1,15 @@
 OpenansCom::Application.routes.draw do
-  resources :ques_views
-
-
   root :to => 'home#index'  
   resources :qus
   resources :ans
   resources :options
+  resources :ques_views
+  match "/how-to-use" => "home#how_to", :as => :how_to
+  match "/terms" => "home#terms", :as => :terms
+  match "/privacy" => "home#privacy", :as => :privacy
   match "/ask" => "home#ask", :as => :ask
+  match "/show-profile" => "home#show_profile", :as => :show_profile
+  match "/keep-profile/:id" => "home#keep_profile", :as => :keep_profile
   match "/submit-qu" => "home#submit_qu", :as => :submit_qu
   match "/submit-ans/:id" => "home#submit_ans", :as => :submit_ans
   match "/search-qu" => "home#search", :as => :search

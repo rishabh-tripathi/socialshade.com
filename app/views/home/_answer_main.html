@@ -9,6 +9,7 @@
 	    <%= @qu.text %>
 	  </span>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/wquote-r.png" style="width:45px;"/>
+	  <div class="sp10"></div>
 	</div>
 	<% if(@options.present?) %>
 	<div class="sp30"></div>
@@ -33,7 +34,7 @@
 	    </select>
 	  </div>
 	  <div class="sp20"></div>
-	  <input type="button" class="btn btn-block btn-success" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Openion" />
+	  <input type="button" class="btn btn-block btn-success" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Opinion" />
 	</div>
 	<% end %>
       </div>
@@ -54,7 +55,12 @@
       <div class="sp50"></div>
     </td>
     <td class="right-arrow">
-      <a href="<%= answer_url(@next) %>">
+      <% if(@next.nil?)
+	 next_url = root_path
+	 else
+	 next_url = answer_url(@next)
+	 end %>
+      <a href="<%= next_url %>">
 	<div id="nxtbtn" class="right-arrow">
 	  <div class="sp200"></div>
 	  <div class="sp50"></div>
@@ -89,5 +95,6 @@
     ele("ans-txt").focus();	    
     setPasteEvent("ans-txt");
   }  
+  drawChart();
   };
 </script>
