@@ -70,11 +70,11 @@ function translateTextboxValue(textboxId, destLang) {
 }
 
 function closeAllMenu() {    
-    if(ele('prof-menu').style.display != "none") 
+    if((ele('prof-menu') != null) && (ele('prof-menu').style.display != "none")) 
 	ele_hide('prof-menu');
-    if(ele('noti-menu').style.display != "none") 
+    if((ele('noti-menu') != null) && (ele('noti-menu').style.display != "none")) 
 	ele_hide('noti-menu');
-    if(ele('help-menu').style.display != "none") 
+    if((ele('help-menu') != null) && (ele('help-menu').style.display != "none")) 
 	ele_hide('help-menu');
 }
 
