@@ -8,7 +8,6 @@ class QuesViewsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @ques_views }
     end
   end
 
@@ -19,7 +18,6 @@ class QuesViewsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @ques_view }
     end
   end
 
@@ -30,7 +28,6 @@ class QuesViewsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @ques_view }
     end
   end
 
@@ -46,11 +43,9 @@ class QuesViewsController < ApplicationController
 
     respond_to do |format|
       if @ques_view.save
-        format.html { redirect_to @ques_view, notice: 'Ques view was successfully created.' }
-        format.json { render json: @ques_view, status: :created, location: @ques_view }
+        format.html { redirect_to @ques_view, :notice => 'Ques view was successfully created.' }
       else
-        format.html { render action: "new" }
-        format.json { render json: @ques_view.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
       end
     end
   end
@@ -62,11 +57,9 @@ class QuesViewsController < ApplicationController
 
     respond_to do |format|
       if @ques_view.update_attributes(params[:ques_view])
-        format.html { redirect_to @ques_view, notice: 'Ques view was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to @ques_view, :notice => 'Ques view was successfully updated.' }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @ques_view.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
       end
     end
   end
@@ -79,7 +72,6 @@ class QuesViewsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to ques_views_url }
-      format.json { head :no_content }
     end
   end
 end

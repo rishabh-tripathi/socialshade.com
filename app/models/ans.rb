@@ -51,18 +51,21 @@ class Ans < ActiveRecord::Base
       end
     end
     answer_by_this_user = Ans.find(:all, :conditions => ["uid = ?", uid])
-    if(!answer_by_this_user.nil? && !answer_by_this_user.blank?)
+    if(answer_by_this_user.present?)
       qids = answer_by_this_user.map{|a| a.question_id }
-      for q in qids.uniq!
-        if(!last_visit_date.nil?)
-          ans = Ans.find(:all, :conditions => ["uid != ? and question_id = ? and created_at > ?", uid, q, last_visit_date]) 
-        else
-          ans = Ans.find(:all, :conditions => ["uid != ? and question_id = ?", uid, q]) 
-        end
-        if(!ans.nil? && !ans.blank?)
-          ans = ans.sort{|a,b| b.updated_at <=> a.updated_at }
-          qu = Qu.find(q)
-          noti << [q, "'#{qu.text}' got #{ans.size} more answers, click to view", ans.first.updated_at]
+      if(qids.present?)
+        qids = qids.uniq
+        for q in qids
+          if(!last_visit_date.nil?)
+            ans = Ans.find(:all, :conditions => ["uid != ? and question_id = ? and created_at > ?", uid, q, last_visit_date]) 
+          else
+            ans = Ans.find(:all, :conditions => ["uid != ? and question_id = ?", uid, q]) 
+          end
+          if(!ans.nil? && !ans.blank?)
+            ans = ans.sort{|a,b| b.updated_at <=> a.updated_at }
+            qu = Qu.find(q)
+            noti << [q, "'#{qu.text}' got #{ans.size} more answers, click to view", ans.first.updated_at]
+          end
         end
       end      
     end
