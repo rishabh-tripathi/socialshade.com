@@ -318,3 +318,44 @@ body {
 #lang-sel:hover, #ask-lang-sel:hover {
     opacity: 1;
 }
+
+.menu-icon {
+    margin-left: 10px;
+    width: 45px;
+    border: 1px solid #eaeaea;
+    cursor: pointer;
+}
+
+.ss-menu {
+    position: fixed;
+    bottom: 60px;
+    background: #fafafa;
+    min-width: 200px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+}
+
+.ss-menu-item {
+    padding: 5px 10px;
+    color: #3b3e45;  
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+}
+
+.ss-menu-item:hover {
+    background: #eaeaea;
+}
+
+.noti-icon {
+    position: fixed;
+    bottom: 45px;
+    left: 105px;
+    background: red;
+    padding: 1px 5px;
+    font-size: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}

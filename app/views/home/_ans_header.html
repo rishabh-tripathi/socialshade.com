@@ -2,7 +2,33 @@
   <table style="width:100%;">
     <tr>
       <td style="width:250px;">
-
+	<div style="position:relative;">	  
+	  <img class="img-circle menu-icon" src="/assets/prof.jpg" onclick="closeAllMenu();ele_toggle('prof-menu');" style="height:45px;"/>
+	  <div id="prof-menu" class="ss-menu" style="left:20px;display:none;">
+	    <div class="ss-menu-item">
+	      Profile
+	    </div>
+	    <div class="ss-menu-item">
+	      Email profile
+	    </div>
+	    <div class="ss-menu-item" onclick="clearBuid('soclshd')">
+	      Clear Profile
+	    </div>
+	  </div>
+	  <img class="img-circle menu-icon" src="/assets/noti.png" onclick="closeAllMenu();ele_toggle('noti-menu');"/>	  
+	  <div class="noti-icon">1</div>
+	  <div id="noti-menu" class="ss-menu" style="left:80px;display:none;">
+	    <div class="ss-menu-item">
+	      Profile
+	    </div>
+	    <div class="ss-menu-item">
+	      Email profile
+	    </div>
+	    <div class="ss-menu-item">
+	      Clear Profile
+	    </div>
+	  </div>
+	</div>
       </td>
       <td>
 	<center>
@@ -10,7 +36,7 @@
 	</center>
       </td>
       <td style="width:250px;">
-	<form class="navbar-form navbar-left p-null" action="<%= search_url %>" role="search">
+	<form class="navbar-form navbar-left p-null pull-right" action="<%= search_url %>" role="search">
 	  <div class="form-group" style="margin-top:5px;width:200px;">
 	    <div class="input-group">
               <input class="form-control" name="query" type="search" placeholder="Search Question">
@@ -21,7 +47,37 @@
 	  </div>
 	</form>	
       </td>
+      <td style="width:50px;">	
+	<img class="img-circle menu-icon" src="/assets/help.png" onclick="closeAllMenu();ele_toggle('help-menu');" style="background:#ffffff;margin:0px 20px;"/>
+	<div id="help-menu" class="ss-menu" style="right:20px;display:none;">
+	  <div class="ss-menu-item">
+	    What is this
+	  </div>
+	  <div class="ss-menu-item">
+	    
+	  </div>
+	  <div class="ss-menu-item" onclick="clearBuid('soclshd')">
+	    Clear Profile
+	  </div>
+	</div>
+      </td>
     </tr>
   </table>
   <div style="clear:both"></div>
 </div>
+
+
+<% if(false) %>
+<form action="http://www.google.co.in" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-3833946424381349:6481212499" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="55" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script>
+<script type="text/javascript" src="http://www.google.com/cse/t13n?form=cse-search-box&t13n_langs=ta%2Cpa%2Cel%2Cam%2Cml%2Car%2Cgu%2Cmr%2Cru%2Cte%2Cti%2Csa%2Cne%2Chi%2Cbn%2Cen%2Ckn%2Cfa%2Csr%2Cur"></script>
+<script type="text/javascript" src="http://www.google.co.in/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+<% end %>

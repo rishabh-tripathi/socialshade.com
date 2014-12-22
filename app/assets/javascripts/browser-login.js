@@ -10,7 +10,6 @@ function getBuid(id) {
     if(valpre(uid)) {	
 	return uid;
     } else {
-	console.log(2);
 	var uid = getCookie(id);
 	if(valpre(uid) && (uid.length > 0)) {
 	    return uid;
@@ -21,6 +20,11 @@ function getBuid(id) {
 	}
     }
     return uid;
+}
+
+function clearBuid(id) {
+    localStorage.removeItem(id);
+    delCookie(id);
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -40,6 +44,10 @@ function getCookie(cname) {
     }
     return "";
 }
+
+var delCookie = function(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
 
 function randomString(strLength) {
     var str = "";

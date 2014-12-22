@@ -68,3 +68,12 @@ function translateTextboxValue(textboxId, destLang) {
     var ids = [textboxId];
     control.makeTransliteratable(ids);
 }
+
+function closeAllMenu() {    
+    if(ele('prof-menu').style.display != "none") 
+	ele_hide('prof-menu');
+    if(ele('noti-menu').style.display != "none") 
+	ele_hide('noti-menu');
+    if(ele('help-menu').style.display != "none") 
+	ele_hide('help-menu');
+}

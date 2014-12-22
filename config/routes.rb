@@ -1,4 +1,7 @@
 OpenansCom::Application.routes.draw do
+  resources :ques_views
+
+
   root :to => 'home#index'  
   resources :qus
   resources :ans
