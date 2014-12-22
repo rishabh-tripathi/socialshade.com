@@ -140,6 +140,41 @@ class HomeController < ApplicationController
   def keep_profile
     @id = params[:id]
   end
+
+  def create_like
+    if(@uid.to_s == params[:uid].to_s)
+      img_path = ""
+      count = 1
+      if(params[:objtype].to_i == 1)
+        obj = Qu.find(params[:id])
+        sh = ""
+      elsif(params[:objtype].to_i == 2)
+        obj = Ans.find(params[:id])
+        sh = "s"
+      end
+      if(params[:type].to_i == 1)
+        if(obj.like.nil?)
+          obj.like = 1 
+        else
+          obj.like += 1
+        end
+        img_path = "/assets/#{sh}like.png"
+        count = obj.like
+      elsif(params[:type].to_i == -1)
+        if(obj.unlike.nil?)
+          obj.unlike = 1 
+        else
+          obj.unlike += 1
+        end      
+        img_path = "/assets/#{sh}unlike.png"
+        count = obj.unlike
+      end
+      obj.save
+      render(:partial => "like_res", :locals => {:img_path => img_path, :count => count})
+    else
+      render(:text => "error")
+    end
+  end
   
   def how_to
   end

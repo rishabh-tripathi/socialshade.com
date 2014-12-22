@@ -1,5 +1,5 @@
 class Qu < ActiveRecord::Base
-  attr_accessible :ans, :likes, :text, :qu_type, :uid, :views
+  attr_accessible :ans, :likes, :text, :qu_type, :uid, :views, :unlike
   TYPE_TEXT = 0
   TYPE_SINGLE = 1
   TYPE_NAME = {
@@ -16,7 +16,6 @@ class Qu < ActiveRecord::Base
         exc = ans.map{|a| a.question_id }
       end
     end    
-    logger.info(exc)
     exc += QuesView.get_user_views_question(uid)
     logger.info(exc)
     if(!exc.nil? && !exc.blank?)

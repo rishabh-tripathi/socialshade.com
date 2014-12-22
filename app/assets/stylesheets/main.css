@@ -258,7 +258,7 @@ body {
     cursor: pointer;
     vertical-align: top;
     width: 150px;
-    background: #ffffff;
+    background: #fafafa;
 }
 
 .left-arrow:hover, .right-arrow:hover {
@@ -335,7 +335,7 @@ body {
 
 .ss-menu {
     position: fixed;
-    bottom: 60px;
+    bottom: 70px;
     background: #fafafa;
     min-width: 200px;
     -webkit-border-radius: 5px;
@@ -366,4 +366,29 @@ body {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+#qu-like {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #ffffff;
+}
+
+.qu-lke {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 18px;
+    border: 2px solid #8D7AB8;
+}
+
+.qu-lke:hover {
+    border: 2px solid #ffffff;
+}
+
+#noti-menu {
+    left: 80px;
+    width: 400px;
+    max-height: 500px;
+    overflow: auto;
 }
