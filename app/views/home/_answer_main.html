@@ -2,7 +2,7 @@
   <tr>
     <td style="text-align:center;vertical-align: top;">
       <div id="qu-div">
-	<div class="p-10">
+	<div class="p-10" style="position:relative;" onmouseover="ele_show('qu-like');" onmouseout="ele_hide('qu-like');">
 	  <div class="sp10"></div>
 	  <img src="/assets/wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	  <span class="lead" style="color:#ffffff;font-size:45px;">
@@ -10,6 +10,10 @@
 	  </span>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/wquote-r.png" style="width:45px;"/>
 	  <div class="sp10"></div>
+	  <div id="qu-like" style="display:none;">
+	    <img class="pointer qu-lke" src="/assets/like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
+	    <img class="pointer qu-lke" src="/assets/unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');" style="margin-left:5px;"/>
+	  </div>
 	</div>
 	<% if(@options.present?) %>
 	<div class="sp30"></div>
@@ -84,6 +88,20 @@
 <input type="hidden" id="ans" name="ans" /> 
 <input type="hidden" id="buid" name="uid" value=""/> 
 <%= end_form %>
+
+<%= form_remote_tag :url => create_like_url(),                              
+                    :loading => "loadingLike();",                     
+                    :complete => "compLike();",
+                    :failure => "alert('Error in like, please refresh to retry');",
+                    :update => "like-cont",                                 
+                    :html => {:id => "create-like-form"}  
+%>          
+<input type="hidden" id="objid" name="id" value=""/> 
+<input type="hidden" id="objtype" name="objtype" value=""/> 
+<input type="hidden" id="ltype" name="type" value=""/> 
+<input type="hidden" id="lbuid" name="uid" value=""/> 
+<%= end_form %>
+<span id="like-cont"></span>
 
 <%= render(:partial => "ans_header") %>
 

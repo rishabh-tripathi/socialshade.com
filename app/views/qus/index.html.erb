@@ -7,6 +7,7 @@
     <th>Type</th>
     <th>Views</th>
     <th>Likes</th>
+    <th>Unlikes</th>
     <th>Ans</th>
     <th></th>
     <th></th>
@@ -16,10 +17,11 @@
 <% @qus.each do |qu| %>
   <tr>
     <td><%= qu.uid %></td>
-    <td><%= qu.text %></td>
+    <td><a href="<%= answer_url(qu.id) %>"><%= qu.text %></a></td>
     <td><%= Qu::TYPE_NAME[qu.qu_type] %></td>
     <td><%= qu.views %></td>
-    <td><%= qu.likes %></td>
+    <td><%= qu.like %></td>
+    <td><%= qu.unlike %></td>
     <td><%= qu.ans %></td>
     <td><%= link_to 'Show', qu %></td>
     <td><%= link_to 'Edit', edit_qu_path(qu) %></td>

@@ -1,0 +1,9 @@
+class ChangeLikeFieldInQus < ActiveRecord::Migration
+  def up
+
+    add_column :qus, :like, :integer	
+  end
+
+  def down
+  end
+end

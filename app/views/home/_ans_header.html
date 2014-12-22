@@ -22,13 +22,21 @@
 	  <img class="img-circle menu-icon" src="/assets/noti.png" onclick="closeAllMenu();ele_toggle('noti-menu');"/>	  
 	  <% if(!@noti.nil? && !@noti.blank?) %>
 	  <div class="noti-icon"><%= @noti.size %></div>
-	  <div id="noti-menu" class="ss-menu" style="left:80px;width:400px;display:none;">	    
+	  <div id="noti-menu" class="ss-menu" style="display:none;">	    
 	    <% @noti.each do|n| %>
+	    <% if(n[0].present?) %>
 	    <a href="<%= answer_url(n[0]) %>">
+	      <% end %>
 	      <div class="ss-menu-item">
 		<%= n[1] %>
+		<% if(n[2].present?) %>
+		<div class="sp1"></div>
+		<div style="color:#898C90;font-size:12px;"><%= time_ago_in_words(n[2]) %> ago</div>
+		<% end %>
 	      </div>
+	      <% if(n[0].present?) %>
 	    </a>
+	    <% end %>
 	    <% end %>
 	  </div>
 	  <% end %>
@@ -67,6 +75,16 @@
 	  <a href="<%= privacy_url %>">
 	    <div class="ss-menu-item">
 	      Privacy
+	    </div>
+	  </a>
+	  <a href="https://www.facebook.com/pages/Anonymous-Web/1529890030602726">
+	    <div class="ss-menu-item">
+	      Friend us on Facebook
+	    </div>
+	  </a>
+	  <a href="https://twitter.com/ShadeOfSocial">
+	    <div class="ss-menu-item">
+	      Follow us on Twitter
 	    </div>
 	  </a>
 	</div>

@@ -86,3 +86,30 @@ function clearProfile() {
     }
     closeAllMenu();
 }
+var likedivid = "";
+function likeObj(id, type, div_id) {
+    likedivid = div_id;
+    ele('objid').value = id;
+    ele('objtype').value = type;
+    ele('ltype').value = 1;
+    ele('lbuid').value = getBuid("soclshd");
+    submit_ajax_form("create-like-form");
+}
+
+function unlikeObj(id, type, div_id) {
+    likedivid = div_id;
+    ele('objid').value = id;
+    ele('objtype').value = type;
+    ele('ltype').value = -1;
+    ele('lbuid').value = getBuid("soclshd");
+    submit_ajax_form("create-like-form");
+}
+
+function loadingLike() {
+    ele(likedivid).innerHTML = "Loading";
+}
+
+function compLike() {
+    ele(likedivid).innerHTML = ele('like-cont').innerHTML;
+    ele('like-cont').innerHTML = "";
+}

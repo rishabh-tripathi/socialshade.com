@@ -61,7 +61,11 @@
   <span class="lead" style="font-size:22px;"><%= raw a.value %></span>
   <div class="sp1"></div>
   <span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
-  <hr style="width:30%;">
+  <div id="ansl-<%= a.id %>" style="color:#3b3e45;width:50px;margin:0px auto;font-size:12px">
+    <img class="pointer" src="/assets/slike.png" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"/>
+    <img class="pointer" src="/assets/sunlike.png" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');" style="margin-left:5px;"/>
+  </div>
+  <hr style="width:30%;margin-top:10px;">
 <% end %>
 <img src="/assets/anon.jpg"/>
 <% end %>

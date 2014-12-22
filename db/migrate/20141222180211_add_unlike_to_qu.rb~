@@ -1,0 +1,4 @@
+class AddUnlikeToQu < ActiveRecord::Migration
+  def change
+  end
+end
