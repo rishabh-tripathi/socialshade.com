@@ -69,8 +69,11 @@ class Ans < ActiveRecord::Base
         end
       end      
     end
-    if(!noti.blank?)
-      noti = noti.sort{|a,b| b[3] <=> a[3] }
+    if(noti.present?)
+      begin
+        noti = noti.sort{|a,b| b[3] <=> a[3] }
+      rescue
+      end
     end
     return noti
   end
