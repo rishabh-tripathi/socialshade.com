@@ -20,6 +20,8 @@ class HomeController < ApplicationController
   end
   
   def ask    
+    @title = "Ask anything anonymously on SocialShade"
+    @desc = "Ask anything anonymously, open space for open minded people. Ask anything to anyone without login"    
   end
   
   def submit_qu
@@ -30,8 +32,7 @@ class HomeController < ApplicationController
       @qu.ans = 0
       @qu.like = 0
       @qu.views = 0
-      uid = @uid
-      @qu.uid = uid if(!uid.nil? && !uid.blank?)
+      @qu.uid = @uid if(@uid.present?)
       @qu.save
       params[:opt].each do|key, value|
         opt = Option.new
@@ -43,6 +44,7 @@ class HomeController < ApplicationController
     else
       @qu.qu_type = Qu::TYPE_TEXT
       @qu.ans = 0
+      @qu.uid = @uid if(@uid.present?)
       @qu.like = 0
       @qu.views = 0
       @qu.save      
@@ -74,7 +76,7 @@ class HomeController < ApplicationController
     @qu = Qu.find(params[:id])
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     wrong_ans = false
-    if(!params[:ans].blank?) 
+    if(params[:ans].present?) 
       ans = Ans.new
       ans.question_id = @qu.id
       ans.value = Ans.remove_bad_words(params[:ans])
@@ -86,7 +88,7 @@ class HomeController < ApplicationController
       end  
       if(!wrong_ans)        
         uid = @uid
-        if(!params[:uid].nil? && (uid == params[:uid]))
+        if(params[:uid].present? && (uid == params[:uid]))
           ans.ip = request.ip
           ans.uid = params[:uid]
           ans.req_details = ""
