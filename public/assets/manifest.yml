@@ -5,6 +5,8 @@ Twitter-icon.png: Twitter-icon-e28ac9599515575a543957c4b47fd96a.png
 Twitter-icon/index.png: Twitter-icon-e28ac9599515575a543957c4b47fd96a.png
 anon.jpg: anon-23f563e922653c263a0f03c41185edad.jpg
 anon/index.jpg: anon-23f563e922653c263a0f03c41185edad.jpg
+checked-m.png: checked-m-4f81cdc24dea905e62ad6db60aa83af6.png
+checked-m/index.png: checked-m-4f81cdc24dea905e62ad6db60aa83af6.png
 checked.png: checked-88b2f6ab545135f2d5d95132f37614d1.png
 checked/index.png: checked-88b2f6ab545135f2d5d95132f37614d1.png
 fevicon.ico: fevicon-1823e1ec38925f1150f0fdcf8939c1dc.ico
@@ -37,10 +39,12 @@ rails.png: rails-71e944d9b39043eba50b77788c0d767f.png
 rails/index.png: rails-71e944d9b39043eba50b77788c0d767f.png
 right.png: right-9f8b09f00b90032f36099fba2dd4299e.png
 right/index.png: right-9f8b09f00b90032f36099fba2dd4299e.png
-slike.png: slike-f89426fd3458b46cd17a9cb18584b232.png
-slike/index.png: slike-f89426fd3458b46cd17a9cb18584b232.png
-sunlike.png: sunlike-8e26160def8ae528661714dd17c3b84b.png
-sunlike/index.png: sunlike-8e26160def8ae528661714dd17c3b84b.png
+slike.png: slike-4d766de121eb2ec558e98c3c12714728.png
+slike/index.png: slike-4d766de121eb2ec558e98c3c12714728.png
+sunlike.png: sunlike-3d7d8047448ff1b2c3041b3bce6eb024.png
+sunlike/index.png: sunlike-3d7d8047448ff1b2c3041b3bce6eb024.png
+unchecked-m.png: unchecked-m-ead2f730bab55bb5c30861c58e001308.png
+unchecked-m/index.png: unchecked-m-ead2f730bab55bb5c30861c58e001308.png
 unchecked.png: unchecked-6a6f034e585dbf68ceee40a0c54a2716.png
 unchecked/index.png: unchecked-6a6f034e585dbf68ceee40a0c54a2716.png
 unlike.png: unlike-1da0206ac0b7641e60f1bddf45ab15c0.png
@@ -51,7 +55,7 @@ wquote.png: wquote-2379881871ee3beb1841439d3d19cfef.png
 wquote/index.png: wquote-2379881871ee3beb1841439d3d19cfef.png
 application.js: application-20f34a15416bfe185e8bed21d94690de.js
 application/index.js: application-20f34a15416bfe185e8bed21d94690de.js
-application.css: application-e8b0e82474dadf1fd4fb6b36a683a0d0.css
-application/index.css: application-e8b0e82474dadf1fd4fb6b36a683a0d0.css
+application.css: application-9ac6d9a7fe26b7aecbccc548eb5a35f4.css
+application/index.css: application-9ac6d9a7fe26b7aecbccc548eb5a35f4.css
 jquery.min.map: jquery.min-c5a89be96c8d2def857e2657b2c155c0.map
 jquery/index.min.map: jquery.min-c5a89be96c8d2def857e2657b2c155c0.map

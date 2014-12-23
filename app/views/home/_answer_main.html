@@ -1,3 +1,6 @@
+<% if(@mobile) %>
+<%= render(:partial => "answer_main_m") %>
+<% else %>
 <table onclick="closeAllMenu();" style="width:100%;height:100%;">
   <tr>
     <td style="text-align:center;vertical-align: top;">
@@ -78,6 +81,8 @@
     </td>
   </tr>
 </table>
+<% end %>
+
 <%= form_remote_tag :url => submit_ans_url(@qu.id),                              
                     :loading => "showTrans();",                     
                     :complete => "afterSave();",

@@ -1,11 +1,5 @@
 class HomeController < ApplicationController
   
-  before_filter :set_uid
-  
-  def set_uid
-    @uid = get_user_bid
-  end
-  
   def index    
     @noti = Ans.get_notification(@uid)
     @qu = Qu.get_next_question(nil, @uid)

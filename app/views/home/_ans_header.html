@@ -1,4 +1,21 @@
 <div class="ans-header">
+  <% if(@mobile) %>
+  <table style="width:100%;">
+    <tr>
+      <td style="width:50%;padding-right:5px;">
+	<a href="<%= ask_url %>" class="btn btn-block btn-danger">Ask&nbsp;Question</a>
+      </td>
+      <td style="width:50%;padding-left:5px;">
+      <% if(@next.nil?)
+	 next_url = root_path
+	 else
+	 next_url = answer_url(@next)
+	 end %>      
+	<a href="<%= next_url %>" class="btn btn-block btn-success">Next&nbsp;Question</a>
+      </td>
+    </tr>
+  </table>
+  <% else %>
   <table style="width:100%;">
     <tr>
       <td style="width:250px;">
@@ -97,7 +114,20 @@
     </tr>
   </table>
   <div style="clear:both"></div>
+  <% end %>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <% if(false) %>

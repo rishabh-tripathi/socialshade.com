@@ -53,13 +53,44 @@
     packages: "transliteration"
     });
   </script>
+
+  <% if(@mobile) %>
+  <style>
+    body {
+      overflow: auto;
+      overflow-x: hidden;
+    }  
+    .unchecked {
+      background: url(/assets/unchecked-m.png);
+      width: 30px;
+      height: 30px;
+    }
+    .checked {
+      background: url(/assets/checked-m.png);
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+  <% end %>
+
 </head>
 <body>
+  <% if(@mobile) %>
+  <div id="transLayer" style="display:none;background:rgba(255,255,255,0.8);">
+    <div class="sp100"></div>    
+    <div style="width:300px;margin:0px auto;">
+      <img src="/assets/loading.gif"/> 
+    </div>
+  </div>
+  <% else %>
   <div id="transLayer" style="display:none;">
     <div class="sp100"></div>    
-    <div class="lead" style="position:fixed;bottom:20px;right:50px;">Saving Changes</div>
-    <img src="/assets/loading.gif" style="position:fixed;bottom:-120px;right:0px;"/> 
+    <% if(false) %>
+    <div class="lead" style="position:fixed;bottom:90px;right:170px;">Saving Changes</div>
+    <% end %>
+    <img src="/assets/loading.gif" style="position:fixed;bottom:-65px;right:-80px;"/> 
   </div>
+  <% end %>
   <%= yield %>
 </body>
 </html>

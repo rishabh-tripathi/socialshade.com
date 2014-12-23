@@ -1,25 +1,36 @@
-<div class="sp30"></div>
+<%
+  cls_str = "btn-lg"
+  m_str = "m-10" 
+  if(@mobile)  
+  cls_str = "btn-block"
+  m_str = "" 
+  end
+%>
 <center>
-  <h1 class="lead m-null" style="font-size:50px">Your question is saved</h1>
-  <h2 class="lead m-null" style="font-size:20px"><a href="<%= answer_url(@qu.id) %>">Your question</a> will be answered by our random anonymus user</h2>
+  <h2 class="lead m-null"><a href="<%= answer_url(@qu.id) %>">Your question</a> will be answered by our random anonymous user, you will get notification for new answers when you comeback</h2>
   <div class="sp20"></div>
-  <span class="lead m-null" style="font-size:20px">Track this question,</span>
+  <span class="lead m-null">Track this question,</span>
   <div class="sp2"></div>
-  <a href="<%= answer_url(@qu.id ) %>" class="btn btn-lg btn-info m-10" title="Save question detail in your browser for future">Answer This Question</a>
-  <a href="mailto:youremail?subject=Track this question&body=Hi, You want to track this question for answers <%= answer_url(@qu.id) %>" class="btn btn-lg btn-success m-10" title="Email question url for tracking">Email Question Detail</a>
+  <a href="mailto:youremail?subject=Track this question&body=Hi, You want to track this question for answers <%= answer_url(@qu.id) %>" class="btn <%= cls_str %> btn-success <%= m_str %>" title="Email question url for tracking">Email Question Detail</a>
+  <% if(!@mobile) %>
   <p id="addBookmarkContainer"></p>
   <div class="sp20"></div>
   <span class="lead m-null">or you can note your question id for tracking</span>
   <div class="sp10"></div>
   <h1 class="m-null save-qu-id">#<%= @qu.id %></h1>
+  <% end %>
   <div class="sp30"></div>
-  <span class="lead m-null">Check your question in few hour to find your answer</span>
+  <span class="lead m-null">Check in few hour to find your answer</span>
   <div class="sp10"></div>
-  <a href="<%= root_path %>" class="btn btn-lg btn-primary m-10">Answer Other Questions</a>
-  <a href="<%= ask_url %>" class="btn btn-lg btn-inverse m-10">Ask More Question</a>
+  <a href="<%= answer_url(@qu.id ) %>" class="btn <%= cls_str %> btn-info <%= m_str %>" title="Save question detail in your browser for future">Answer This Question</a>
+  <a href="<%= root_path %>" class="btn <%= cls_str %> btn-primary <%= m_str %>">Answer Other Questions</a>
+  <a href="<%= ask_url %>" class="btn <%= cls_str %> btn-danger <%= m_str %>">Ask More Question</a>
 </center>
+
+<% if(!@mobile) %>
 <script type="text/javascript">
   addBookmarkObj.URL = "<%= answer_url(@qu.id)%>";    
   addBookmarkObj.title= "<%= @qu.text %> - SocialShade";
   addBookmarkObj.addTextLink();
 </script>
+<% end %>

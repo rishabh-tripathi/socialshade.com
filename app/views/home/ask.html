@@ -6,13 +6,42 @@
                     :html => {:id => "save-qu-form"}  
 %>          
 <input type="hidden" id="qu-txt" name="qu" value="" />   
+<% if(@mobile) %>
+<div id="qu-form" class="p-10" style="width:100%;">
+  <div style="position:relative;">
+    <div id="quta" class="lead quetb-m" contenteditable="true" placeholder="Ask anything to anyone"></div>
+    <select id="ask-lang-sel" style="top:inharit;bottom:0px;" onchange="googleTranslationTextbox('quta', this.value)">
+      <%= render(:partial => "lang_list") %>
+    </select>	
+  </div>
+  <div class="sp10"></div>
+  <hr class="m-null">
+  <div id="optdiv"></div>
+  <div class="sp10"></div>
+  <center><a href="javascript:void(0);" onclick="addOption();">Add&nbsp;answer&nbsp;to&nbsp;choose</a></center>    
+  <div class="sp30"></div>
+  <input type="button" onclick="save_qu();" class="btn btn-block btn-success" style="font-size:1.5em" value="Ask this question" />
+</div>
+<div class="sp30"></div>
+<div style="width:320px;margin:0px auto;">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Social Shade mobile banner 1 -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:320px;height:100px"
+       data-ad-client="ca-pub-3833946424381349"
+       data-ad-slot="4908577694"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+<div>
+<% else %>
 <div class="sp20"></div>
 <div class="main" >
   <div id="qu-form" class="form-group">
     <div style="position:relative;"> 
       <div style="position:relative;">
-	<div id="quta" class="lead" contenteditable="true" placeholder="Ask anything to anyone"></div>
-	<select id="ask-lang-sel" style="top:0px;bottom:none;" onchange="googleTranslationTextbox('quta', this.value)">
+	<div id="quta" class="lead quetb" contenteditable="true" placeholder="Ask anything to anyone"></div>
+	<select id="ask-lang-sel" style="top:0px;" onchange="googleTranslationTextbox('quta', this.value)">
 	  <%= render(:partial => "lang_list") %>
 	</select>	
       </div>
@@ -23,9 +52,11 @@
     <center><input type="button" onclick="save_qu();" class="btn btn-block btn-success" style="font-size:2em" value="Ask this question" /></center>   
   </div>
 </div>
+<% end %>
 <%= end_form %>
 
 
+<% if(!@mobile) %>
 <center>
   <div class="sp50"></div>
   <table>
@@ -55,15 +86,35 @@
     </tr>
   </table>
 </center>
+<% end %>
 
 <script type="text/template" id="optionTemp">
+  <% if(@mobile) %>
+  <div class="sp10"></div>
+  <div class="opt-body pointer" style="width:100%;text-align:left;">
+    <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>
+    <table style="width:100%;">
+      <tr>
+	<td style="width:40px;">	    
+	  <div class="pull-left unchecked">&nbsp;</div>
+	</td>
+	<td>
+	  <div id="opt-{{= id }}" class="opt-txt-m" contenteditable="true" placeholder="Enter Option Text"></div>
+	</td>
+      </tr>
+    </table>
+  </div>
+  <div class="sp10"></div>
+  <% else %>
   <div class="lead opt-body">
     <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>
     <div class="pull-left unchecked">&nbsp;</div>
     <div id="opt-{{= id }}" class="pull-left opt-txt" contenteditable="true" placeholder="Enter Option Text"></div>
     <div style="clear:both;"></div>
   </div>
+  <% end %>
 </script>    
+
 <script type="text/javascript">
   var opt = 0;
   function addOption() {

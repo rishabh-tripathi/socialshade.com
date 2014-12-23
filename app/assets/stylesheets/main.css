@@ -194,7 +194,7 @@ body {
   color: #898C90;
 }
 
-#quta {
+.quetb, .quetb-m {
     overflow: hidden;
     min-height: 80px;
     font-size: 3em;
@@ -202,6 +202,11 @@ body {
     border: none;
     outline: none;
     line-height: 1.2;
+}
+
+.quetb-m {
+    min-height: 120px !important;
+    font-size: 1.5em !important;	
 }
 
 .unchecked {
@@ -229,6 +234,12 @@ body {
     height: 50px;
     font-size: 35px;
     outline: none;
+}
+
+.opt-txt-m {
+    outline: none;
+    font-size: 1.2em;
+    line-height: 1.2;
 }
 
 .save-qu-id {
@@ -318,9 +329,7 @@ body {
     bottom: 0px;
 }
 
-#ask-lang-sel {
-    top: 0px;
-}
+#ask-lang-sel {}
 
 #lang-sel:hover, #ask-lang-sel:hover {
     opacity: 1;
@@ -370,8 +379,8 @@ body {
 
 #qu-like {
     position: absolute;
-    top: 10px;
-    right: 20px;
+    top: 5px;
+    right: 5px;
     color: #ffffff;
 }
 
@@ -391,4 +400,12 @@ body {
     width: 400px;
     max-height: 500px;
     overflow: auto;
+}
+
+.ans-lke {
+    color: #3b3e45;
+    width: 80px;
+    margin: 0px auto;
+    font-size: 12px; 
+    text-align: center;
 }

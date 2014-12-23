@@ -1,5 +1,5 @@
 <% if(@ans.present? && @show_ans) %>
-<div class="sp10"></div>
+
 <% if(@options.present?) 
    total = @ans.size   
    h = {}
@@ -14,6 +14,8 @@
      o[opt.id] = opt.content
    end   
 %>
+<% if(@mobile) %>
+<% else %>
 <div class="sp10"></div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- SocialShade Banner ad1 -->
@@ -23,8 +25,9 @@
      data-ad-slot="5732836094"></ins>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
-</script>      
-<div class="sp10"></div>
+</script>
+<div class="sp20"></div>      
+<% end %>
 <span class="lead">Based on <b><%= @ans.size %></b> response</span>
 <script type="text/javascript">
   function drawChart() {
@@ -36,14 +39,27 @@
   ['', 0]
   ]);    
   var options = {
+  <% if(@mobile) %>
+  'width':320,
+  'height':200
+  <% else %>
   'width':600,
   'height':400
+  <% end %>
   };  
   var chart = new google.visualization.PieChart(ele('res-chart'));
   chart.draw(data, options);
   }  
 </script>
-<div id="res-chart" style="width:650px;margin:0px auto;"></div>
+<% if(@mobile) %>
+  <div id="res-chart" style="width:400px;margin:0px auto;"></div>
+<% else %>
+  <div id="res-chart" style="width:650px;margin:0px auto;"></div>
+<% end %>
+<% else %>
+
+
+<% if(@mobile) %>
 <% else %>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- SocialShade Banner ad1 -->
@@ -54,6 +70,8 @@
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
 </script>      
+<% end %>
+
 <div class="sp10"></div>
 <span class="lead">Showing&nbsp;&nbsp;<b><%= @ans.size %></b>&nbsp;&nbsp;answer</span>
 <hr style="width:50%;margin-top:0px;">
@@ -61,13 +79,13 @@
   <span class="lead" style="font-size:22px;"><%= raw a.value %></span>
   <div class="sp1"></div>
   <span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
-  <div id="ansl-<%= a.id %>" style="color:#3b3e45;width:50px;margin:0px auto;font-size:12px">
+  <div id="ansl-<%= a.id %>" class="ans-lke">
     <img class="pointer" src="/assets/slike.png" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"/>
     <img class="pointer" src="/assets/sunlike.png" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');" style="margin-left:5px;"/>
   </div>
   <hr style="width:30%;margin-top:10px;">
 <% end %>
-<img src="/assets/anon.jpg"/>
+
 <% end %>
 <% end %>
 <% if(!@show_ans && !@ans.nil? && !@ans.blank?) %>
