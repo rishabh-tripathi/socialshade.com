@@ -28,7 +28,7 @@ class HomeController < ApplicationController
     if(!params[:opt].nil? && !params[:opt].blank?)
       @qu.qu_type = Qu::TYPE_SINGLE
       @qu.ans = 0
-      @qu.likes = 0
+      @qu.like = 0
       @qu.views = 0
       uid = @uid
       @qu.uid = uid if(!uid.nil? && !uid.blank?)
@@ -43,7 +43,7 @@ class HomeController < ApplicationController
     else
       @qu.qu_type = Qu::TYPE_TEXT
       @qu.ans = 0
-      @qu.likes = 0
+      @qu.like = 0
       @qu.views = 0
       @qu.save      
     end
