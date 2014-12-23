@@ -23,7 +23,12 @@
 	  <% if(!@noti.nil? && !@noti.blank?) %>
 	  <div class="noti-icon"><%= @noti.size %></div>
 	  <div id="noti-menu" class="ss-menu" style="display:none;">	    
-	    <% @noti.each do|n| %>
+	    <% 
+	       begin
+	       @noti = @noti.sort{|a,b| b[2] <=> a[2]}
+	       rescue 
+	       end
+	       @noti.each do|n| %>
 	    <% if(n[0].present?) %>
 	    <a href="<%= answer_url(n[0]) %>">
 	      <% end %>
