@@ -3,7 +3,7 @@
     <%= @qu.text %>	    
   </span>
   <div class="sp20"></div>
-  <div id="qu-like-m" style="">
+  <div id="qu-like-m" style="color:#ffffff;">
     <img class="pointer qu-lke" src="/assets/like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like-m');"/>
     <img class="pointer qu-lke" src="/assets/unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like-m');" style="margin-left:5px;"/>
   </div>  
@@ -33,7 +33,7 @@
 <div id="qu-txt">
   <div class="sp20"></div>
   <div style="position:relative;">
-    <div id="ans-txt" class="lead m-null" style="" contenteditable="true" placeholder="Write your answer"></div>	    	    
+    <div id="ans-txt" class="lead m-null" style="" contenteditable="true" placeholder="Write your answer"></div>
     <select id="lang-sel" onchange="googleTranslationTextbox('ans-txt', this.value)">
       <%= render(:partial => "lang_list") %>
     </select>

@@ -345,6 +345,17 @@ body {
     cursor: pointer;
 }
 
+.menu-icon-m {
+    position: fixed;
+    -webkit-backface-visibility: hidden;    
+    bottom: 65px;
+    left: 10px;
+}
+
+.menu-icon-m img {
+    border: 3px solid #ffffff;
+}
+
 .ss-menu {
     position: fixed;
     -webkit-backface-visibility: hidden;
@@ -382,6 +393,18 @@ body {
     border-radius: 5px;
 }
 
+.noti-icon-m {
+    position: absolute;
+    top: -6px;
+    right: 5px;
+    background: red;
+    padding: 1px 5px;
+    font-size: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 #qu-like {
     position: absolute;
     top: 5px;
@@ -405,6 +428,16 @@ body {
     width: 400px;
     max-height: 500px;
     overflow: auto;
+}
+
+#noti-m {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    overflow: auto;
+    background: #ffffff;
+    padding: 10px;
 }
 
 .ans-lke {

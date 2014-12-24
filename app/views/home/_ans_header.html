@@ -1,4 +1,4 @@
-<div class="ans-header">
+<div id="footer-pane" class="ans-header">
   <% if(@mobile) %>
   <table style="width:100%;">
     <tr>
@@ -14,7 +14,49 @@
 	<a href="<%= next_url %>" onclick="showTrans();" class="btn btn-block btn-success">Next&nbsp;Question</a>
       </td>
     </tr>
-  </table>
+  </table>  
+  <% if(!@noti.nil? && !@noti.blank?) %>
+  <div class="menu-icon-m" onclick="ele_show('noti-m');">
+    <img class="img-circle" src="/assets/noti.png"/>	  
+    <div class="noti-icon-m"><%= @noti.size %></div>
+  </div>
+  <div id="noti-m" style="display:none;">  
+    <% 
+       begin
+       @noti = @noti.sort{|a,b| b[2] <=> a[2]}
+       rescue 
+       end
+       @noti.each do|n| %>
+    <% if(n[0].present?) %>
+    <a href="<%= answer_url(n[0]) %>">
+      <% end %>
+      <div class="ss-menu-item">
+	<%= n[1] %>
+	<% if(n[2].present?) %>
+	<div class="sp1"></div>
+	<div style="color:#898C90;font-size:12px;"><%= time_ago_in_words(n[2]) %> ago</div>
+	<% end %>
+      </div>
+      <% if(n[0].present?) %>
+    </a>
+    <% end %>
+    <% end %>
+    <% end %>    
+    <div class="sp100"></div>
+    <div class="ans-header">
+      <table style="width:100%;">
+	<tr>
+	  <td style="width:50%;padding-right:5px;">
+	    <a href="Javascript:void(0);" onclick="ele_hide('noti-m');" class="btn btn-block btn-danger">Back&nbsp;To&nbsp;Question</a>
+	  </td>
+	  <td style="width:50%;padding-left:5px;">
+	    <a href="<%= ask_url %>" onclick="showTrans();" class="btn btn-block btn-success">Ask&nbsp;Question</a>
+	  </td>
+	</tr>
+      </table>        
+    </div>
+  </div>
+
   <% else %>
   <table style="width:100%;">
     <tr>

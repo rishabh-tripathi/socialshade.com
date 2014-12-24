@@ -113,11 +113,31 @@
 <script type="text/javascript">
   window.onload = function() {
   getBuid("soclshd");
+  <% if(@mobile) %>
+  $("#noti-m").height($(window).height());
+  if(ele("ans-txt") != null) {
+    // ele("ans-txt").focus();	    
+    setPasteEvent("ans-txt");
+    $('#ans-txt').on('activate', function() {
+    ele_hide('footer-pane');    
+    });      
+    $('#ans-txt').focus(function() {
+    ele_hide('footer-pane');    
+    });
+    $('#ans-txt').blur(function() {
+    ele_show('footer-pane');    
+    });      
+    $('#ans-txt').focusout(function() {
+    ele_show('footer-pane');    
+    });
+  }    
+  <% else %>
   $("#nxtbtn").height($(window).height());
   if(ele("ans-txt") != null) {
     ele("ans-txt").focus();	    
     setPasteEvent("ans-txt");
   }  
+  <% end %>
   drawChart();
   };
 </script>

@@ -144,9 +144,11 @@ class HomeController < ApplicationController
       if(params[:objtype].to_i == 1)
         obj = Qu.find(params[:id])
         sh = ""
+        txt_style = "color:#ffffff"
       elsif(params[:objtype].to_i == 2)
         obj = Ans.find(params[:id])
         sh = "s"
+        txt_style = ""
       end
       if(params[:type].to_i == 1)
         if(obj.like.nil?)
@@ -166,7 +168,7 @@ class HomeController < ApplicationController
         count = obj.unlike
       end
       obj.save
-      render(:partial => "like_res", :locals => {:img_path => img_path, :count => count})
+      render(:partial => "like_res", :locals => {:img_path => img_path, :count => count, :txt_style => txt_style})
     else
       render(:text => "error")
     end
