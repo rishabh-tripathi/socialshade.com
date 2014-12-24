@@ -3,7 +3,7 @@
   <table style="width:100%;">
     <tr>
       <td style="width:50%;padding-right:5px;">
-	<a href="<%= ask_url %>" class="btn btn-block btn-danger">Ask&nbsp;Question</a>
+	<a href="<%= ask_url %>" onclick="showTrans();" class="btn btn-block btn-danger">Ask&nbsp;Question</a>
       </td>
       <td style="width:50%;padding-left:5px;">
       <% if(@next.nil?)
@@ -11,7 +11,7 @@
 	 else
 	 next_url = answer_url(@next)
 	 end %>      
-	<a href="<%= next_url %>" class="btn btn-block btn-success">Next&nbsp;Question</a>
+	<a href="<%= next_url %>" onclick="showTrans();" class="btn btn-block btn-success">Next&nbsp;Question</a>
       </td>
     </tr>
   </table>

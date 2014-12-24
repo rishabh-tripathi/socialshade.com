@@ -178,6 +178,7 @@ body {
     width: 100%;
     height: 100%;
     position: fixed;
+    -webkit-backface-visibility: hidden;
     top: 0px;
     left: 0px;
     z-index: 10;
@@ -254,6 +255,7 @@ body {
     background: #2C3E50;
     color: #ffffff;
     position: fixed;
+    -webkit-backface-visibility: hidden;
     left: 0px;
     bottom: 0px;
 }
@@ -311,6 +313,7 @@ body {
 
 #nxtbtn {
     position: fixed;
+    -webkit-backface-visibility: hidden;
     top: 0px;
     right: 0px;
     vertical-align: middle;
@@ -344,6 +347,7 @@ body {
 
 .ss-menu {
     position: fixed;
+    -webkit-backface-visibility: hidden;
     bottom: 70px;
     background: #fafafa;
     min-width: 200px;
@@ -367,6 +371,7 @@ body {
 
 .noti-icon {
     position: fixed;
+    -webkit-backface-visibility: hidden;
     bottom: 45px;
     left: 105px;
     background: red;
