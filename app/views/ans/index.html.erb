@@ -13,7 +13,7 @@
 
 <% @ans.each do |an| %>
   <tr>
-    <td><%= an.question_id %></td>
+    <td><a href="<%= answer_url(an.question_id) %>"><%= an.question_id %></a></td>
     <td><%= an.value %></td>
     <td><%= an.ip %></td>
     <td><%= an.uid %></td>

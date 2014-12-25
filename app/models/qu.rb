@@ -1,5 +1,5 @@
 class Qu < ActiveRecord::Base
-  attr_accessible :ans, :likes, :text, :qu_type, :uid, :views, :unlike
+  attr_accessible :ans, :likes, :text, :qu_type, :uid, :views, :unlike, :ip, :expire
   TYPE_TEXT = 0
   TYPE_SINGLE = 1
   TYPE_NAME = {
@@ -17,7 +17,6 @@ class Qu < ActiveRecord::Base
       end
     end    
     exc += QuesView.get_user_views_question(uid)
-    logger.info(exc)
     if(!exc.nil? && !exc.blank?)
       all_avail_qus = Qu.find(:all, :conditions => ["id not in (?)", exc.uniq])
     else

@@ -16,6 +16,10 @@ OpenansCom::Application.routes.draw do
   match "/search-qu" => "home#search", :as => :search
   match "/:id" => "home#answer", :as => :answer
 
+  # routes for mobile app
+  match "/get-next-qus" => "home#get_next_qus", :as => :get_next_qus
+  match "/get-notification" => "home#get_notification", :as => :get_notification
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

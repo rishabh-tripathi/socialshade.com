@@ -1,12 +1,13 @@
 class QuesView < ActiveRecord::Base
-  attr_accessible :count, :qu_id, :uid
+  attr_accessible :count, :qu_id, :uid, :ip
 
-  def self.add_view(uid, qu_id)
+  def self.add_view(uid, qu_id, ip)
     qu = QuesView.find(:first, :conditions => ["uid = ? and qu_id = ?", uid, qu_id])
     if(qu.nil?)
       qu = QuesView.new
       qu.uid = uid
       qu.qu_id = qu_id
+      qu.ip = ip
       qu.count = 0
     end
     qu.count += 1

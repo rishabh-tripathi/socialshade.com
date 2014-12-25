@@ -5,6 +5,7 @@
     <th>Qu</th>
     <th>Uid</th>
     <th>Count</th>
+    <th>ip</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +13,10 @@
 
 <% @ques_views.each do |ques_view| %>
   <tr>
-    <td><%= ques_view.qu_id %></td>
+    <td><a href="<%= answer_url(ques_view.qu_id) %>"><%= ques_view.qu_id %><%= %></td>
     <td><%= ques_view.uid %></td>
     <td><%= ques_view.count %></td>
+    <td><%= ques_view.ip %></td>
     <td><%= link_to 'Show', ques_view %></td>
     <td><%= link_to 'Edit', edit_ques_view_path(ques_view) %></td>
     <td><%= link_to 'Destroy', ques_view, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
