@@ -30,6 +30,6 @@ production:
   database: openans
   pool: 5
   username: socialshade
-  password: mementus23$$
+  password: intersteller19$$
   host: db.socialshade.com
   socket: /var/run/mysqld/mysqld.sock
