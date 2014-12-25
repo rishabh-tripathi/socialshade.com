@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     @qu = Qu.find(:last) if(@qu.nil?)
     @qu.views += 1
     @qu.save
-    QuesView.add_view(@uid, @qu.id)
+    QuesView.add_view(@uid, @qu.id, request.ip)
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
     @show_ans = Ans.get_show_ans(@uid, @qu, @ans)    
@@ -27,6 +27,7 @@ class HomeController < ApplicationController
       @qu.like = 0
       @qu.views = 0
       @qu.uid = @uid if(@uid.present?)
+      @qu.ip = request.ip
       @qu.save
       params[:opt].each do|key, value|
         opt = Option.new
@@ -41,6 +42,7 @@ class HomeController < ApplicationController
       @qu.uid = @uid if(@uid.present?)
       @qu.like = 0
       @qu.views = 0
+      @qu.ip = request.ip
       @qu.save      
     end
     render(:partial => "qu_save_res")
@@ -57,7 +59,7 @@ class HomeController < ApplicationController
     end
     @qu.views += 1
     @qu.save
-    QuesView.add_view(@uid, @qu.id)
+    QuesView.add_view(@uid, @qu.id, request.ip)
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")    
     @show_ans = Ans.get_show_ans(@uid, @qu, @ans)
