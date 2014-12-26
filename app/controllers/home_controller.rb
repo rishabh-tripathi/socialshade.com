@@ -26,7 +26,7 @@ class HomeController < ApplicationController
       @qu.ans = 0
       @qu.like = 0
       @qu.views = 0
-      @qu.uid = @uid if(@uid.present?)
+      @qu.uid = params[:uid]
       @qu.ip = request.ip
       @qu.save
       params[:opt].each do|key, value|
@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     else
       @qu.qu_type = Qu::TYPE_TEXT
       @qu.ans = 0
-      @qu.uid = @uid if(@uid.present?)
+      @qu.uid = params[:uid]
       @qu.like = 0
       @qu.views = 0
       @qu.ip = request.ip
@@ -84,7 +84,7 @@ class HomeController < ApplicationController
       end  
       if(!wrong_ans)        
         uid = @uid
-        if(params[:uid].present? && (uid == params[:uid]))
+        if(params[:uid].present?)
           ans.ip = request.ip
           ans.uid = params[:uid]
           ans.req_details = ""
