@@ -6,6 +6,7 @@
                     :html => {:id => "save-qu-form"}  
 %>          
 <input type="hidden" id="qu-txt" name="qu" value="" />   
+<input type="hidden" id="qu-uid" name="uid" value="" />   
 <% if(@mobile) %>
 <div id="qu-form" class="p-10" style="width:100%;">
   <div style="position:relative;">
@@ -141,6 +142,7 @@
   }
   function save_qu() {
     var qutxt = $("#quta").text();
+    ele('qu-uid').value = getBuid("soclshd");
     if((qutxt == null) || (qutxt.length < 10))
       return false;					  
     ele("qu-txt").value = qutxt;    					  
