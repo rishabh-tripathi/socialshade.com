@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
         @mobile = false        
       end
     end 
+    # @mobile = true
   end
   
   helper_method :get_user_bid
