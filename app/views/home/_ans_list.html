@@ -1,5 +1,4 @@
 <% if(@ans.present? && @show_ans) %>
-
 <% if(@options.present?) 
    total = @ans.size   
    h = {}
@@ -58,20 +57,6 @@
 <% end %>
 <% else %>
 
-
-<% if(@mobile) %>
-<% else %>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- SocialShade Banner ad1 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-3833946424381349"
-     data-ad-slot="5732836094"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>      
-<% end %>
-
 <div class="sp10"></div>
 <span class="lead">Showing&nbsp;&nbsp;<b><%= @ans.size %></b>&nbsp;&nbsp;answer</span>
 <hr style="width:50%;margin-top:0px;">
@@ -92,6 +77,12 @@
 <div class="sp50"></div>
 <span class="lead"><b><%= @ans.size %></b> response so far, answer first to see result</span>
 <% end %>
+
+<% if(!@show_ans && (@ans.nil? || @ans.blank?)) %>
+<div class="sp50"></div>
+<span class="lead">No answer so far, be the first to answer</span>
+<% end %>
+
 
 <% if(!@wrong_ans.nil?) %>
 <div class="sp50"></div>
