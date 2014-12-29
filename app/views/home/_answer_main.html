@@ -7,15 +7,15 @@
       <div id="qu-div">
 	<div class="p-10" style="position:relative;" onmouseover="ele_show('qu-like');" onmouseout="ele_hide('qu-like');">
 	  <div class="sp10"></div>
-	  <img src="/assets/wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <img src="<%= get_asset %>wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	  <span class="lead" style="color:#ffffff;font-size:45px;">
 	    <%= @qu.text %>
 	  </span>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/wquote-r.png" style="width:45px;"/>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%= get_asset %>wquote-r.png" style="width:45px;"/>
 	  <div class="sp10"></div>
 	  <div id="qu-like" style="display:none;">
-	    <img class="pointer qu-lke" src="/assets/like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
-	    <img class="pointer qu-lke" src="/assets/unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');" style="margin-left:5px;"/>
+	    <img class="pointer qu-lke" src="<%= get_asset %>like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
+	    <img class="pointer qu-lke" src="<%= get_asset %>unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');" style="margin-left:5px;"/>
 	  </div>
 	</div>
 	<% if(@options.present?) %>
@@ -44,10 +44,10 @@
 	  <input type="button" class="btn btn-block btn-success" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Opinion" />
 	</div>
 	<% end %>
-      </div>
+	</div>
       <div id="ans-list" class="p-10">
 	<%= render(:partial => "ans_list") %>
-      </div>
+	</div>
       <div style="clear:both"></div>
       <div class="sp50"></div>
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -63,26 +63,30 @@
     </td>
     <td class="right-arrow">
       <% if(@next.nil?)
-	 next_url = root_path
+	 next_question = root_path
 	 else
-	 next_url = answer_url(@next)
+	 next_question = answer_url(@next)
 	 end %>
-      <a href="<%= next_url %>">
-	<div id="nxtbtn" class="right-arrow">
+      <% if(!@mobi) %>
+      <a href="<%= next_question %>">
+	<% end %> 
+	<div id="nxtbtn" class="right-arrow" <% if(@mobi) %>onclick="get_mobi_next_qu(<%= @next.id %>);"<% end %>>
 	  <div class="sp200"></div>
 	  <div class="sp50"></div>
 	  <center>
-	    <img style="margin-left:20px;" src="/assets/right.png" />
+	    <img style="margin-left:20px;" src="<%= get_asset %>right.png" />
 	  </center>
 	  <div class="sp500"></div>
 	  <div class="sp100"></div>
-	</div>
+	  </div>
+	<% if(!@mobi) %>
       </a>
+      <% end %>
     </td>
   </tr>
 </table>
 <% end %>
-
+  
 <%= form_remote_tag :url => submit_ans_url(@qu.id),                              
                     :loading => "showTrans();",                     
                     :complete => "afterSave();",
@@ -90,6 +94,9 @@
                     :update => "ans-list",                                 
                     :html => {:id => "save-ans-form"}  
 %>          
+<% if(@mobi) %>
+<input type="hidden" name="mobi" value="1" /> 
+<% end %>
 <input type="hidden" id="ans" name="ans" /> 
 <input type="hidden" id="buid" name="uid" value=""/> 
 <%= end_form %>
@@ -105,17 +112,19 @@
 <input type="hidden" id="objtype" name="objtype" value=""/> 
 <input type="hidden" id="ltype" name="type" value=""/> 
 <input type="hidden" id="lbuid" name="uid" value=""/> 
+<% if(@mobi) %>
+<input type="hidden" name="mobi" value="1" /> 
+<% end %>
 <%= end_form %>
-<span id="like-cont"></span>
-
+<span id="like-cont"></span>  
 <%= render(:partial => "ans_header") %>
 
 <script type="text/javascript">
-  window.onload = function() {
-  getBuid("soclshd");
-  <% if(@mobile) %>
-  $("#noti-m").height($(window).height());
-  if(ele("ans-txt") != null) {
+    window.onload = function() {
+    getBuid("soclshd");
+    <% if(@mobile) %>
+    $("#noti-m").height($(window).height());
+    if(ele("ans-txt") != null) {
     // ele("ans-txt").focus();	    
     setPasteEvent("ans-txt");
     $('#ans-txt').on('activate', function() {
@@ -130,14 +139,14 @@
     $('#ans-txt').focusout(function() {
     ele_show('footer-pane');    
     });
-  }    
-  <% else %>
-  $("#nxtbtn").height($(window).height());
-  if(ele("ans-txt") != null) {
+    }    
+    <% else %>
+    $("#nxtbtn").height($(window).height());
+    if(ele("ans-txt") != null) {
     ele("ans-txt").focus();	    
     setPasteEvent("ans-txt");
-  }  
-  <% end %>
-  drawChart();
-  };
+    }  
+    <% end %>
+    drawChart();
+    };
 </script>

@@ -1,11 +1,29 @@
+<% if(@mobile) %>
+<style>
+  body {
+    overflow: auto;
+    overflow-x: hidden;
+  }  
+  .unchecked {
+    background: url(<%= get_asset %>unchecked-m.png);
+    width: 30px;
+    height: 30px;
+  }
+  .checked {
+    background: url(<%= get_asset %>checked-m.png);
+    width: 30px;
+    height: 30px;
+  }
+</style>
+<% end %>
 <div style="width:100%;background:#8D7AB8;padding:0.8em;text-align:center">
   <span class="lead" style="color:#ffffff;">
     <%= @qu.text %>	    
   </span>
   <div class="sp20"></div>
   <div id="qu-like-m" style="color:#ffffff;">
-    <img class="pointer qu-lke" src="/assets/like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like-m');"/>
-    <img class="pointer qu-lke" src="/assets/unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like-m');" style="margin-left:5px;"/>
+    <img class="pointer qu-lke" src="<%= get_asset %>like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like-m');"/>
+    <img class="pointer qu-lke" src="<%= get_asset %>unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like-m');" style="margin-left:5px;"/>
   </div>  
 </div>
 <% if(@options.present?) %>

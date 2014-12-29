@@ -1,0 +1,24 @@
+<% 
+   begin
+   @noti = @noti.sort{|a,b| b[2] <=> a[2]}
+   rescue 
+   end
+   @noti.each do|n| %>
+<% if(n[0].present?) %>
+<% if(!@mobi) %>
+<a href="<%= answer_url(n[0]) %>">
+  <% end %>  
+  <% end %>
+  <div class="ss-menu-item" <% if(@mobi) %>onclick="get_mobi_next_qu(<%= n[0] %>);"<% end %>>
+    <%= n[1] %>
+    <% if(n[2].present?) %>
+    <div class="sp1"></div>
+    <div style="color:#898C90;font-size:12px;"><%= time_ago_in_words(n[2]) %> ago</div>
+    <% end %>
+  </div>
+  <% if(n[0].present?) %>
+  <% if(!@mobi) %>
+</a>
+<% end %>
+<% end %>
+<% end %>

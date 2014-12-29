@@ -3,9 +3,16 @@ class ApplicationController < ActionController::Base
   before_filter :set_uid, :get_browser
 
   def set_uid
-    @uid = get_user_bid
+    if(params[:muid].present?)
+      @uid = params[:muid]
+    else
+      @uid = get_user_bid    
+      if(!@uid.present? && params[:uid].present?)
+        @uid = params[:uid]
+      end
+    end
   end
-
+  
   def get_browser
     @mobile = false
     if(request.env['HTTP_USER_AGENT'].present?)
@@ -26,6 +33,15 @@ class ApplicationController < ActionController::Base
   def get_user_bid
     uid = cookies[:soclshd]        
     return uid
+  end    
+
+  helper_method :get_asset
+  def get_asset
+    if(@mobi.present? && @mobi)
+      return "img/"
+    else 
+      return "/assets/"
+    end
   end    
 
 end

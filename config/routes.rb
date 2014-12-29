@@ -4,6 +4,7 @@ OpenansCom::Application.routes.draw do
   resources :ans
   resources :options
   resources :ques_views
+  match "/get-next-qus" => "home#get_next_qus", :as => :get_next_qus
   match "/how-to-use" => "home#how_to", :as => :how_to
   match "/terms" => "home#terms", :as => :terms
   match "/privacy" => "home#privacy", :as => :privacy
@@ -15,10 +16,6 @@ OpenansCom::Application.routes.draw do
   match "/submit-ans/:id" => "home#submit_ans", :as => :submit_ans
   match "/search-qu" => "home#search", :as => :search
   match "/:id" => "home#answer", :as => :answer
-
-  # routes for mobile app
-  match "/get-next-qus" => "home#get_next_qus", :as => :get_next_qus
-  match "/get-notification" => "home#get_notification", :as => :get_notification
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
