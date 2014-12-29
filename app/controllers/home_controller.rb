@@ -105,6 +105,10 @@ class HomeController < ApplicationController
       else
         @wrong_ans = true
       end
+      @mobi = false
+      if(params[:mobi].present?) 
+        @mobi = true
+      end
       render(:partial => "ans_list")
     end
   end
@@ -136,6 +140,10 @@ class HomeController < ApplicationController
   end
 
   def create_like
+    path = "/assets"
+    if(params[:mobi].present?) 
+      path = "img"
+    end
     if(@uid.to_s == params[:uid].to_s)
       img_path = ""
       count = 1
@@ -154,7 +162,7 @@ class HomeController < ApplicationController
         else
           obj.like += 1
         end
-        img_path = "/assets/#{sh}like.png"
+        img_path = "#{path}/#{sh}like.png"
         count = obj.like
       elsif(params[:type].to_i == -1)
         if(obj.unlike.nil?)
@@ -162,7 +170,7 @@ class HomeController < ApplicationController
         else
           obj.unlike += 1
         end      
-        img_path = "/assets/#{sh}unlike.png"
+        img_path = "#{path}/#{sh}unlike.png"
         count = obj.unlike
       end
       obj.save

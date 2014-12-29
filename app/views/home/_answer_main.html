@@ -112,6 +112,9 @@
                     :update => "ans-list",                                 
                     :html => {:id => "save-ans-form"}  
 %>          
+<% if(@mobi) %>
+<input type="hidden" name="mobi" value="1" /> 
+<% end %>
 <input type="hidden" id="ans" name="ans" /> 
 <input type="hidden" id="buid" name="uid" value=""/> 
 <%= end_form %>
@@ -127,6 +130,9 @@
 <input type="hidden" id="objtype" name="objtype" value=""/> 
 <input type="hidden" id="ltype" name="type" value=""/> 
 <input type="hidden" id="lbuid" name="uid" value=""/> 
+<% if(@mobi) %>
+<input type="hidden" name="mobi" value="1" /> 
+<% end %>
 <%= end_form %>
 <span id="like-cont"></span>  
 <%= render(:partial => "ans_header") %>
