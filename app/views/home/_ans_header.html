@@ -22,7 +22,7 @@
   </table>  
   <% if(!@noti.nil? && !@noti.blank?) %>
   <div class="menu-icon-m" onclick="ele_show('noti-m');">
-    <img class="img-circle" src="/assets/noti.png"/>	  
+    <img class="img-circle" src="<%= get_asset %>noti.png"/>	  
     <div class="noti-icon-m"><%= @noti.size %></div>
   </div>
   <div id="noti-m" style="display:none;">  
@@ -47,7 +47,7 @@
     <tr>
       <td style="width:250px;">
 	<div style="position:relative;">	  
-	  <img class="img-circle menu-icon" src="/assets/prof.jpg" onclick="closeAllMenu();ele_toggle('prof-menu');" style="height:45px;"/>
+	  <img class="img-circle menu-icon" src="<%= get_asset %>prof.jpg" onclick="closeAllMenu();ele_toggle('prof-menu');" style="height:45px;"/>
 	  <div id="prof-menu" class="ss-menu" style="left:20px;display:none;">
 	    <div class="ss-menu-item" onclick="window.open('<%= show_profile_url %>','_self')">
 	      Profile
@@ -63,7 +63,7 @@
 	      Clear Profile
 	    </div>
 	  </div>
-	  <img class="img-circle menu-icon" src="/assets/noti.png" onclick="closeAllMenu();ele_toggle('noti-menu');"/>	  
+	  <img class="img-circle menu-icon" src="<%= get_asset %>noti.png" onclick="closeAllMenu();ele_toggle('noti-menu');"/>	  
 	  <% if(!@noti.nil? && !@noti.blank?) %>
 	  <div class="noti-icon"><%= @noti.size %></div>
 	  <div id="noti-menu" class="ss-menu" style="display:none;">	    
@@ -90,7 +90,7 @@
 	</form>	
       </td>
       <td style="width:50px;">	
-	<img class="img-circle menu-icon" src="/assets/help.png" onclick="closeAllMenu();ele_toggle('help-menu');" style="background:#ffffff;margin:0px 20px;"/>
+	<img class="img-circle menu-icon" src="<%= get_asset %>help.png" onclick="closeAllMenu();ele_toggle('help-menu');" style="background:#ffffff;margin:0px 20px;"/>
 	<div id="help-menu" class="ss-menu" style="right:20px;display:none;">
 	  <a href="<%= how_to_url %>">
 	    <div class="ss-menu-item">

@@ -35,4 +35,13 @@ class ApplicationController < ActionController::Base
     return uid
   end    
 
+  helper_method :get_asset
+  def get_asset
+    if(@mobi.present? && @mobi)
+      return "img/"
+    else 
+      return "/assets/"
+    end
+  end    
+
 end

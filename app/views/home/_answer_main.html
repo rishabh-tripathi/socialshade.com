@@ -5,12 +5,12 @@
     overflow-x: hidden;
   }  
   .unchecked {
-    background: url(/assets/unchecked-m.png);
+    background: url(<%= get_asset %>unchecked-m.png);
     width: 30px;
     height: 30px;
   }
   .checked {
-    background: url(/assets/checked-m.png);
+    background: url(<%= get_asset %>checked-m.png);
     width: 30px;
     height: 30px;
   }
@@ -25,15 +25,15 @@
       <div id="qu-div">
 	<div class="p-10" style="position:relative;" onmouseover="ele_show('qu-like');" onmouseout="ele_hide('qu-like');">
 	  <div class="sp10"></div>
-	  <img src="/assets/wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <img src="<%= get_asset %>wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	  <span class="lead" style="color:#ffffff;font-size:45px;">
 	    <%= @qu.text %>
 	  </span>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/assets/wquote-r.png" style="width:45px;"/>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%= get_asset %>wquote-r.png" style="width:45px;"/>
 	  <div class="sp10"></div>
 	  <div id="qu-like" style="display:none;">
-	    <img class="pointer qu-lke" src="/assets/like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
-	    <img class="pointer qu-lke" src="/assets/unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');" style="margin-left:5px;"/>
+	    <img class="pointer qu-lke" src="<%= get_asset %>like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
+	    <img class="pointer qu-lke" src="<%= get_asset %>unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');" style="margin-left:5px;"/>
 	  </div>
 	</div>
 	<% if(@options.present?) %>
@@ -92,7 +92,7 @@
 	  <div class="sp200"></div>
 	  <div class="sp50"></div>
 	  <center>
-	    <img style="margin-left:20px;" src="/assets/right.png" />
+	    <img style="margin-left:20px;" src="<%= get_asset %>right.png" />
 	  </center>
 	  <div class="sp500"></div>
 	  <div class="sp100"></div>

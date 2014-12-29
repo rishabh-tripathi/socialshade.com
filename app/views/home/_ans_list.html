@@ -65,8 +65,8 @@
   <div class="sp1"></div>
   <span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
   <div id="ansl-<%= a.id %>" class="ans-lke">
-    <img class="pointer" src="/assets/slike.png" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"/>
-    <img class="pointer" src="/assets/sunlike.png" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');" style="margin-left:5px;"/>
+    <img class="pointer" src="<%= get_asset %>slike.png" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"/>
+    <img class="pointer" src="<%= get_asset %>sunlike.png" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');" style="margin-left:5px;"/>
   </div>
   <hr style="width:30%;margin-top:10px;">
 <% end %>
