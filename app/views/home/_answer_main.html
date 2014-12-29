@@ -1,22 +1,4 @@
 <% if(@mobile) %>
-<style>
-  body {
-    overflow: auto;
-    overflow-x: hidden;
-  }  
-  .unchecked {
-    background: url(<%= get_asset %>unchecked-m.png);
-    width: 30px;
-    height: 30px;
-  }
-  .checked {
-    background: url(<%= get_asset %>checked-m.png);
-    width: 30px;
-    height: 30px;
-  }
-</style>
-<% end %>
-<% if(@mobile) %>
 <%= render(:partial => "answer_main_m") %>
 <% else %>
 <table onclick="closeAllMenu();" style="width:100%;height:100%;">
