@@ -7,11 +7,16 @@
       </td>
       <td style="width:50%;padding-left:5px;">
       <% if(@next.nil?)
-	 next_url = root_path
+	 next_question = root_path
 	 else
-	 next_url = answer_url(@next)
+	 next_question = answer_url(@next)
 	 end %>      
-	<a href="<%= next_url %>" onclick="showTrans();" class="btn btn-block btn-success">Next&nbsp;Question</a>
+      <% 
+	 if(@mobi) %>
+      <button onclick="get_mobi_next_qu(<%= @next.id %>);" class="btn btn-block btn-success">Next&nbsp;Question</button>
+      <% else %>
+      <a href="<%= next_question %>" onclick="showTrans();" class="btn btn-block btn-success">Next&nbsp;Question</a>
+      <% end %>
       </td>
     </tr>
   </table>  
@@ -21,26 +26,7 @@
     <div class="noti-icon-m"><%= @noti.size %></div>
   </div>
   <div id="noti-m" style="display:none;">  
-    <% 
-       begin
-       @noti = @noti.sort{|a,b| b[2] <=> a[2]}
-       rescue 
-       end
-       @noti.each do|n| %>
-    <% if(n[0].present?) %>
-    <a href="<%= answer_url(n[0]) %>">
-      <% end %>
-      <div class="ss-menu-item">
-	<%= n[1] %>
-	<% if(n[2].present?) %>
-	<div class="sp1"></div>
-	<div style="color:#898C90;font-size:12px;"><%= time_ago_in_words(n[2]) %> ago</div>
-	<% end %>
-      </div>
-      <% if(n[0].present?) %>
-    </a>
-    <% end %>
-    <% end %>
+    <%= render(:partial => "noti_list") %>
     <div class="sp100"></div>
     <div class="ans-header">
       <table style="width:100%;">
@@ -81,26 +67,7 @@
 	  <% if(!@noti.nil? && !@noti.blank?) %>
 	  <div class="noti-icon"><%= @noti.size %></div>
 	  <div id="noti-menu" class="ss-menu" style="display:none;">	    
-	    <% 
-	       begin
-	       @noti = @noti.sort{|a,b| b[2] <=> a[2]}
-	       rescue 
-	       end
-	       @noti.each do|n| %>
-	    <% if(n[0].present?) %>
-	    <a href="<%= answer_url(n[0]) %>">
-	      <% end %>
-	      <div class="ss-menu-item">
-		<%= n[1] %>
-		<% if(n[2].present?) %>
-		<div class="sp1"></div>
-		<div style="color:#898C90;font-size:12px;"><%= time_ago_in_words(n[2]) %> ago</div>
-		<% end %>
-	      </div>
-	      <% if(n[0].present?) %>
-	    </a>
-	    <% end %>
-	    <% end %>
+	    <%= render(:partial => "noti_list") %>
 	  </div>
 	  <% end %>
 	</div>

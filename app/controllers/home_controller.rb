@@ -11,6 +11,12 @@ class HomeController < ApplicationController
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
     @show_ans = Ans.get_show_ans(@uid, @qu, @ans)    
     @next = Qu.get_next_question(@qu, @uid)
+    # For mobile application response
+    @mobi = false
+    if(params[:mobi].present?)
+      @mobi = true
+      render(:partial => "answer_main")
+    end
   end
   
   def ask    
@@ -48,31 +54,21 @@ class HomeController < ApplicationController
     render(:partial => "qu_save_res")
   end
     
-  def answer
-    @noti = Ans.get_notification(@uid)
-    all_qu_count = Qu.count
-    begin
-      @qu = Qu.find(params[:id])
-    rescue      
-      @qu = Qu.get_next_question(nil, @uid)
-      redirect_to answer_url(@qu.id)
-    end
-    @qu.views += 1
-    @qu.save
-    QuesView.add_view(@uid, @qu.id, request.ip)
-    @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
-    @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")    
-    @show_ans = Ans.get_show_ans(@uid, @qu, @ans)
-    @title = "#{@qu.text} asked on SocialShade"
-    @desc = "#{@qu.text} asked on SocialShade, open space for open minded people. Ask anything to anyone without login"    
-    @next = Qu.get_next_question(@qu, @uid)
+  def answer 
+    get_next_question   
+  end 
+
+  def get_next_qus
+    get_next_question
+    @mobi = true
+    render(:partial => "answer_main")
   end
 
   def submit_ans
     @qu = Qu.find(params[:id])
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     wrong_ans = false
-    if(params[:ans].present?) 
+    if(params[:ans].present?)
       ans = Ans.new
       ans.question_id = @qu.id
       ans.value = Ans.remove_bad_words(params[:ans])
@@ -81,8 +77,8 @@ class HomeController < ApplicationController
         if(!(opts.include? ans.value.to_i))
           wrong_ans = true
         end
-      end  
-      if(!wrong_ans)        
+      end
+      if(!wrong_ans)
         uid = @uid
         if(params[:uid].present?)
           ans.ip = request.ip
@@ -90,7 +86,7 @@ class HomeController < ApplicationController
           ans.req_details = ""
           ans.save
           if(@qu.ans.nil?)
-            @qu.ans = 1 
+            @qu.ans = 1
           else
             @qu.ans += 1
           end
@@ -101,9 +97,9 @@ class HomeController < ApplicationController
       end
     end
     if(wrong_ans)
-      render(:text => "Don't Play Smart Hacker! Its an open platform. If you can't appriciate this initiative better get out") 
+      render(:text => "Don't Play Smart Hacker! Its an open platform. If you can't appriciate this initiative better get out")
     else
-      if(!params[:ans].blank?)         
+      if(!params[:ans].blank?)
         @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
         @show_ans = true
       else
@@ -112,7 +108,7 @@ class HomeController < ApplicationController
       render(:partial => "ans_list")
     end
   end
-
+  
   def search
     if(!params[:query].nil? && !params[:query].blank?) 
       qus = Qu.find(:all, :conditions => ["id = ? or text like ?", params[:query], "%#{params[:query]}%"])
@@ -180,9 +176,31 @@ class HomeController < ApplicationController
   end
   
   def terms
+    render(:layout => nil)
   end
   
   def privacy
+  end
+
+  private
+  def get_next_question  
+    @noti = Ans.get_notification(@uid)
+    all_qu_count = Qu.count
+    begin
+      @qu = Qu.find(params[:id])
+    rescue      
+      @qu = Qu.get_next_question(nil, @uid)
+      redirect_to answer_url(@qu.id)
+    end
+    @qu.views += 1
+    @qu.save
+    QuesView.add_view(@uid, @qu.id, request.ip)
+    @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
+    @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")    
+    @show_ans = Ans.get_show_ans(@uid, @qu, @ans)
+    @title = "#{@qu.text} asked on SocialShade"
+    @desc = "#{@qu.text} asked on SocialShade, open space for open minded people. Ask anything to anyone without login"    
+    @next = Qu.get_next_question(@qu, @uid)
   end
 
 end
