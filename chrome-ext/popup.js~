@@ -1,0 +1,26 @@
+chrome.cookies.get({ url: 'www.socialshade.com', name: 'soclshd' },
+		   function(cookie) {
+		       if(cookie) {
+			   var uid = cookie.value;
+			   if((uid != null) && (uid.length > 0)) {
+			       var xhr = new XMLHttpRequest();
+			       var url = "http://www.socialshade.com/get-notification/"+uid
+			       xhr.open("GET", url, true);
+			       xhr.onreadystatechange = function() {
+				   if(xhr.readyState == 4) {
+				       // innerText does not let the attacker inject HTML elements.				       
+				       var feeds_res = xhr.responseText;			
+				       var html = feeds_res;
+				       if(html.length == 0) {
+					   html = "No coupon available for you"
+				       }
+				       document.getElementById("feeds").innerHTML = html
+				   }
+			       }
+			       xhr.send();
+			   }			   
+		       }
+		       else {
+			   document.getElementById("feeds").innerHTML = "<div class='sp20'></div><center>Please visit <a href='http://www.socialshade.com' target='_blank'>www.socialshade.com</a> first to get notification</center><div class='sp20'></div>"
+		       }
+		   });
