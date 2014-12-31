@@ -113,3 +113,22 @@ function compLike() {
     ele(likedivid).innerHTML = ele('like-cont').innerHTML;
     ele('like-cont').innerHTML = "";
 }
+
+function showTopNotification() {    
+    try {
+	var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+	if(is_chrome) {
+	    var status = getCookie("sschrnot")
+	    if((status != undefined) && (status != null) && (status.length > 0)) {
+		ele_hide("top-noti")
+	    } else {
+		ele_show("top-noti");
+	    }
+	}
+    } catch(e) {}
+}
+
+function dismissTopNotification() {
+    setCookie("sschrnot", "1", 20*365);	    
+    ele_hide("top-noti");    
+}
