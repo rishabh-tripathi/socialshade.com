@@ -5,6 +5,7 @@ OpenansCom::Application.routes.draw do
   resources :options
   resources :ques_views
   match "/get-next-qus" => "home#get_next_qus", :as => :get_next_qus
+  match "/get-notification/:uid" => "home#get_notification", :as => :get_notification
   match "/how-to-use" => "home#how_to", :as => :how_to
   match "/terms" => "home#terms", :as => :terms
   match "/privacy" => "home#privacy", :as => :privacy

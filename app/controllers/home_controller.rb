@@ -179,12 +179,17 @@ class HomeController < ApplicationController
       render(:text => "error")
     end
   end
+
+  def get_notification
+    @uid = params[:uid] if(!@uid.present?)
+    @noti = Ans.get_notification(@uid)
+    render(:partial => "noti_list", :locals => {:plugin => true})
+  end
   
   def how_to
   end
   
   def terms
-    render(:layout => nil)
   end
   
   def privacy

@@ -1,4 +1,5 @@
 <% 
+if(@noti.present?) 
    begin
    @noti = @noti.sort{|a,b| b[2] <=> a[2]}
    rescue 
@@ -6,7 +7,7 @@
    @noti.each do|n| %>
 <% if(n[0].present?) %>
 <% if(!@mobi) %>
-<a href="<%= answer_url(n[0]) %>">
+<a <% if((defined? plugin) && plugin) %>target="_blank"<% end %> href="<%= answer_url(n[0]) %>">
   <% end %>  
   <% end %>
   <div class="ss-menu-item" <% if(@mobi) %>onclick="get_mobi_next_qu(<%= n[0] %>);"<% end %>>
@@ -21,4 +22,9 @@
 </a>
 <% end %>
 <% end %>
+<% end %>
+<% else %>
+<div class="sp20"></div>
+<center>No notification so far</center>
+<div class="sp20"></div>
 <% end %>
