@@ -1,0 +1,13 @@
+{
+    "name": "Social Shade App",
+    "description": "Anonymous question and answers app",
+    "version": "0.1",
+    "manifest_version": 2,
+    "app": {
+	"background": {
+	    "scripts": ["background.js"]
+	}
+    },
+    "permissions": ["webview"],
+    "icons": { "128": "icon.png" }
+}

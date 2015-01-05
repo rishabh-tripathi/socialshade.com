@@ -1,15 +1,17 @@
 class HomeController < ApplicationController
   
   def index    
-    @noti = Ans.get_notification(@uid)
-    @qu = Qu.get_next_question(nil, @uid)
-    @qu = Qu.find(:last) if(@qu.nil?)
-    @qu.views += 1
-    @qu.save
-    QuesView.add_view(@uid, @qu.id, request.ip)
-    @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
-    @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
-    @show_ans = Ans.get_show_ans(@uid, @qu, @ans)    
+    if(@uid.present? || params[:mobi].present?)
+      @noti = Ans.get_notification(@uid)
+      @qu = Qu.get_next_question(nil, @uid)
+      @qu = Qu.find(:last) if(@qu.nil?)
+      @qu.views += 1
+      @qu.save
+      QuesView.add_view(@uid, @qu.id, request.ip)
+      @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
+      @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")
+      @show_ans = Ans.get_show_ans(@uid, @qu, @ans)    
+    end
     @next = Qu.get_next_question(@qu, @uid)
     # For mobile application response
     @mobi = false

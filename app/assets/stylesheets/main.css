@@ -252,7 +252,8 @@ body {
 .ans-header {
     width: 100%;
     padding: 10px;
-    background: #2C3E50;
+    background: #ffffff;
+    border-top: 1px solid #cccccc;
     color: #ffffff;
     position: fixed;
     -webkit-backface-visibility: hidden;
@@ -294,8 +295,9 @@ body {
 #qu-div {
     width: 100%;
     height: 100%;
-    background: #8d7ab8;
+    background: #2c3e50;
     /*
+      background: #8d7ab8;
       background: #8d7ab8;
       background: #fdbb50;
       background: #78cfff;
@@ -317,7 +319,7 @@ body {
     top: 0px;
     right: 0px;
     vertical-align: middle;
-    border-left: 1px solid #eaeaea;
+    border-left: 1px solid #cccccc;
 }
 
 #lang-sel, #ask-lang-sel {
@@ -341,7 +343,7 @@ body {
 .menu-icon {
     margin-left: 10px;
     width: 45px;
-    border: 1px solid #eaeaea;
+    border: 1px solid #34495e;
     cursor: pointer;
 }
 

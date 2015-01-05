@@ -1,1 +1,27 @@
+<% if(@qu.present?) %>
 <%= render(:partial => "answer_main") %>
+<% else %>
+<div style="width:100%">
+  <div class="sp50"></div>
+  <div class="sp30"></div>
+  <center>
+    <table>
+      <tr>
+	<td class="p-30 b-right">
+	  <img src="/assets/3.jpg" style="width:300px;"/>
+	</td>
+	<td class="p-30 lead">
+	  It's Open Questions and Answers platform<br>
+	  It's completely Anonymous<br>
+	  It's about all those question which you want to answer<br>
+	  You can ask any question you have in you mind without hesitation<br>
+	  It never ask for your login<br>
+	  It's <b>SocialShade</b><br>
+	  <div class="sp30"></div>
+	  <a href="<%= ask_url %>" class="btn btn-danger btn-lg" style="font-size:1em">Ask your question</a>&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;<a href="<%= answer_url(@next) %>" class="btn btn-success btn-lg" style="font-size:1em">Answer Others</a>
+	</td>
+      </tr>
+    </table>
+  </center>
+</div>
+<% end %>

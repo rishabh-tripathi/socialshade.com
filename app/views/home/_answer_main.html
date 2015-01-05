@@ -6,13 +6,21 @@
     <td style="text-align:center;vertical-align: top;">
       <div id="qu-div">
 	<div class="p-10" style="position:relative;" onmouseover="ele_show('qu-like');" onmouseout="ele_hide('qu-like');">
-	  <div class="sp10"></div>
+	  <div class="sp20"></div>
+
+	  <% if(false) %>
 	  <img src="<%= get_asset %>wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <span class="lead" style="color:#ffffff;font-size:45px;">
+	  <% end %>
+
+	  <span class="lead" style="color:#ffffff;font-size:40px;">
 	    <%= @qu.text %>
 	  </span>
+
+	  <% if(false) %>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%= get_asset %>wquote-r.png" style="width:45px;"/>
-	  <div class="sp10"></div>
+	  <% end %>
+
+	  <div class="sp20"></div>
 	  <div id="qu-like" style="display:none;">
 	    <img class="pointer qu-lke" src="<%= get_asset %>like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
 	    <img class="pointer qu-lke" src="<%= get_asset %>unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');" style="margin-left:5px;"/>
@@ -50,15 +58,6 @@
 	</div>
       <div style="clear:both"></div>
       <div class="sp50"></div>
-      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- SocialShade Banner ad1 -->
-      <ins class="adsbygoogle"
-	   style="display:inline-block;width:728px;height:90px"
-	   data-ad-client="ca-pub-3833946424381349"
-	   data-ad-slot="5732836094"></ins>
-      <script>
-	(adsbygoogle = window.adsbygoogle || []).push({});
-      </script>      
       <div class="sp50"></div>
     </td>
     <td class="right-arrow">

@@ -10,7 +10,7 @@
 <% if(@mobile) %>
 <div id="qu-form" class="p-10" style="width:100%;">
   <div style="position:relative;">
-    <div id="quta" class="lead quetb-m" contenteditable="true" placeholder="Ask anything to anyone"></div>
+    <div id="quta" class="lead quetb-m" contenteditable="true" placeholder="Ask what is in your mind"></div>
     <select id="ask-lang-sel" style="top:inharit;bottom:0px;" onchange="googleTranslationTextbox('quta', this.value)">
       <%= render(:partial => "lang_list") %>
     </select>	
@@ -41,7 +41,7 @@
   <div id="qu-form" class="form-group">
     <div style="position:relative;"> 
       <div style="position:relative;">
-	<div id="quta" class="lead quetb" contenteditable="true" placeholder="Ask anything to anyone"></div>
+	<div id="quta" class="lead quetb" contenteditable="true" placeholder="Ask what is in your mind"></div>
 	<select id="ask-lang-sel" style="top:0px;" onchange="googleTranslationTextbox('quta', this.value)">
 	  <%= render(:partial => "lang_list") %>
 	</select>	
