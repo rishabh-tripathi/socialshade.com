@@ -1,16 +1,30 @@
+<% if(@mobile) %>
+<div id="top-noti" class="p-10" style="width:100%;background:#4a4a4a;">
+  <center>
+    <a href="https://play.google.com/store/apps/details?id=com.killermobi.socialshade">
+      <img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
+    </a>      
+  </center>
+</div>  
+<% else %>
+<div id="top-noti" style="width:100%;height:30px;background:#ffffff;padding-left:2%;color:#038b57;display:none;">
+  Get notifications about your questions and answers on your chrome browser <a href="https://chrome.google.com/webstore/detail/social-shade/logflbglfompolhfemknjbijpfdiadeo" style="color:#038b57;">Get chrome extensions</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="dismissTopNotification();"><small style="color:#038b57;">dismiss</small></a>
+</div>
+<% end %>
+
+<% if(@mobile) %>
+<%= render(:partial => "answer_main_m") %>
+<% else %>
 <% if(@next.nil?)
    next_question = root_path
    else
    next_question = answer_url(@next)
    end %>
-
 <div id="noti-panel" style="display:none;">
   <div id="noti-menu">
     <%= render(:partial => "noti_list") %>
   </div>
 </div>
-
-
 <a href="<%= ask_url %>" class="ask-button" title="Add Question"><span class="fa fa-plus-circle"></span></a>
 <table style="width:100%;height:100%;">
   <tr>
@@ -37,12 +51,15 @@
 		  <label><%= opt.content %></label>
 		</li>
 		<% end %>
+		<li onclick="submitDiffAns();"><input type="radio">
+		  <label>I have somthing else to say</label>
+		</li>
 	      </ul>
 	    </form>
 	  </section>
-	  <% else %>
+	  <% end %>
 	  <div class="sp10"></div>
-	  <div id="qu-txt">
+	  <div id="qu-txt" <% if(@options.present?) %>style="display:none;"<% end %>>
 	    <div class="txt-ans-div">
 	      <div class="sp20"></div>
 	      <div style="position:relative;">
@@ -55,8 +72,7 @@
 	    </div>
 	    <div class="sp20"></div>
 	    <input type="button" class="btn btn-4 btn-4a" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Opinion" />
-	  </div>
-	  <% end %>
+	  </div>	  
 	  <div id="ans-list" class="p-10">
 	    <%= render(:partial => "ans_list") %>
 	  </div>	  
@@ -77,8 +93,8 @@
 	  </ul>
 	  <ul>
 	    <%
-	       title_for_share = "#{@qu.text}, asked anonymously on socialshade"
-	       desc_for_share = "#{@qu.text}, asked anonymously on socialshade, answer this question without sharing your identity. SocialShade is an inititative to bring answers on question we feel hesitated to contribute"
+	       title_for_share = "#{@qu.text}, submit your opinion anonymously"
+	       desc_for_share = "#{@qu.text}, asked on socialshade, answer this question without sharing your identity. SocialShade is an inititative to bring answers on (all kind of) questions"
 	       %>
 	    <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-facebook-square">Facebook</a></li>
 	    <li><a target="_blank" href="https://twitter.com/home?status=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-twitter-square">Twitter</a></li>
@@ -92,8 +108,10 @@
 	    <li><a target="_blank" href="http://digg.com/submit?phase=2&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>&bodytext=<%= desc_for_share %>" class="bt-icon fa fa-digg">Digg</a></li>	    
 	    <li><a target="_blank" href="https://delicious.com/save?v=5&provider=socialshade&noui&jump=close&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-delicious">Dellicious</a></li>
 	    <li><a target="_blank" href="http://www.stumbleupon.com/submit?url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-stumbleupon">Stumbleupon</a></li>
+	    <% if(false) %>
 	    <li><a target="_blank" href="" class="bt-icon fa fa-envelope">Email</a></li>
 	    <li><a target="_blank" href="" class="bt-icon fa fa-bookmark">Bookmark</a></li>
+	    <% end %>
 	  </ul>
 	</nav>
       </div>      
@@ -117,6 +135,7 @@
     </td>
   </tr>
 </table>
+<% end %>
 
 <%= form_remote_tag :url => submit_ans_url(@qu.id),                              
                     :loading => "showTrans();",                     
@@ -131,7 +150,6 @@
 <input type="hidden" id="ans" name="ans" /> 
 <input type="hidden" id="buid" name="uid" value=""/> 
 <%= end_form %>
-
 <%= form_remote_tag :url => create_like_url(),                              
                     :loading => "loadingLike();",                     
                     :complete => "compLike();",
@@ -148,8 +166,6 @@
 <% end %>
 <%= end_form %>
 <span id="like-cont"></span>  
-
-
 <script type="text/javascript">
     window.onload = function() {
     getBuid("soclshd");
@@ -182,185 +198,3 @@
     drawChart();
     };
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<% if(false) %>
-
-
-<% if(@mobile) %>
-<%= render(:partial => "answer_main_m") %>
-<% else %>
-<table onclick="closeAllMenu();" style="width:100%;height:100%;">
-  <tr>
-    <td style="text-align:center;vertical-align: top;">
-      <div id="qu-div">
-	<div class="p-10" style="position:relative;" onmouseover="ele_show('qu-like');" onmouseout="ele_hide('qu-like');">
-	  <div class="sp20"></div>
-
-	  <% if(false) %>
-	  <img src="<%= get_asset %>wquote.png" style="width:45px;margin-top:-45px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	  <% end %>
-
-	  <span class="lead" style="color:#ffffff;font-size:40px;">
- 	    <%= @qu.text %>
-	  </span>
-
-	  <% if(false) %>
-	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%= get_asset %>wquote-r.png" style="width:45px;"/>
-	  <% end %>
-	  
-	  <div class="sp20"></div>
-	  <div id="qu-like" style="display:none;">
-	    <img class="pointer qu-lke" src="<%= get_asset %>like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
-	    <img class="pointer qu-lke" src="<%= get_asset %>unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');" style="margin-left:5px;"/>
-	  </div>
-	</div>
-	<% if(@options.present?) %>
-	<div class="sp30"></div>
-	<center id="qu-opt">
-          <% all_ans = @options.map{|a| a.id }
-	     for opt in @options %>
-	  <div class="lead opt-body pointer" style="width:80%;" onclick="submitOptAns(<%= opt.id %>, [<%= all_ans.join(',') %>]);">
-	    <div id="<%= opt.id %>-icon" class="pull-left unchecked">&nbsp;</div>
-	    <div class="pull-left opt-txt"><%= opt.content %></div>
-	    <div style="clear:both;"></div>
-	  </div>
-          <% end %>
-	  <div class="sp20"></div>
-	</center>
-	<% else %>
-	<div id="qu-txt">
-	  <div class="sp20"></div>
-	  <div style="position:relative;">
-	    <div id="ans-txt" class="lead m-null" contenteditable="true" placeholder="Write your answer"></div>	    	    
-	    <select id="lang-sel" onchange="googleTranslationTextbox('ans-txt', this.value)">
-	      <%= render(:partial => "lang_list") %>
-	    </select>
-	  </div>
-	  <div class="sp20"></div>
-	  <input type="button" class="btn btn-block btn-success" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Opinion" />
-	</div>
-	<% end %>
-	</div>
-      <div id="ans-list" class="p-10">
-	<%= render(:partial => "ans_list") %>
-      </div>
-      <div style="clear:both"></div>
-      <div class="sp50"></div>
-      <div class="sp50"></div>
-    </td>
-    <td class="right-arrow">
-      <% if(@next.nil?)
-	 next_question = root_path
-	 else
-	 next_question = answer_url(@next)
-	 end %>
-      <% if(!@mobi) %>
-      <a href="<%= next_question %>">
-	<% end %> 
-	<div id="nxtbtn" class="right-arrow" <% if(@mobi) %>onclick="get_mobi_next_qu(<%= @next.id %>);"<% end %>>
-	  <div class="sp200"></div>
-	  <div class="sp50"></div>
-	  <center>
-	    <img style="margin-left:20px;" src="<%= get_asset %>right.png" />
-	  </center>
-	  <div class="sp500"></div>
-	  <div class="sp100"></div>
-	  </div>
-	<% if(!@mobi) %>
-      </a>
-      <% end %>
-    </td>
-  </tr>
-</table>
-<% end %>
-  
-<%= form_remote_tag :url => submit_ans_url(@qu.id),                              
-                    :loading => "showTrans();",                     
-                    :complete => "afterSave();",
-                    :failure => "alert('Error in saving, please refresh to retry');",
-                    :update => "ans-list",                                 
-                    :html => {:id => "save-ans-form"}  
-%>          
-<% if(@mobi) %>
-<input type="hidden" name="mobi" value="1" /> 
-<% end %>
-<input type="hidden" id="ans" name="ans" /> 
-<input type="hidden" id="buid" name="uid" value=""/> 
-<%= end_form %>
-
-<%= form_remote_tag :url => create_like_url(),                              
-                    :loading => "loadingLike();",                     
-                    :complete => "compLike();",
-                    :failure => "alert('Error in like, please refresh to retry');",
-                    :update => "like-cont",                                 
-                    :html => {:id => "create-like-form"}  
-%>          
-<input type="hidden" id="objid" name="id" value=""/> 
-<input type="hidden" id="objtype" name="objtype" value=""/> 
-<input type="hidden" id="ltype" name="type" value=""/> 
-<input type="hidden" id="lbuid" name="uid" value=""/> 
-<% if(@mobi) %>
-<input type="hidden" name="mobi" value="1" /> 
-<% end %>
-<%= end_form %>
-<span id="like-cont"></span>  
-<%= render(:partial => "ans_header") %>
-
-<script type="text/javascript">
-    window.onload = function() {
-    getBuid("soclshd");
-    <% if(@mobile) %>
-    $("#noti-m").height($(window).height());
-    if(ele("ans-txt") != null) {
-    // ele("ans-txt").focus();	    
-    setPasteEvent("ans-txt");
-    $('#ans-txt').on('activate', function() {
-    ele_hide('footer-pane');    
-    });      
-    $('#ans-txt').focus(function() {
-    ele_hide('footer-pane');    
-    });
-    $('#ans-txt').blur(function() {
-    ele_show('footer-pane');    
-    });      
-    $('#ans-txt').focusout(function() {
-    ele_show('footer-pane');    
-    });
-    }    
-    <% else %>
-    $("#nxtbtn").height($(window).height());
-    if(ele("ans-txt") != null) {
-    ele("ans-txt").focus();	    
-    setPasteEvent("ans-txt");
-    }  
-    showTopNotification();
-    <% end %>
-    drawChart();
-    };
-</script>
-
-<% end %>

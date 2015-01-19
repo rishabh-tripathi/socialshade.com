@@ -76,9 +76,9 @@ class HomeController < ApplicationController
       ans.value = Ans.remove_bad_words(params[:ans])
       if(@qu.qu_type == Qu::TYPE_SINGLE)
         opts = @options.map{|a| a.id }
-        if(!(opts.include? ans.value.to_i))
-          wrong_ans = true
-        end
+        # if(!(opts.include? ans.value.to_i))
+        #   wrong_ans = true
+        # end
       end
       if(!wrong_ans)
         uid = @uid

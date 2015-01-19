@@ -62,16 +62,6 @@
       overflow: auto;
       overflow-x: hidden;
     }  
-    .unchecked {
-      background: url(/assets/unchecked-m.png);
-      width: 30px;
-      height: 30px;
-    }
-    .checked {
-      background: url(/assets/checked-m.png);
-      width: 30px;
-      height: 30px;
-    }
   </style>
   <% end %>
 </head>
@@ -90,19 +80,6 @@
     <div class="lead" style="position:fixed;bottom:90px;right:170px;">Saving Changes</div>
     <% end %>
     <img src="/assets/loading.gif" style="position:fixed;bottom:-65px;right:-80px;"/> 
-  </div>
-  <% end %>
-  <% if(@mobile) %>
-  <div id="top-noti" class="p-10" style="width:100%;background:#4a4a4a;">
-    <center>
-      <a href="https://play.google.com/store/apps/details?id=com.killermobi.socialshade">
-	<img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
-      </a>      
-    </center>
-  </div>  
-  <% else %>
-  <div id="top-noti" style="width:100%;height:30px;background:#ffffff;padding-left:2%;color:#038b57;display:none;">
-    Get notifications about your questions and answers on your chrome browser <a href="https://chrome.google.com/webstore/detail/social-shade/logflbglfompolhfemknjbijpfdiadeo" style="color:#038b57;">Get chrome extensions</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="dismissTopNotification();"><small style="color:#038b57;">dismiss</small></a>
   </div>
   <% end %>
   <%= yield %>

@@ -42,6 +42,12 @@ function submitOptAns(id, all) {
     }, 1000);
 }
 
+function submitDiffAns() {
+    setTimeout(function(){ 
+	ele_show("qu-txt");
+    }, 1000);
+}
+
 function drawChart() {
     console.log('no need to draw any chart');
 }

@@ -11,6 +11,7 @@
 <div id="qu-form" class="p-10" style="width:100%;">
   <div style="position:relative;">
     <div id="quta" class="lead quetb-m" contenteditable="true" placeholder="Ask what is in your mind"></div>
+    <div class="sp30"></div>
     <select id="ask-lang-sel" style="top:inharit;bottom:0px;" onchange="googleTranslationTextbox('quta', this.value)">
       <%= render(:partial => "lang_list") %>
     </select>	
@@ -19,9 +20,11 @@
   <hr class="m-null">
   <div id="optdiv"></div>
   <div class="sp10"></div>
-  <center><a href="javascript:void(0);" onclick="addOption();">Add&nbsp;answer&nbsp;to&nbsp;choose</a></center>    
-  <div class="sp30"></div>
-  <input type="button" onclick="save_qu();" class="btn btn-block btn-success" style="font-size:1.5em" value="Ask this question" />
+  <center><a href="javascript:void(0);" style="color:#ffffff;font-size:1.5em;" onclick="addOption();">Add&nbsp;answer&nbsp;to&nbsp;choose</a></center>    
+  <div class="sp50"></div>
+  <center>
+    <input type="button" onclick="save_qu();" class="btn btn-4 btn-4a m-null" style="font-size:1.5em;padding:20px 50px;" value="Ask this question" />
+  </center>
 </div>
 <div class="sp30"></div>
 <div style="width:320px;margin:0px auto;">
@@ -96,7 +99,6 @@
 
 <script type="text/template" id="optionTemp">
   <% if(@mobile) %>
-  <div class="sp10"></div>
   <div class="opt-body pointer" style="width:100%;text-align:left;">
     <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>
     <table style="width:100%;">
@@ -105,12 +107,11 @@
 	  <div class="pull-left fa fa-circle-o unchecked">&nbsp;</div>
 	</td>
 	<td>
-	  <div id="opt-{{= id }}" class="opt-txt-m" contenteditable="true" placeholder="Enter Option Text"></div>
+	  <div id="opt-{{= id }}" class="lead opt-txt-m" contenteditable="true" placeholder="Enter Option Text"></div>
 	</td>
       </tr>
     </table>
   </div>
-  <div class="sp10"></div>
   <% else %>
   <div class="lead opt-body">
     <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>

@@ -2,16 +2,26 @@
 <% if(@options.present?) 
    total = @ans.size   
    h = {}
+   text_ans = []
    for a in @ans
-     if(!(h.has_key? a.value.to_i))
-       h[a.value.to_i] = 0
+     if(a.value.to_i != 0) 
+       if(!(h.has_key? a.value.to_i))
+         h[a.value.to_i] = 0
+       end
+       h[a.value.to_i] += 1
+     else
+       text_ans << a if(a.value.present?)
+       if(!(h.has_key? -100))
+         h[-100] = 0
+       end
+       h[-100] += 1
      end
-     h[a.value.to_i] += 1
    end
    o = {}
    for opt in @options
      o[opt.id] = opt.content
    end   
+   o[-100] = "Other"		   
 %>
 <hr>      
 <span class="lead">Based on <b><%= @ans.size %></b> response</span>
@@ -43,6 +53,14 @@
 <% else %>
   <div id="res-chart" style="width:650px;margin:0px auto;"></div>
 <% end %>
+<% if(text_ans.present?) %>
+<div class="sp20"></div>
+<span class="lead">Other&nbsp;answers</span>
+<hr style="width:50%;margin-top:10px;">
+<% for a in text_ans %>
+<%= render(:partial => "ans_show", :locals => {:a => a}) %>
+<% end %>
+<% end %>
 <div class="sp50"></div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- SocialShade Banner ad1 -->
@@ -60,15 +78,7 @@
 <span class="lead">Showing&nbsp;&nbsp;<b><%= @ans.size %></b>&nbsp;&nbsp;answer</span>
 <hr style="width:50%;margin-top:10px;">
 <% for a in @ans %>
-  <span class="lead" style="font-size:25px;"><%= raw a.value %></span>
-  <div class="sp5"></div>
-  <span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
-  <div class="sp5"></div>
-  <div id="ansl-<%= a.id %>" class="ans-lke-div">
-    <span class="pointer ans-lke fa fa-thumbs-up" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"></span>
-    <span class="pointer ans-lke fa fa-thumbs-down" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"></span>
-  </div>
-  <hr style="width:30%;margin-top:10px;">
+<%= render(:partial => "ans_show", :locals => {:a => a}) %>
 <% end %>
 <div class="sp10"></div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

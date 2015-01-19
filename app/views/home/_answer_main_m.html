@@ -4,66 +4,59 @@
     overflow: auto;
     overflow-x: hidden;
   }  
-  .unchecked {
-    background: url(<%= get_asset %>unchecked-m.png);
-    width: 30px;
-    height: 30px;
-  }
-  .checked {
-    background: url(<%= get_asset %>checked-m.png);
-    width: 30px;
-    height: 30px;
-  }
 </style>
 <% end %>
-<div style="width:100%;background:#8D7AB8;padding:0.8em;text-align:center">
+<div style="width:100%;padding:0.8em;text-align:center">
   <span class="lead" style="color:#ffffff;">
     <%= @qu.text %>	    
   </span>
   <div class="sp20"></div>
-  <div id="qu-like-m" style="color:#ffffff;">
-    <img class="pointer qu-lke" src="<%= get_asset %>like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like-m');"/>
-    <img class="pointer qu-lke" src="<%= get_asset %>unlike.png" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like-m');" style="margin-left:5px;"/>
+  <div id="qu-like-m" style="min-height:60px;">
+    <span class="pointer qu-lke fa fa-thumbs-up" onclick="likeObj(<%= @qu.id %>,1,'qu-like-m');"></span>
+    <span class="pointer qu-lke fa fa-thumbs-down" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like-m');"></span>
   </div>  
 </div>
 <% if(@options.present?) %>
 <div class="sp20"></div>
-<center id="qu-opt">
-  <% all_ans = @options.map{|a| a.id }
-     for opt in @options %>
-  <div class="opt-body pointer" style="width:90%;text-align:left;" onclick="submitOptAns(<%= opt.id %>, [<%= all_ans.join(',') %>]);">
-    <table style="width:100%;">
-      <tr>
-	<td style="width:40px;">	    
-	  <div id="<%= opt.id %>-icon" class="pull-left unchecked">&nbsp;</div>
-	</td>
-	<td>
-	  <div class="opt-txt-m"><%= opt.content %></div>
-	</td>
-      </tr>
-    </table>
-  </div>
-  <div class="sp20"></div>
-  <% end %>
-  <div class="sp20"></div>
-</center>
+<section id="qu-opt" style="text-align:left">
+  <form class="ac-custom ac-radio ac-fill" autocomplete="off">
+    <ul>
+      <% all_ans = @options.map{|a| a.id }
+	 for opt in @options %>	  
+      <li onclick="submitOptAns(<%= opt.id %>, [<%= all_ans.join(',') %>]);"><input type="radio">
+	<label><%= opt.content %></label>
+      </li>
+      <% end %>
+      <li onclick="submitDiffAns();"><input type="radio">
+	<label>I have somthing else to say</label>
+      </li>
+    </ul>
+  </form>
+</section>
 <% else %>
-<div id="qu-txt">
-  <div class="sp20"></div>
-  <div style="position:relative;">
-    <div id="ans-txt" class="lead m-null" style="" contenteditable="true" placeholder="Write your answer"></div>
-    <select id="lang-sel" onchange="googleTranslationTextbox('ans-txt', this.value)">
-      <%= render(:partial => "lang_list") %>
-    </select>
+<div id="qu-txt" <% if(@options.present?) %>style="display:none;"<% end %>>
+  <div class="txt-ans-div" style="padding:0px 10px;">
+    <div class="sp20"></div>
+    <div style="position:relative;">
+      <div id="ans-txt" class="m-null" contenteditable="true" placeholder="Write your answer"></div>	    	    
+      <select id="lang-sel" onchange="googleTranslationTextbox('ans-txt', this.value)">
+	<%= render(:partial => "lang_list") %>
+      </select>
+    </div>
+    <div class="sp20"></div>
   </div>
   <div class="sp20"></div>
-  <input type="button" class="btn btn-block btn-success" style="font-size:1.2em" onclick="saveTextAnswer();" value="Post Answer" />
-</div>
+  <center>
+    <input type="button" class="btn btn-4 btn-4a m-null" style="font-size:1.5em;padding:1em;" onclick="saveTextAnswer();" value="Submit&nbsp;Your&nbsp;Opinion" />
+  </center>
+</div>	  
 <% end %>
 <div id="ans-list" class="p-10" style="text-align:center;">
   <%= render(:partial => "ans_list") %>
 </div>
-<div class="sp20"></div>
+<div class="sp50"></div>
+<div class="sp30"></div>
+<% if(false) %>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- social shade mobile responsive 1 -->
 <ins class="adsbygoogle"
@@ -74,6 +67,5 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-<div class="sp50"></div>
-<div class="sp10"></div>
-
+<% end %>
+<%= render(:partial => "ans_header") %>

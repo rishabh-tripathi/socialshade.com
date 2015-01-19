@@ -1,0 +1,9 @@
+<span class="lead" style="font-size:25px;"><%= raw a.value %></span>
+<div class="sp5"></div>
+<span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
+<div class="sp5"></div>
+<div id="ansl-<%= a.id %>" class="ans-lke-div">
+  <span class="pointer ans-lke fa fa-thumbs-up" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"></span>
+  <span class="pointer ans-lke fa fa-thumbs-down" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"></span>
+</div>
+<hr style="width:30%;margin-top:10px;">

@@ -9,14 +9,17 @@
 <center>
   <h2 class="lead m-null"><a href="<%= answer_url(@qu.id) %>" style="color:#ffffff;">Your question</a> will be answered by our random anonymous user, you will get notification for new answers when you comeback</h2>
   <div class="sp20"></div>
+  <% if(!@mobile) %>  
   <span class="lead m-null">Track this question,</span>
   <div class="sp5"></div>
+  <% end %>
 </center>
+
+<% if(!@mobile) %>  
 <ul class="infoul">
   <li>
     <a href="mailto:youremail?subject=Track this question&body=Hi, You want to track this question for answers <%= answer_url(@qu.id) %>" title="Email question url for tracking">Email Question Detail</a>
   </li>
-  <% if(!@mobile) %>
   <li>
     <p id="addBookmarkContainer"></p>
   </li>
@@ -26,21 +29,26 @@
   <li>
     <a href="https://play.google.com/store/apps/details?id=com.killermobi.socialshade">Get Android Application</a>
   </li>
-  <% end %>
 </ul>
+<% end %>
+
 <center>
   <% if(!@mobile) %>
   <div class="sp20"></div>
   <span class="lead m-null">URL for this question</span>
   <div class="sp10"></div>
   <h1 class="m-null save-qu-id"><%= answer_url(@qu.id) %></h1>
-  <% end %>
   <div class="sp30"></div>
   <span class="lead m-null">Check in few hour to find your answer</span>
   <div class="sp20"></div>  
   <a href="<%= answer_url(@qu.id ) %>" class="btn btn-4 btn-4a btn-lnk" title="Save question detail in your browser for future">Answer This Question</a>
   <div class="sp5"></div>  
   <a href="<%= ask_url %>" class="btn btn-4 btn-4a btn-lnk">Ask More Question</a>
+  <% else %>
+  <span class="lead m-null">Check in few hour to find your answer</span>
+  <div class="sp30"></div>
+  <a href="<%= answer_url(@qu.id ) %>" class="btn btn-4 btn-4a btn-lnk m-null" style="padding:20px 30px;font-size:1.2em;" title="Save question detail in your browser for future">Answer&nbsp;This&nbsp;Question</a>
+  <% end %>
 </center>
 
 <% if(!@mobile) %>

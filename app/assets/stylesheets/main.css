@@ -212,7 +212,7 @@ body {
 
 .quetb-m {
     min-height: 120px !important;
-    font-size: 1.5em !important;	
+    font-size: 2em !important;	
 }
 
 .unchecked {
@@ -240,7 +240,7 @@ body {
 
 .opt-txt-m {
     outline: none;
-    font-size: 1.2em;
+    font-size: 2em;
     line-height: 1.2;
 }
 
@@ -250,16 +250,56 @@ body {
     padding: 10px 20px;
 }
 
-.ans-header {
+.ans-header, .ans-header-n {
     width: 100%;
-    padding: 10px;
     background: #ffffff;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid #038b57;
     color: #ffffff;
     position: fixed;
     -webkit-backface-visibility: hidden;
     left: 0px;
     bottom: 0px;
+    text-align: center;
+}
+
+.ans-header-n {
+    background: #038b57;
+    border-top: 1px solid #ffffff;    
+}
+
+.ans-header td {
+    border: 2px solid #038b57;
+}
+
+.ans-header-n td {
+    border: 2px solid #ffffff;    
+}
+
+.ans-header td:hover {
+    border: 2px solid #038b57;
+    background: #038b57;
+    color: #ffffff;
+}
+
+.ans-header-n td:hover {
+    border: 2px solid #ffffff;
+    background: #038b57;
+    color: #ffffff;
+}
+
+.ans-header a {
+    text-decoration: none;
+    color: #038b57;
+}
+
+.ans-header-n a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.ans-header a:hover {
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .left-arrow {
@@ -365,8 +405,9 @@ body {
 .menu-icon-m {
     position: fixed;
     -webkit-backface-visibility: hidden;    
-    bottom: 65px;
+    bottom: 50px;
     left: 10px;
+    border: none;
 }
 
 .menu-icon-m img {
@@ -447,7 +488,7 @@ body {
     width: 100%;
     overflow: auto;
     background: #ffffff;
-    padding: 10px;
+    height: 100%;
 }
 
 .ans-lke {
@@ -543,4 +584,14 @@ body {
 .btn-lnk {
     text-decoration: none;
     font-size: 2em;    
+}
+
+.btn-d {
+    color: #04a466;
+    border: 2px solid #04a466;
+}
+
+.btn-d:hover {
+    color: #ffffff;
+    border: 2px solid #04a466;
 }

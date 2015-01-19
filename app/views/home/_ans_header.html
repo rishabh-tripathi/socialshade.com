@@ -1,11 +1,11 @@
-<div id="footer-pane" class="ans-header">
+<div id="footer-pane" class="ans-header" style="font-size:1.5em;">
   <% if(@mobile) %>
   <table style="width:100%;">
     <tr>
-      <td style="width:50%;padding-right:5px;">
-	<a href="<%= ask_url %>" onclick="showTrans();" class="btn btn-block btn-danger">Ask&nbsp;Question</a>
+      <td class="p-10" style="width:50%;">
+	<a href="<%= ask_url %>" onclick="showTrans();">Ask&nbsp;Question</a>
       </td>
-      <td style="width:50%;padding-left:5px;">
+      <td class="p-10" style="width:50%;">
       <% if(@next.nil?)
 	 next_question = root_path
 	 else
@@ -13,29 +13,29 @@
 	 end %>      
       <% 
 	 if(@mobi) %>
-      <button onclick="get_mobi_next_qu(<%= @next.id %>);" class="btn btn-block btn-success">Next&nbsp;Question</button>
+      <button onclick="get_mobi_next_qu(<%= @next.id %>);">Next&nbsp;Question</button>
       <% else %>
-      <a href="<%= next_question %>" onclick="showTrans();" class="btn btn-block btn-success">Next&nbsp;Question</a>
+      <a href="<%= next_question %>" onclick="showTrans();">Next&nbsp;Question</a>
       <% end %>
       </td>
     </tr>
   </table>  
   <% if(!@noti.nil? && !@noti.blank?) %>
   <div class="menu-icon-m" onclick="ele_show('noti-m');">
-    <img class="img-circle" src="<%= get_asset %>noti.png"/>	  
+    <img class="img-circle" src="<%= get_asset %>noti.png" style="border:none;"/>	  
     <div class="noti-icon-m"><%= @noti.size %></div>
   </div>
   <div id="noti-m" style="display:none;">  
     <%= render(:partial => "noti_list") %>
     <div class="sp100"></div>
-    <div class="ans-header">
-      <table style="width:100%;">
+    <div class="ans-header-n">
+      <table style="width:100%;" style="font-size:0px;">
 	<tr>
-	  <td style="width:50%;padding-right:5px;">
-	    <a href="Javascript:void(0);" onclick="ele_hide('noti-m');" class="btn btn-block btn-danger">Back&nbsp;To&nbsp;Question</a>
+	  <td class="p-10" style="width:50%;">
+	    <a href="javascript:void(0);" onclick="ele_hide('noti-m');" style="font-size:20px;">Back</a>
 	  </td>
-	  <td style="width:50%;padding-left:5px;">
-	    <a href="<%= ask_url %>" onclick="showTrans();" class="btn btn-block btn-success">Ask&nbsp;Question</a>
+	  <td class="p-10" style="width:50%;">
+	    <a href="<%= ask_url %>" onclick="showTrans();" style="font-size:20px;">Ask&nbsp;Question</a>
 	  </td>
 	</tr>
       </table>        
