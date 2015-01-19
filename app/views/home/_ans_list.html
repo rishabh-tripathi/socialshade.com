@@ -13,22 +13,9 @@
      o[opt.id] = opt.content
    end   
 %>
-<% if(@mobile) %>
-
-<% else %>
-<div class="sp10"></div>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- SocialShade Banner ad1 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-3833946424381349"
-     data-ad-slot="5732836094"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<div class="sp20"></div>      
-<% end %>
+<hr>      
 <span class="lead">Based on <b><%= @ans.size %></b> response</span>
+<div class="sp30"></div>      
 <script type="text/javascript">
   function drawChart() {
   var data = google.visualization.arrayToDataTable([
@@ -43,7 +30,7 @@
   'width':320,
   'height':200
   <% else %>
-  'width':600,
+  'width':650,
   'height':400
   <% end %>
   };  
@@ -56,7 +43,7 @@
 <% else %>
   <div id="res-chart" style="width:650px;margin:0px auto;"></div>
 <% end %>
-<div class="sp10"></div>
+<div class="sp50"></div>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- SocialShade Banner ad1 -->
 <ins class="adsbygoogle"
@@ -67,16 +54,19 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
 </script>      
 <% else %>
-<div class="sp10"></div>
+<div class="sp20"></div>
+<hr>
+<div class="sp20"></div>
 <span class="lead">Showing&nbsp;&nbsp;<b><%= @ans.size %></b>&nbsp;&nbsp;answer</span>
-<hr style="width:50%;margin-top:0px;">
+<hr style="width:50%;margin-top:10px;">
 <% for a in @ans %>
-  <span class="lead" style="font-size:22px;"><%= raw a.value %></span>
-  <div class="sp1"></div>
+  <span class="lead" style="font-size:25px;"><%= raw a.value %></span>
+  <div class="sp5"></div>
   <span class="lead" style="font-size:14px;"><%= time_ago_in_words(a.created_at) %> ago</span>
-  <div id="ansl-<%= a.id %>" class="ans-lke">
-    <img class="pointer" src="<%= get_asset %>slike.png" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"/>
-    <img class="pointer" src="<%= get_asset %>sunlike.png" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');" style="margin-left:5px;"/>
+  <div class="sp5"></div>
+  <div id="ansl-<%= a.id %>" class="ans-lke-div">
+    <span class="pointer ans-lke fa fa-thumbs-up" onclick="likeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"></span>
+    <span class="pointer ans-lke fa fa-thumbs-down" onclick="unlikeObj(<%= a.id %>,2,'ansl-<%= a.id %>');"></span>
   </div>
   <hr style="width:30%;margin-top:10px;">
 <% end %>

@@ -1,3 +1,215 @@
+<% if(@next.nil?)
+   next_question = root_path
+   else
+   next_question = answer_url(@next)
+   end %>
+
+<div id="noti-panel" style="display:none;">
+  <div id="noti-menu">
+    <%= render(:partial => "noti_list") %>
+  </div>
+</div>
+
+
+<a href="<%= ask_url %>" class="ask-button" title="Add Question"><span class="fa fa-plus-circle"></span></a>
+<table style="width:100%;height:100%;">
+  <tr>
+    <td style="text-align:center;vertical-align: top;">      
+      <div class="container">
+	<div class="codrops-header">
+	  <h1>
+	    <%= @qu.text %>	    
+	  </h1>
+	  <div class="sp20"></div>
+	  <center id="qu-like" style="min-height:60px;">
+	    <span class="pointer qu-lke fa fa-thumbs-up" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"></span>
+	    <span class="pointer qu-lke fa fa-thumbs-down" onclick="unlikeObj(<%= @qu.id %>,1,'qu-like');"></span>
+	  </center>
+	  <div class="sp10"></div>
+	  <% if(@options.present?) %>
+	  <div class="sp10"></div>
+	  <section id="qu-opt" style="text-align:left">
+	    <form class="ac-custom ac-radio ac-fill" autocomplete="off">
+	      <ul>
+		<% all_ans = @options.map{|a| a.id }
+		   for opt in @options %>	  
+		<li onclick="submitOptAns(<%= opt.id %>, [<%= all_ans.join(',') %>]);"><input type="radio">
+		  <label><%= opt.content %></label>
+		</li>
+		<% end %>
+	      </ul>
+	    </form>
+	  </section>
+	  <% else %>
+	  <div class="sp10"></div>
+	  <div id="qu-txt">
+	    <div class="txt-ans-div">
+	      <div class="sp20"></div>
+	      <div style="position:relative;">
+		<div id="ans-txt" class="m-null" contenteditable="true" placeholder="Write your answer"></div>	    	    
+		<select id="lang-sel" onchange="googleTranslationTextbox('ans-txt', this.value)">
+		  <%= render(:partial => "lang_list") %>
+		</select>
+	      </div>
+	      <div class="sp20"></div>
+	    </div>
+	    <div class="sp20"></div>
+	    <input type="button" class="btn btn-4 btn-4a" style="font-size:2em" onclick="saveTextAnswer();" value="Submit Your Opinion" />
+	  </div>
+	  <% end %>
+	  <div id="ans-list" class="p-10">
+	    <%= render(:partial => "ans_list") %>
+	  </div>	  
+	</div>  	
+	<nav id="bt-menu" class="bt-menu">
+	  <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+	  <ul>
+	    <li style="margin-top:30px;"><a href="<%= ask_url %>" class="bt-icon fa fa-plus" title="Add Question">Add Question</a></li>
+	    <li>
+	      <% if(!@noti.nil? && !@noti.blank?) %>
+	      <div class="noti-icon"><%= @noti.size %></div>
+	      <% end %>
+	      <a href="#" class="bt-icon fa fa-bell" title="Notification" onclick="show_notimenu();">Notification</a>
+	    </li>
+	    <li><a href="<%= show_profile_url %>" class="bt-icon fa fa-user" title="Your Profile">Profile</a></li>
+	    <li><a href="javascript:void(0);" onclick="clearProfile()" class="bt-icon fa fa-sign-out" title="Clear profile">Profile</a></li>
+	    <li><a href="<%= how_to_url %>" class="bt-icon fa fa-question-circle">Help</a></li>
+	  </ul>
+	  <ul>
+	    <%
+	       title_for_share = "#{@qu.text}, asked anonymously on socialshade"
+	       desc_for_share = "#{@qu.text}, asked anonymously on socialshade, answer this question without sharing your identity. SocialShade is an inititative to bring answers on question we feel hesitated to contribute"
+	       %>
+	    <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-facebook-square">Facebook</a></li>
+	    <li><a target="_blank" href="https://twitter.com/home?status=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-twitter-square">Twitter</a></li>
+	    <li><a target="_blank" href="https://plus.google.com/share?url=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-google-plus-square">Google plus</a></li>
+	    <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>&summary=<%= desc_for_share %>&source=socialshade.com" class="bt-icon fa fa-linkedin-square">Linkedin</a></li>
+	    <li><a target="_blank" href="http://www.tumblr.com/share/link?url=<%= answer_url(@qu.id) %>&name=<%= title_for_share %>&description=<%= desc_for_share %>" class="bt-icon fa fa-tumblr-square">Tumblr</a></li>
+
+	    <li><a target="_blank" href="http://news.ycombinator.com/submitlink?u=<%= answer_url(@qu.id) %>&t=<%= title_for_share %>" class="bt-icon fa fa-hacker-news">Hacker News</a></li>
+
+	    <li><a target="_blank" href="//www.reddit.com/submit?url=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-reddit">Reddit</a></li>
+	    <li><a target="_blank" href="http://digg.com/submit?phase=2&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>&bodytext=<%= desc_for_share %>" class="bt-icon fa fa-digg">Digg</a></li>	    
+	    <li><a target="_blank" href="https://delicious.com/save?v=5&provider=socialshade&noui&jump=close&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-delicious">Dellicious</a></li>
+	    <li><a target="_blank" href="http://www.stumbleupon.com/submit?url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-stumbleupon">Stumbleupon</a></li>
+	    <li><a target="_blank" href="" class="bt-icon fa fa-envelope">Email</a></li>
+	    <li><a target="_blank" href="" class="bt-icon fa fa-bookmark">Bookmark</a></li>
+	  </ul>
+	</nav>
+      </div>      
+    </td>
+    <td class="right-arrow">
+      <% if(!@mobi) %>
+      <a href="<%= next_question %>">
+	<% end %> 
+	<div id="nxtbtn" class="right-arrow" <% if(@mobi) %>onclick="get_mobi_next_qu(<%= @next.id %>);"<% end %>>
+	  <div class="sp200"></div>
+	  <div class="sp50"></div>
+	  <center>
+	    <i class="fa fa-chevron-right " style="color:#ffffff;font-size:80px;"></i>
+	  </center>
+	  <div class="sp500"></div>
+	  <div class="sp100"></div>
+	  </div>
+	<% if(!@mobi) %>
+      </a>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<%= form_remote_tag :url => submit_ans_url(@qu.id),                              
+                    :loading => "showTrans();",                     
+                    :complete => "afterSave();",
+                    :failure => "alert('Error in saving, please refresh to retry');",
+                    :update => "ans-list",                                 
+                    :html => {:id => "save-ans-form"}  
+%>          
+<% if(@mobi) %>
+<input type="hidden" name="mobi" value="1" /> 
+<% end %>
+<input type="hidden" id="ans" name="ans" /> 
+<input type="hidden" id="buid" name="uid" value=""/> 
+<%= end_form %>
+
+<%= form_remote_tag :url => create_like_url(),                              
+                    :loading => "loadingLike();",                     
+                    :complete => "compLike();",
+                    :failure => "alert('Error in like, please refresh to retry');",
+                    :update => "like-cont",                                 
+                    :html => {:id => "create-like-form"}  
+%>          
+<input type="hidden" id="objid" name="id" value=""/> 
+<input type="hidden" id="objtype" name="objtype" value=""/> 
+<input type="hidden" id="ltype" name="type" value=""/> 
+<input type="hidden" id="lbuid" name="uid" value=""/> 
+<% if(@mobi) %>
+<input type="hidden" name="mobi" value="1" /> 
+<% end %>
+<%= end_form %>
+<span id="like-cont"></span>  
+
+
+<script type="text/javascript">
+    window.onload = function() {
+    getBuid("soclshd");
+    <% if(@mobile) %>
+    $("#noti-m").height($(window).height());
+    if(ele("ans-txt") != null) {
+    // ele("ans-txt").focus();	    
+    setPasteEvent("ans-txt");
+    $('#ans-txt').on('activate', function() {
+    ele_hide('footer-pane');    
+    });      
+    $('#ans-txt').focus(function() {
+    ele_hide('footer-pane');    
+    });
+    $('#ans-txt').blur(function() {
+    ele_show('footer-pane');    
+    });      
+    $('#ans-txt').focusout(function() {
+    ele_show('footer-pane');    
+    });
+    }    
+    <% else %>
+    $("#nxtbtn").height($(window).height());
+    if(ele("ans-txt") != null) {
+    ele("ans-txt").focus();	    
+    setPasteEvent("ans-txt");
+    }  
+    showTopNotification();
+    <% end %>
+    drawChart();
+    };
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if(false) %>
+
+
 <% if(@mobile) %>
 <%= render(:partial => "answer_main_m") %>
 <% else %>
@@ -13,13 +225,13 @@
 	  <% end %>
 
 	  <span class="lead" style="color:#ffffff;font-size:40px;">
-	    <%= @qu.text %>
+ 	    <%= @qu.text %>
 	  </span>
 
 	  <% if(false) %>
 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%= get_asset %>wquote-r.png" style="width:45px;"/>
 	  <% end %>
-
+	  
 	  <div class="sp20"></div>
 	  <div id="qu-like" style="display:none;">
 	    <img class="pointer qu-lke" src="<%= get_asset %>like.png" onclick="likeObj(<%= @qu.id %>,1,'qu-like');"/>
@@ -55,7 +267,7 @@
 	</div>
       <div id="ans-list" class="p-10">
 	<%= render(:partial => "ans_list") %>
-	</div>
+      </div>
       <div style="clear:both"></div>
       <div class="sp50"></div>
       <div class="sp50"></div>
@@ -150,3 +362,5 @@
     drawChart();
     };
 </script>
+
+<% end %>

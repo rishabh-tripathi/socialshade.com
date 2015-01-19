@@ -42,15 +42,18 @@
     <div style="position:relative;"> 
       <div style="position:relative;">
 	<div id="quta" class="lead quetb" contenteditable="true" placeholder="Ask what is in your mind"></div>
+	<div class="sp20"></div>
 	<select id="ask-lang-sel" style="top:0px;" onchange="googleTranslationTextbox('quta', this.value)">
 	  <%= render(:partial => "lang_list") %>
 	</select>	
       </div>
-      <a href="javascript:;" onclick="addOption();" class="pull-right" style="position:absolute;bottom:0px;right:0px;">Add&nbsp;answer&nbsp;to&nbsp;choose</a>    
+      <a href="javascript:;" onclick="addOption();" class="pull-right add-opt-link">Add&nbsp;answer&nbsp;to&nbsp;choose</a>    
     </div>
     <div id="optdiv"></div>
     <hr style="margin-top:0px;">
-    <center><input type="button" onclick="save_qu();" class="btn btn-block btn-success" style="font-size:2em" value="Ask this question" /></center>   
+    <center>    
+      <input type="button" onclick="save_qu();" class="btn btn-4 btn-4a" style="font-size:2em" value="Ask this question" />
+    </center>   
   </div>
 </div>
 <% end %>
@@ -59,7 +62,7 @@
 
 <% if(!@mobile) %>
 <center>
-  <div class="sp50"></div>
+  <div class="sp30"></div>
   <table>
     <tr>
       <td class="p-10">
@@ -87,6 +90,8 @@
     </tr>
   </table>
 </center>
+<div class="sp10"></div>
+<center><a href="<%= root_path %>" style="color:#ffffff;text-decoration:none;">Answer other questions</a></center>
 <% end %>
 
 <script type="text/template" id="optionTemp">
@@ -97,7 +102,7 @@
     <table style="width:100%;">
       <tr>
 	<td style="width:40px;">	    
-	  <div class="pull-left unchecked">&nbsp;</div>
+	  <div class="pull-left fa fa-circle-o unchecked">&nbsp;</div>
 	</td>
 	<td>
 	  <div id="opt-{{= id }}" class="opt-txt-m" contenteditable="true" placeholder="Enter Option Text"></div>
@@ -109,7 +114,7 @@
   <% else %>
   <div class="lead opt-body">
     <input type="hidden" id="opth-{{= id }}" name="opt[{{= id }}]" value=""/>
-    <div class="pull-left unchecked">&nbsp;</div>
+    <div class="pull-left fa fa-circle-o unchecked">&nbsp;</div>
     <div id="opt-{{= id }}" class="pull-left opt-txt" contenteditable="true" placeholder="Enter Option Text"></div>
     <div style="clear:both;"></div>
   </div>

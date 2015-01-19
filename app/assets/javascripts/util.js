@@ -52,3 +52,10 @@ function showTrans() {
 function hideTrans() {
     ele_hide("transLayer");
 }
+
+function show_notimenu() {
+    ele_show("noti-panel");
+    $("#noti-panel").click(function(e) {
+	ele_hide("noti-panel");
+    });
+}

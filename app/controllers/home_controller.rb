@@ -142,21 +142,15 @@ class HomeController < ApplicationController
   end
 
   def create_like
-    path = "/assets"
-    if(params[:mobi].present?) 
-      path = "img"
-    end
     if(@uid.to_s == params[:uid].to_s)
       img_path = ""
       count = 1
       if(params[:objtype].to_i == 1)
         obj = Qu.find(params[:id])
-        sh = ""
-        txt_style = "color:#ffffff"
+        class_name = "qu-lke"
       elsif(params[:objtype].to_i == 2)
         obj = Ans.find(params[:id])
-        sh = "s"
-        txt_style = ""
+        class_name = "ans-lke"
       end
       if(params[:type].to_i == 1)
         if(obj.like.nil?)
@@ -164,19 +158,19 @@ class HomeController < ApplicationController
         else
           obj.like += 1
         end
-        img_path = "#{path}/#{sh}like.png"
         count = obj.like
+        thumb_type = "fa-thumbs-up"
       elsif(params[:type].to_i == -1)
         if(obj.unlike.nil?)
           obj.unlike = 1 
         else
           obj.unlike += 1
         end      
-        img_path = "#{path}/#{sh}unlike.png"
         count = obj.unlike
+        thumb_type = "fa-thumbs-down"
       end
       obj.save
-      render(:partial => "like_res", :locals => {:img_path => img_path, :count => count, :txt_style => txt_style})
+      render(:partial => "like_res", :locals => {:class_name => class_name, :count => count, :thumb_type => thumb_type})
     else
       render(:text => "error")
     end

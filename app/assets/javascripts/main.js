@@ -29,15 +29,17 @@ function saveTextAnswer() {
 }
 
 function submitOptAns(id, all) {
-    for(var i=0;i<all.length;i++) {
-	$('#'+all[i]+'-icon').removeClass('checked');
-	$('#'+all[i]+'-icon').addClass('unchecked');
-    }
-    $('#'+id+'-icon').removeClass('unchecked');
-    $('#'+id+'-icon').addClass('checked');    
-    ele('ans').value = id;
-    ele('buid').value = getBuid("soclshd");
-    submit_ajax_form('save-ans-form');
+    setTimeout(function(){ 
+	for(var i=0;i<all.length;i++) {
+	    $('#'+all[i]+'-icon').removeClass('checked');
+	    $('#'+all[i]+'-icon').addClass('unchecked');
+	}
+	$('#'+id+'-icon').removeClass('unchecked');
+	$('#'+id+'-icon').addClass('checked');    
+	ele('ans').value = id;
+	ele('buid').value = getBuid("soclshd");
+	submit_ajax_form('save-ans-form');
+    }, 1000);
 }
 
 function drawChart() {

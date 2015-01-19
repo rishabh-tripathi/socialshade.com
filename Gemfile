@@ -22,7 +22,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'rack-cors', :require => 'rack/cors'
 
 # gem 'fb_graph'
