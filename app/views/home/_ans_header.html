@@ -13,7 +13,7 @@
 	 end %>      
       <% 
 	 if(@mobi) %>
-      <button onclick="get_mobi_next_qu(<%= @next.id %>);">Next&nbsp;Question</button>
+      <a href="javascript:void(0);" onclick="get_mobi_next_qu(<%= @next.id %>);">Next&nbsp;Question</a>
       <% else %>
       <a href="<%= next_question %>" onclick="showTrans();">Next&nbsp;Question</a>
       <% end %>
