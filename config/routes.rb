@@ -15,6 +15,8 @@ OpenansCom::Application.routes.draw do
   match "/keep-profile/:id" => "home#keep_profile", :as => :keep_profile
   match "/submit-qu" => "home#submit_qu", :as => :submit_qu
   match "/submit-ans/:id" => "home#submit_ans", :as => :submit_ans
+  get 'sitemap.xml', :to => 'home#sitemap', :defaults => { :format => 'xml' }, :conditions => { :method => :get }, :as => :sitemap
+  match "/feed/all" => "home#qu_rss", :as => :qu_rss
   match "/search-qu" => "home#search", :as => :search
   match "/:id" => "home#answer", :as => :answer
 

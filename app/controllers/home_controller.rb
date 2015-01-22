@@ -191,6 +191,17 @@ class HomeController < ApplicationController
   def privacy
   end
 
+  def sitemap
+    @qu = Qu.find(:all, :order => "created_at desc")
+  end
+
+  def qu_rss
+    @qu = Qu.find(:all, :order => "created_at desc")
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+
   private
   def get_next_question  
     @noti = Ans.get_notification(@uid)
