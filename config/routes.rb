@@ -18,6 +18,13 @@ OpenansCom::Application.routes.draw do
   get 'sitemap.xml', :to => 'home#sitemap', :defaults => { :format => 'xml' }, :conditions => { :method => :get }, :as => :sitemap
   match "/feed/all" => "home#qu_rss", :as => :qu_rss
   match "/search-qu" => "home#search", :as => :search
+
+  match "/trending" => "home#trending", :as => :trending
+  match "/latest" => "home#latest", :as => :latest
+  match "/most-liked" => "home#most_liked", :as => :most_liked
+  match "/most-unliked" => "home#most_unliked", :as => :most_unliked
+  match "/unanswered" => "home#unanswered", :as => :unanswered
+
   match "/:id" => "home#answer", :as => :answer
 
   # The priority is based upon order of creation:

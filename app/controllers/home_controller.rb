@@ -202,6 +202,38 @@ class HomeController < ApplicationController
     end
   end
 
+  def trending
+    @qu = Qu.find(:all, :conditions => ["ans > ? and views > ?", 0, 0], :order => ["created_at desc", "ans desc", "views desc"], :limit => 50)
+    @title = "Trending Questions"
+    render "question_list"
+  end
+
+  def latest
+    @qu = Qu.find(:all, :conditions => ["views > ?", 0], :order => "created_at desc", :limit => 50)
+    @title = "Latest Questions"
+    render "question_list"
+  end
+
+  def most_liked
+    @qu = Qu.find(:all, :conditions => ["views > ?", 0], :order => "created_at desc")
+    @qu = @qu.sort{|a,b| b.like.to_i <=> a.like.to_i }[0..50]
+    @title = "Most Liked Questions"
+    render "question_list"
+  end
+
+  def most_unliked
+    @qu = Qu.find(:all, :conditions => ["unlike > ?", 0], :order => ["unlike desc", "created_at desc"], :limit => 50)
+    @title = "Most Unliked Questions"
+    render "question_list"
+  end
+
+  def unanswered
+    @qu = Qu.find(:all, :conditions => ["ans = ?", 0], :order => "views desc", :limit => 50)
+    @qu = @qu.sort{|a,b| b.like.to_i <=> a.like.to_i }
+    @title = "Unanswered Questions"
+    render "question_list"
+  end
+
   private
   def get_next_question  
     @noti = Ans.get_notification(@uid)

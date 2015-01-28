@@ -31,7 +31,7 @@ body  {
 
 .bt-menu.bt-menu-open {
 	height: 100%;
-	border-width: 30px 200px 60px 90px;
+	border-width: 50px 200px 60px 90px;
 	background-color: rgba(0,0,0,0.3);
 	-webkit-transition: border-width 0.3s, background-color 0.3s;
 	transition: border-width 0.3s, background-color 0.3s;
@@ -133,11 +133,37 @@ body  {
 	bottom: 15px;
 }
 
+.bt-menu ul:nth-of-type(3) {
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	left: 100px;
+	top: 15px;
+}
+
 .bt-menu ul:nth-of-type(2) li {
 	float: left;
 	font-size: 0px;
 }
 
+.bt-menu ul:nth-of-type(3) li {
+	float: left;
+	font-size: 15px;
+	margin: 0px;
+	padding: 0px;
+	width: 100px;
+}
+
+.bt-menu ul:nth-of-type(3) li a {
+    font-size: 15px;
+    color: #04a466;
+    transition: color 0.2s ease 0s;
+}
+
+.bt-menu ul:nth-of-type(3) li a:hover {
+    color: #ffffff;
+}
 
 .bt-menu ul li,
 .bt-menu ul li a {
