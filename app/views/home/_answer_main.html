@@ -97,7 +97,7 @@
 	       desc_for_share = "#{@qu.text}, asked on socialshade, answer this question without sharing your identity. SocialShade is an inititative to bring answers on (all kind of) questions"
 	       %>
 	    <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-facebook-square">Facebook</a></li>
-	    <li><a target="_blank" href="https://twitter.com/home?status=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-twitter-square">Twitter</a></li>
+	    <li><a target="_blank" href="https://twitter.com/home?status=<%= title_for_share %> <%= answer_url(@qu.id) %>" class="bt-icon fa fa-twitter-square">Twitter</a></li>
 	    <li><a target="_blank" href="https://plus.google.com/share?url=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-google-plus-square">Google plus</a></li>
 	    <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>&summary=<%= desc_for_share %>&source=socialshade.com" class="bt-icon fa fa-linkedin-square">Linkedin</a></li>
 	    <li><a target="_blank" href="http://www.tumblr.com/share/link?url=<%= answer_url(@qu.id) %>&name=<%= title_for_share %>&description=<%= desc_for_share %>" class="bt-icon fa fa-tumblr-square">Tumblr</a></li>
