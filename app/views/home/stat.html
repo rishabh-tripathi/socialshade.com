@@ -1,0 +1,32 @@
+<%= render(:partial => "qheader") %>
+<div class="codrops-header p-30" style="width:100%;text-align:center;">
+  <div class="sp10"></div>
+  <h1>Real Time Stat on SocialShade</h1>
+  <hr style="width:50%;">
+  <span class="lead" style="font-size:25px;">
+    <u>Today So far</u><br>
+    Question Asked: <%= @qu_today %><br>
+    Answer Posted: <%= @ans_today %>
+    <div class="sp20"></div>
+    <u>Last week</u><br>
+    Question Asked: <%= @qu_this_week %><br>
+    Answer Posted: <%= @ans_this_week %>
+    <div class="sp20"></div>
+    <u>From Begining</u><br>
+    Question Asked: <%= @total_qu %><br>
+    Answer Posted: <%= @total_ans %>
+  </span>
+  <div class="sp30"></div>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- SocialShade Banner ad1 -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-3833946424381349"
+       data-ad-slot="5732836094"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>      
+  <div class="sp20"></div>
+  <%= render(:partial => "footer_links") %>
+  <div class="sp20"></div>  
+</div>

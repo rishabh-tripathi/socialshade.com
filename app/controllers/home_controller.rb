@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  include ActionView::Helpers::DateHelper
   
   def index    
     if(@uid.present? || params[:mobi].present?)
@@ -232,6 +233,31 @@ class HomeController < ApplicationController
     @qu = @qu.sort{|a,b| b.like.to_i <=> a.like.to_i }
     @title = "Unanswered Questions"
     render "question_list"
+  end
+
+  def activity
+    qus = Qu.find(:all, :conditions => ["created_at > ?", (Date.today - 1)])
+    ans = Ans.find(:all, :conditions => ["created_at > ?", (Date.today - 1)])
+    @act = {}
+    for q in qus
+      @act[q.created_at] = ["\"<a href='#{answer_url(q.id)}'>#{q.text}</a>\" asked #{time_ago_in_words(q.created_at)} ago", 1]
+    end
+    for a in ans
+      q = Qu.find(a.question_id)
+      @act[a.created_at] = ["\"<a href='#{answer_url(q.id)}'>#{q.text}</a>\" answered #{time_ago_in_words(a.created_at)} ago", 2]
+    end    
+  end
+
+  def contact
+  end
+  
+  def stat
+    @total_qu = Qu.count(:all)
+    @total_ans = Ans.count(:all)
+    @qu_this_week = Qu.count(:conditions => ["created_at > ?", (Date.today - 7)])
+    @ans_this_week = Ans.count(:conditions => ["created_at > ?", (Date.today - 7)])
+    @qu_today = Qu.count(:conditions => ["created_at > ?", (Date.today - 1)])
+    @ans_today = Ans.count(:conditions => ["created_at > ?", (Date.today - 1)])
   end
 
   private

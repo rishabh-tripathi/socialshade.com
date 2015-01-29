@@ -24,6 +24,9 @@ OpenansCom::Application.routes.draw do
   match "/most-liked" => "home#most_liked", :as => :most_liked
   match "/most-unliked" => "home#most_unliked", :as => :most_unliked
   match "/unanswered" => "home#unanswered", :as => :unanswered
+  match "/activities" => "home#activity", :as => :activity
+  match "/contact" => "home#contact", :as => :contact
+  match "/stat" => "home#stat", :as => :stat
 
   match "/:id" => "home#answer", :as => :answer
 

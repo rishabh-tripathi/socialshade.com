@@ -1,0 +1,32 @@
+<%= render(:partial => "qheader") %>
+<div class="codrops-header p-30" style="width:100%;text-align:center;">
+  <div class="sp10"></div>
+  <h1>Activities on SocialShade</h1>
+  <hr style="width:50%;">
+  <%
+     if(@act.present?)
+     keys = @act.keys
+     keys = keys.sort{|a,b| b <=> a}
+     for k in keys
+     t = @act[k]
+     %>
+  <span class="lead" style="font-size:25px;"><%=raw t[0] %></span>
+  <hr style="width:20%;">
+  <% end %>
+  <% else %>
+  <span class="lead">No activity happend today <i class="fa fa-frown-o"></i></span>
+  <% end %>
+  <div class="sp20"></div>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- SocialShade Banner ad1 -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-3833946424381349"
+       data-ad-slot="5732836094"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>      
+  <div class="sp20"></div>
+  <%= render(:partial => "footer_links") %>
+  <div class="sp20"></div>  
+</div>

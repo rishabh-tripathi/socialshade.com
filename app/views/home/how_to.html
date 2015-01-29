@@ -1,8 +1,38 @@
-<center>
+<%= render(:partial => "qheader") %>
+<div class="codrops-header p-30" style="width:100%;text-align:center;">
+  <div class="sp10"></div>
   <h1>What is SocialShade</h1>
+  <hr style="width:50%;">
   <span class="lead">
-    SocialShade is open platform for questions and answer, you can ask anything here and it will be answered by random (yer appropriate) anonymus user. Your identity is also secured. It workd on browser login, your browser is your authentication. 
-    <br>
+    SocialShade is open platform for questions and answer, you can ask anything here and it will be answered by random (yet appropriate) anonymus user. Your identity is secured. It works on browser login, your browser is your authentication. 
+    <br><br>
+    <u>To add new question:</u><br>
+    You can add any subjective questions, go to <a href="<%= ask_url %>">www.socialshade.com/ask</a>, and type your question.<br><br>
+    <img class="b-all" src="/assets/1.png"/>
+    <br><br>
+    You can make question objective by adding options to choose (Click "Add answer to choose"), all objective question can be answered subjectively as user will get option "I have something else to say".<br><br>
+    <img class="b-all" src="/assets/2.png"/>
+    <br><br>
+    <u>Answer other's question</u><br>
+    Go to <a href="<%= root_path %>">www.socialshade.com</a> and answer questions, you can go to next suggested questions from right side bar<br><br>
+    <img class="b-all" src="/assets/3.png"/><br><br>
+    More options are available from top left menu<br><br>
+    <img class="b-all" src="/assets/4.png"/>    
+    <br><br>
     Enjoy Anonymity
+    <br>
   </span>
-</center>
+  <div class="sp30"></div>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- SocialShade Banner ad1 -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-3833946424381349"
+       data-ad-slot="5732836094"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>      
+  <div class="sp20"></div>
+  <%= render(:partial => "footer_links") %>
+  <div class="sp20"></div>  
+</div>

@@ -108,10 +108,8 @@
 	    <li><a target="_blank" href="http://digg.com/submit?phase=2&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>&bodytext=<%= desc_for_share %>" class="bt-icon fa fa-digg">Digg</a></li>	    
 	    <li><a target="_blank" href="https://delicious.com/save?v=5&provider=socialshade&noui&jump=close&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-delicious">Dellicious</a></li>
 	    <li><a target="_blank" href="http://www.stumbleupon.com/submit?url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-stumbleupon">Stumbleupon</a></li>
-	    <% if(false) %>
-	    <li><a target="_blank" href="" class="bt-icon fa fa-envelope">Email</a></li>
-	    <li><a target="_blank" href="" class="bt-icon fa fa-bookmark">Bookmark</a></li>
-	    <% end %>
+	    <li><a target="_blank" href="mailto:you@youremail.com?subject=SocialShade question - <%= title_for_share %>&body=<%= title_for_share %>,<%= answer_url(@qu.id) %>" class="bt-icon fa fa-envelope">Email</a></li>
+	    <li><a target="_blank" href="https://www.google.com/bookmarks/mark?op=edit&bkmk=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-bookmark">Bookmark</a></li>
 	  </ul>
 	  <ul>
 	    <li>
@@ -124,7 +122,7 @@
 		<i class="fa fa-clock-o"></i>&nbsp;&nbsp;latest
 	      </a>
 	    </li>
-	    <li style="width:60px;">
+	    <li style="width:50px;">
 	      <a href="<%= most_liked_url %>">
 		<i class="fa fa-thumbs-up"></i>&nbsp;&nbsp;qus
 	      </a>
@@ -138,6 +136,14 @@
 	      <a href="<%= unanswered_url %>">
 		<i class="fa fa-bomb"></i>&nbsp;&nbsp;unanswered
 	      </a>
+	    </li>
+	  </ul>
+	  <ul>
+	    <li style="padding:0px;">
+	      <form id="srchfrm" action="<%= search_url %>">
+		<input type="text" class="search" name="query" placeholder="Search" />
+		<i class="fa fa-search" onclick="ele('srchfrm').submit();"></i>
+	      </form>
 	    </li>
 	  </ul>
 	</nav>
@@ -177,6 +183,7 @@
 <input type="hidden" id="ans" name="ans" /> 
 <input type="hidden" id="buid" name="uid" value=""/> 
 <%= end_form %>
+
 <%= form_remote_tag :url => create_like_url(),                              
                     :loading => "loadingLike();",                     
                     :complete => "compLike();",

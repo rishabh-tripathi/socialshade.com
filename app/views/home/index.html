@@ -26,6 +26,7 @@
   </div>
   <div class="sp20"></div>    
   <% else %>
+  <%= render(:partial => "qheader") %>
   <center>
     <table>
       <tr>
@@ -33,6 +34,7 @@
 	  <img src="/assets/3.jpg" style="width:300px;"/>
 	</td>
 	<td class="p-30 lead">
+	  <div class="sp30"></div>
 	  It's Open Questions and Answers platform
 	  <div class="sp10"></div>
 	  It's completely Anonymous
@@ -49,12 +51,16 @@
 	  <center>
 	    <a href="<%= answer_url(@next) %>" class="btn btn-4 btn-4a btn-lnk btn-d" style="font-size:1em">Start&nbsp;Contributing</a>
 	  </center>
-	  <div class="sp50"></div>
+	  <center style="font-size:20px;">
+	    <div class="sp30"></div>
+	    <%= render(:partial => "footer_links") %>
+	    <div class="sp30"></div>  
+	  </center>
 	</td>
       </tr>
     </table>
   </center>
-  <a href="<%= ask_url %>" class="ask-button" style="color:#04a466;right:30px;" title="Add Question"><span class="fa fa-plus-circle"></span></a>
+  <a href="<%= ask_url %>" class="ask-button" style="color:#04a466;right:30px;top:35px;" title="Add Question"><span class="fa fa-plus-circle"></span></a>
   <% end %>
 </div>
 <% end %>

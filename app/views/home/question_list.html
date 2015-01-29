@@ -1,5 +1,6 @@
-<div class="codrops-header" style="width:100%;text-align:center;">
-  <div class="sp30"></div>
+<%= render(:partial => "qheader") %>
+<div class="codrops-header p-30" style="width:100%;text-align:center;">
+  <div class="sp10"></div>
   <h1><%= @title %></h1>
   <hr style="width:50%;">
   <% for q in @qu %>
@@ -15,6 +16,16 @@
   <hr style="width:20%;">
   <% end %>
   <div class="sp20"></div>
-  <a href="<%= root_path %>">Back to home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%= ask_url %>">Ask question</a>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- SocialShade Banner ad1 -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-3833946424381349"
+       data-ad-slot="5732836094"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>      
+  <div class="sp20"></div>
+  <%= render(:partial => "footer_links") %>
   <div class="sp20"></div>
 </div>
