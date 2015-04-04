@@ -1,29 +1,48 @@
-<h1>Listing ans</h1>
-
+<style>
+  body {
+  overflow: auto;
+  padding: 10px;
+  }
+  td, th {
+  padding: 10px;
+  border: 1px solid #ffffff;
+  }
+  a {
+  color: #ffffff;
+  text-decoration: none;
+  }
+</style>
+<%= will_paginate @ans %>
 <table class="table">
   <tr>
+    <th>Uid</th>
     <th>Question</th>
     <th>Value</th>
     <th>Ip</th>
-    <th>uid</th>
+    <th>Country</th>
+    <th>Region</th>
+    <th>City</th>
+    <th>When</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <th></th>    
   </tr>
 
 <% @ans.each do |an| %>
   <tr>
+    <td><a href="<%= ans_url(:uid => an.uid) %>"><%= an.uid %></a></td>
     <td><a href="<%= answer_url(an.question_id) %>"><%= an.question_id %></a></td>
     <td><%= an.value %></td>
     <td><%= an.ip %></td>
-    <td><%= an.uid %></td>
-    <td><%= link_to 'Show', an %></td>
+    <td><%= an.country_name %> - <%= an.country_code %></td>
+    <td><%= an.region_name %> - <%= an.region_code %></td>
+    <td><%= an.city_name %> - <%= an.latitude %> - <%= an.longitude %></td>
+    <td><%= time_ago_in_words(an.created_at) %></td>
     <td><%= link_to 'Edit', edit_an_path(an) %></td>
     <td><%= link_to 'Destroy', an, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @ans %>
 <br />
 
 <%= link_to 'New An', new_an_path %>

@@ -1,5 +1,18 @@
-<h1>Listing qus</h1>
-
+<style>
+  body {
+  padding: 10px;
+  overflow: auto;
+  }
+  td, th {
+  padding: 10px;
+  border: 1px solid #ffffff;
+  }
+  a {
+  color: #ffffff;
+  text-decoration: none;
+  }
+</style>
+<%= will_paginate @qus %>
 <table class="table">
   <tr>
     <th>Uid</th>
@@ -10,14 +23,17 @@
     <th>Unlikes</th>
     <th>Ans</th>
     <th>ip</ht>
-    <th></th>
+    <th>Country</th>
+    <th>Region</th>
+    <th>City</th>
+    <th>When</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @qus.each do |qu| %>
   <tr>
-    <td><%= qu.uid %></td>
+    <td><a href="<%= qus_url(:uid => qu.uid) %>"><%= qu.uid %></a></td>
     <td><a href="<%= answer_url(qu.id) %>"><%= qu.text %></a></td>
     <td><%= Qu::TYPE_NAME[qu.qu_type] %></td>
     <td><%= qu.views %></td>
@@ -25,13 +41,16 @@
     <td><%= qu.unlike %></td>
     <td><%= qu.ans %></td>
     <td><%= qu.ip %></td>
-    <td><%= link_to 'Show', qu %></td>
+    <td><%= qu.country_name %> - <%= qu.country_code %></td>
+    <td><%= qu.region_name %> - <%= qu.region_code %></td>
+    <td><%= qu.city_name %> - <%= qu.latitude %> - <%= qu.longitude %></td>
+    <td><%= time_ago_in_words(qu.created_at) %></td>
     <td><%= link_to 'Edit', edit_qu_path(qu) %></td>
     <td><%= link_to 'Destroy', qu, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @qus %>
 <br />
 
 <%= link_to 'New Qu', new_qu_path %>

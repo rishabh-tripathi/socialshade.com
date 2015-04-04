@@ -23,6 +23,9 @@ end
 
 gem 'jquery-rails'
 gem 'rack-cors', :require => 'rack/cors'
+# gem 'geokit-rails'
+gem 'geocoder'
+gem 'will_paginate', '~> 3.0.6'
 
 # gem 'fb_graph'
 

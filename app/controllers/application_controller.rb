@@ -44,4 +44,10 @@ class ApplicationController < ActionController::Base
     end
   end    
 
+  def set_ip_tracking_fields(obj, ip)
+    ip = "106.51.243.30" if(Rails.env.development?)
+    obj = QuesView.set_ip_tracking_fields(obj, ip)
+    return obj
+  end
+
 end

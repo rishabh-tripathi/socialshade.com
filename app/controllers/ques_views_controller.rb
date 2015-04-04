@@ -1,11 +1,15 @@
 class QuesViewsController < ApplicationController
   http_basic_authenticate_with :name => USERNAME, :password => PASSWORD
+  require 'will_paginate/array'
   
   # GET /ques_views
   # GET /ques_views.json
   def index
-    @ques_views = QuesView.all
-
+    if(params[:uid].present?)
+      @ques_views = QuesView.find(:all, :conditions => ["uid = ?", params[:uid]], :order => "created_at desc").paginate(:page => params[:page], :per_page => 50)
+    else
+      @ques_views = QuesView.find(:all, :order => "created_at desc").paginate(:page => params[:page], :per_page => 50)
+    end    
     respond_to do |format|
       format.html # index.html.erb
     end

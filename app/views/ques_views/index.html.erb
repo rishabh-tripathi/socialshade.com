@@ -1,29 +1,41 @@
-<h1>Listing ques_views</h1>
-
+<style>
+  body {
+  overflow: auto;
+  padding: 10px;
+  }
+  td, th {
+  padding: 10px;
+  border: 1px solid #ffffff;
+  }
+  a {
+  color: #ffffff;
+  text-decoration: none;
+  }
+</style>
+<%= will_paginate @ques_views %>
 <table class="table">
   <tr>
     <th>Qu</th>
     <th>Uid</th>
     <th>Count</th>
     <th>ip</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Country</th>
+    <th>Region</th>
+    <th>City</th>
+    <th>When</th>
   </tr>
-
-<% @ques_views.each do |ques_view| %>
+  <% @ques_views.each do |ques_view| %>
   <tr>
     <td><a href="<%= answer_url(ques_view.qu_id) %>"><%= ques_view.qu_id %><%= %></td>
-    <td><%= ques_view.uid %></td>
+    <td><a href="<%= ques_views_url(:uid => ques_view.uid) %>"><%= ques_view.uid %></a></td>
     <td><%= ques_view.count %></td>
     <td><%= ques_view.ip %></td>
-    <td><%= link_to 'Show', ques_view %></td>
-    <td><%= link_to 'Edit', edit_ques_view_path(ques_view) %></td>
-    <td><%= link_to 'Destroy', ques_view, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><%= ques_view.country_name %> - <%= ques_view.country_code %></td>
+    <td><%= ques_view.region_name %> - <%= ques_view.region_code %></td>
+    <td><%= ques_view.city_name %> - <%= ques_view.latitude %> - <%= ques_view.longitude %></td>
+    <td><%= time_ago_in_words(ques_view.created_at) %> ago</td>
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @ques_views %>
 <br />
-
-<%= link_to 'New Ques view', new_ques_view_path %>

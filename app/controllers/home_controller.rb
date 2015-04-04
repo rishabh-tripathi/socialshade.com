@@ -37,6 +37,7 @@ class HomeController < ApplicationController
       @qu.views = 0
       @qu.uid = params[:uid]
       @qu.ip = request.ip
+      set_ip_tracking_fields(@qu, @qu.ip.to_s)
       @qu.save
       params[:opt].each do|key, value|
         opt = Option.new
@@ -52,6 +53,7 @@ class HomeController < ApplicationController
       @qu.like = 0
       @qu.views = 0
       @qu.ip = request.ip
+      set_ip_tracking_fields(@qu, @qu.ip.to_s)
       @qu.save      
     end
     render(:partial => "qu_save_res")
@@ -87,6 +89,7 @@ class HomeController < ApplicationController
           ans.ip = request.ip
           ans.uid = params[:uid]
           ans.req_details = ""
+          set_ip_tracking_fields(ans, ans.ip.to_s)
           ans.save
           if(@qu.ans.nil?)
             @qu.ans = 1
@@ -272,7 +275,9 @@ class HomeController < ApplicationController
     end
     @qu.views += 1
     @qu.save
-    QuesView.add_view(@uid, @qu.id, request.ip)
+    ip_addr = request.ip
+    ip_addr = "106.51.243.30" if(Rails.env.development?)
+    QuesView.add_view(@uid, @qu.id, ip_addr)
     @options = Option.find(:all, :conditions => ["qu_id = ?", @qu.id], :order => "seq")
     @ans = Ans.find(:all, :conditions => ["question_id = ?", @qu.id], :order => "created_at desc")    
     @show_ans = Ans.get_show_ans(@uid, @qu, @ans)

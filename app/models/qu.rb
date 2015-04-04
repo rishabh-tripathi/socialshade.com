@@ -1,5 +1,5 @@
 class Qu < ActiveRecord::Base
-  attr_accessible :ans, :likes, :text, :qu_type, :uid, :views, :unlike, :ip, :expire
+  attr_accessible :ans, :likes, :text, :qu_type, :uid, :views, :unlike, :ip, :expire, :country_code, :country_name, :region_code, :region_name, :city_name, :latitude, :longitude
   TYPE_TEXT = 0
   TYPE_SINGLE = 1
   TYPE_NAME = {

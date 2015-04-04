@@ -27,6 +27,7 @@ OpenansCom::Application.routes.draw do
   match "/activities" => "home#activity", :as => :activity
   match "/contact" => "home#contact", :as => :contact
   match "/stat" => "home#stat", :as => :stat
+  match "/testing" => "qus#testing", :as => :stat
 
   match "/:id" => "home#answer", :as => :answer
 

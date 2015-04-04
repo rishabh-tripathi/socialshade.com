@@ -1,10 +1,15 @@
 class QusController < ApplicationController
   http_basic_authenticate_with :name => USERNAME, :password => PASSWORD
-  
+  require 'will_paginate/array'
+
   # GET /qus
   # GET /qus.json
   def index
-    @qus = Qu.all
+    if(params[:uid].present?)
+      @qus = Qu.find(:all, :conditions => ["uid = ?", params[:uid]], :order => "created_at desc").paginate(:page => params[:page], :per_page => 50)
+    else
+      @qus = Qu.find(:all, :order => "created_at desc").paginate(:page => params[:page], :per_page => 50)
+    end    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @qus }
@@ -15,7 +20,6 @@ class QusController < ApplicationController
   # GET /qus/1.json
   def show
     @qu = Qu.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @qu }
@@ -74,10 +78,30 @@ class QusController < ApplicationController
   def destroy
     @qu = Qu.find(params[:id])
     @qu.destroy
-
     respond_to do |format|
       format.html { redirect_to qus_url }
       format.json { head :no_content }
     end
+  end
+
+  def testing
+    Thread.new {
+      if(params[:what] == "1")
+        qu = Qu.all
+      end
+      if(params[:what] == "2")
+        qu = Ans.all
+      end
+      if(params[:what] == "3")
+        qu = QuesView.all
+      end
+      for q in qu
+        if(q.country_code.nil? && !q.ip.nil?)
+          q = set_ip_tracking_fields(q, q.ip)
+          q.save
+        end
+      end
+    }
+    render(:text => "Im success")
   end
 end

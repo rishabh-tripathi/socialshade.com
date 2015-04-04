@@ -1,11 +1,15 @@
 class AnsController < ApplicationController
   http_basic_authenticate_with :name => USERNAME, :password => PASSWORD
+  require 'will_paginate/array'
 
   # GET /ans
   # GET /ans.json
   def index
-    @ans = Ans.all
-
+    if(params[:uid].present?)
+      @ans = Ans.find(:all, :conditions => ["uid = ?", params[:uid]], :order => "created_at desc").paginate(:page => params[:page], :per_page => 50)
+    else
+      @ans = Ans.find(:all, :order => "created_at desc").paginate(:page => params[:page], :per_page => 50)
+    end    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @ans }
