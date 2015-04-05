@@ -2,6 +2,13 @@
   hideTrans();
 </script>
 <center>
+  <% if(@mobile) %>
+  <span class="lead m-null">Check in few hour to find your answer</span>
+  <div class="sp30"></div>
+  <a href="<%= answer_url(@qu.id ) %>" class="btn btn-4 btn-4a btn-lnk m-null" style="padding:20px 30px;font-size:1.2em;">Answer&nbsp;This&nbsp;Question</a>
+  <div class="sp10"></div>
+  <a href="<%= ask_url %>" class="btn btn-4 btn-4a btn-lnk m-null" style="padding:20px 30px;font-size:1.2em;">Ask&nbsp;More&nbsp;Question</a>
+  <% else %>
   <div class="sp20"></div>
   <h2 class="lead m-null"><a href="<%= answer_url(@qu.id) %>" style="color:#ffffff;">Your question</a> will be answered by our appropriate anonymous users, you will get notification for new answers when you comeback. <a href="<%= how_notify_url %>" style="color:#ffffff;">Learn How</a></h2>
   <div class="sp20"></div>
@@ -21,8 +28,8 @@
 	<a href="<%= ask_url %>" class="btn btn-4 btn-4a btn-lnk">Ask More</a>
       </td>
     </tr>
-  </table>
-  
+  </table>  
+  <% end %>
   <div class="sp50"></div>
   <div class="ask-share">
     <div style="float:left;margin-left:50px;font-size:25px;">Share your question</div>

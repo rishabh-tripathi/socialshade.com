@@ -37,6 +37,8 @@ class HomeController < ApplicationController
       @qu.views = 0
       @qu.uid = params[:uid]
       @qu.ip = request.ip
+      @qu.expire = Qu::EXPIRE_NEVER
+      @qu.expired = Qu::EXPIRED_NO
       set_ip_tracking_fields(@qu, @qu.ip.to_s)
       @qu.save
       params[:opt].each do|key, value|
@@ -52,6 +54,8 @@ class HomeController < ApplicationController
       @qu.uid = params[:uid]
       @qu.like = 0
       @qu.views = 0
+      @qu.expire = Qu::EXPIRE_NEVER
+      @qu.expired = Qu::EXPIRED_NO
       @qu.ip = request.ip
       set_ip_tracking_fields(@qu, @qu.ip.to_s)
       @qu.save      

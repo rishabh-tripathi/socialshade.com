@@ -22,7 +22,9 @@
     <th>Likes</th>
     <th>Unlikes</th>
     <th>Ans</th>
-    <th>ip</ht>
+    <th>Expire</th>
+    <th>Expired</th>
+    <th>ip</th>
     <th>Country</th>
     <th>Region</th>
     <th>City</th>
@@ -40,6 +42,8 @@
     <td><%= qu.like %></td>
     <td><%= qu.unlike %></td>
     <td><%= qu.ans %></td>
+    <td><%= Qu::EXPIRE_TEXT[qu.expire] %></td>
+    <td><a target="_blank" href="<%= expire_qu_url(qu.id) %>"><%= Qu::EXPIRED_NAMES[qu.expired] %></a></td>
     <td><%= qu.ip %></td>
     <td><%= qu.country_name %> - <%= qu.country_code %></td>
     <td><%= qu.region_name %> - <%= qu.region_code %></td>

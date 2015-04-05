@@ -29,6 +29,7 @@ OpenansCom::Application.routes.draw do
   match "/contact" => "home#contact", :as => :contact
   match "/stat" => "home#stat", :as => :stat
   match "/how-to-get-notification" => "home#how_notify", :as => :how_notify
+  match "/expire-qu/:id" => "qus#expire_qu", :as => :expire_qu
   match "/testing" => "qus#testing", :as => :testing
 
   match "/:id" => "home#answer", :as => :answer

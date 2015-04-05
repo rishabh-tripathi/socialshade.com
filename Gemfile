@@ -26,6 +26,7 @@ gem 'rack-cors', :require => 'rack/cors'
 # gem 'geokit-rails'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.0.6'
+gem 'whenever', :require => false
 
 # gem 'fb_graph'
 

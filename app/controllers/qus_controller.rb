@@ -84,7 +84,20 @@ class QusController < ApplicationController
     end
   end
 
+  def expire_qu
+    qu = Qu.find(params[:id])
+    qu.expired = (qu.expired == Qu::EXPIRED_YES)? Qu::EXPIRED_NO : Qu::EXPIRED_YES
+    qu.save
+    render(:text => Qu::EXPIRED_NAMES[qu.expired])
+  end
+
   def testing
+    qus = Qu.all
+    for q in qus
+      q.expire = 0
+      q.expired = 0
+      q.save
+    end
     render(:text => "Im success")
   end
 end

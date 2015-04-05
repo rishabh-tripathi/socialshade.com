@@ -1,19 +1,21 @@
 <%
   cls_str = "btn-lg"
   m_str = "m-10" 
+  p_str = "padding:10px 50px;"
   if(@mobile)  
   cls_str = "btn-block"
   m_str = "" 
+  p_str = ""
   end
 %>
-<% if(!@mobile) %>  
+
 <div id="qu-exp-pref">
   <center>
     <div class="sp30"></div>
     <h2 class="lead m-null">Last Step, Tell us about your preference about your question</h2>
     <div class="sp20"></div>
   </center>
-  <div style="padding:10px 50px;">
+  <div style="<%= p_str %>">
     <section style="text-align:left;">
       <form autocomplete="off" class="ac-custom ac-radio ac-fill">
 	<ul>
@@ -29,8 +31,9 @@
 </div>
 <%= render(:partial => "expire_form") %>
 <div id="qu-final-res"></div>
-<% end %>
 
+
+<% if(false) %>
 
 
 <% if(!@mobile && false) %>  
@@ -88,4 +91,7 @@
   addBookmarkObj.title= "<%= @qu.text %> - SocialShade";
   addBookmarkObj.addTextLink();
 </script>
+<% end %>
+
+
 <% end %>
