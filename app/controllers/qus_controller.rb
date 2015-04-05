@@ -85,23 +85,6 @@ class QusController < ApplicationController
   end
 
   def testing
-    Thread.new {
-      if(params[:what] == "1")
-        qu = Qu.all
-      end
-      if(params[:what] == "2")
-        qu = Ans.all
-      end
-      if(params[:what] == "3")
-        qu = QuesView.all
-      end
-      for q in qu
-        if(q.country_code.nil? && !q.ip.nil?)
-          q = set_ip_tracking_fields(q, q.ip)
-          q.save
-        end
-      end
-    }
     render(:text => "Im success")
   end
 end

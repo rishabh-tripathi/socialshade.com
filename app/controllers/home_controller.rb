@@ -243,11 +243,11 @@ class HomeController < ApplicationController
     ans = Ans.find(:all, :conditions => ["created_at > ?", (Date.today - 1)])
     @act = {}
     for q in qus
-      @act[q.created_at] = ["\"<a href='#{answer_url(q.id)}'>#{q.text}</a>\" asked #{time_ago_in_words(q.created_at)} ago", 1]
+      @act[q.created_at] = ["\"<a href='#{answer_url(q.id)}'>#{q.text}</a>\" asked #{time_ago_in_words(q.created_at)} ago from #{q.country_name}", 1]
     end
     for a in ans
       q = Qu.find(a.question_id)
-      @act[a.created_at] = ["\"<a href='#{answer_url(q.id)}'>#{q.text}</a>\" answered #{time_ago_in_words(a.created_at)} ago", 2]
+      @act[a.created_at] = ["\"<a href='#{answer_url(q.id)}'>#{q.text}</a>\" answered #{time_ago_in_words(a.created_at)} ago from #{a.country_name}", 2]
     end    
   end
 
@@ -257,10 +257,27 @@ class HomeController < ApplicationController
   def stat
     @total_qu = Qu.count(:all)
     @total_ans = Ans.count(:all)
+    @total_view = QuesView.count(:all)
     @qu_this_week = Qu.count(:conditions => ["created_at > ?", (Date.today - 7)])
     @ans_this_week = Ans.count(:conditions => ["created_at > ?", (Date.today - 7)])
+    @view_this_week = QuesView.count(:conditions => ["created_at > ?", (Date.today - 7)])
     @qu_today = Qu.count(:conditions => ["created_at > ?", (Date.today - 1)])
     @ans_today = Ans.count(:conditions => ["created_at > ?", (Date.today - 1)])
+    @view_today = QuesView.count(:conditions => ["created_at > ?", (Date.today - 1)])
+  end
+
+  def how_notify
+    @title = "Learn how to get nofitication"
+    @desc = "Ask anything anonymously, open space for open minded people. Ask anything to anyone without login"    
+  end
+  
+  def change_expire
+    @qu = Qu.find(params[:id])
+    if(@qu.present?)
+      @qu.expire = params[:exp].to_i
+      @qu.save
+    end
+    render(:partial => "qu_save_res_finish")
   end
 
   private

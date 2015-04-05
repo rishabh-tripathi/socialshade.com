@@ -13,6 +13,7 @@ OpenansCom::Application.routes.draw do
   match "/create-like" => "home#create_like", :as => :create_like
   match "/show-profile" => "home#show_profile", :as => :show_profile
   match "/keep-profile/:id" => "home#keep_profile", :as => :keep_profile
+  match "/change-expire-setting/:id" => "home#change_expire", :as => :change_expire
   match "/submit-qu" => "home#submit_qu", :as => :submit_qu
   match "/submit-ans/:id" => "home#submit_ans", :as => :submit_ans
   get 'sitemap.xml', :to => 'home#sitemap', :defaults => { :format => 'xml' }, :conditions => { :method => :get }, :as => :sitemap
@@ -27,7 +28,8 @@ OpenansCom::Application.routes.draw do
   match "/activities" => "home#activity", :as => :activity
   match "/contact" => "home#contact", :as => :contact
   match "/stat" => "home#stat", :as => :stat
-  match "/testing" => "qus#testing", :as => :stat
+  match "/how-to-get-notification" => "home#how_notify", :as => :how_notify
+  match "/testing" => "qus#testing", :as => :testing
 
   match "/:id" => "home#answer", :as => :answer
 

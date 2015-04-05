@@ -1,5 +1,21 @@
 class Qu < ActiveRecord::Base
   attr_accessible :ans, :likes, :text, :qu_type, :uid, :views, :unlike, :ip, :expire, :country_code, :country_name, :region_code, :region_name, :city_name, :latitude, :longitude
+
+  
+  EXPIRE_6HR = 10
+  EXPIRE_DAY = 20
+  EXPIRE_WEEK = 30
+  EXPIRE_MONTH = 40
+  EXPIRE_NEVER = 100
+
+  EXPIRE_TEXT = {  
+    EXPIRE_6HR => "Get me answers today, ASAP",
+    EXPIRE_DAY => "Get me answers in couple of days",
+    EXPIRE_WEEK => "I can wait for this week",
+    EXPIRE_MONTH => "It's a difficult one, I will wait for this month",
+    EXPIRE_NEVER => "It's a general question, never expire",
+  }
+
   TYPE_TEXT = 0
   TYPE_SINGLE = 1
   TYPE_NAME = {

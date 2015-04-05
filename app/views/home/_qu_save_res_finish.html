@@ -1,0 +1,52 @@
+<script type="text/javascript">
+  hideTrans();
+</script>
+<center>
+  <div class="sp20"></div>
+  <h2 class="lead m-null"><a href="<%= answer_url(@qu.id) %>" style="color:#ffffff;">Your question</a> will be answered by our appropriate anonymous users, you will get notification for new answers when you comeback. <a href="<%= how_notify_url %>" style="color:#ffffff;">Learn How</a></h2>
+  <div class="sp20"></div>
+  <div class="sp20"></div>
+  <span class="lead m-null">URL for this question</span>
+  <div class="sp10"></div>
+  <h1 class="m-null save-qu-id"><%= answer_url(@qu.id) %></h1>
+  <div class="sp30"></div>
+  <span class="lead m-null">Check in few hour to find your answer</span>
+  <div class="sp20"></div>  
+  <table>
+    <tr>
+      <td>
+	<a href="<%= answer_url(@qu.id ) %>" class="btn btn-4 btn-4a btn-lnk" title="Save question detail in your browser for future">Answer This</a>
+      </td>
+      <td>
+	<a href="<%= ask_url %>" class="btn btn-4 btn-4a btn-lnk">Ask More</a>
+      </td>
+    </tr>
+  </table>
+  
+  <div class="sp50"></div>
+  <div class="ask-share">
+    <div style="float:left;margin-left:50px;font-size:25px;">Share your question</div>
+    <div style="clear:both;"></div>
+    <ul>
+      <%
+	 title_for_share = "#{@qu.text}, submit your opinion anonymously"
+	 desc_for_share = "#{@qu.text}, asked on socialshade, answer this question without sharing your identity. SocialShade is an inititative to bring answers on (all kind of) questions"
+	 %>
+      <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-facebook-square"></a></li>
+      <li><a target="_blank" href="https://twitter.com/home?status=<%= title_for_share %> <%= answer_url(@qu.id) %>" class="bt-icon fa fa-twitter-square"></a></li>
+      <li><a target="_blank" href="https://plus.google.com/share?url=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-google-plus-square"></a></li>
+      <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>&summary=<%= desc_for_share %>&source=socialshade.com" class="bt-icon fa fa-linkedin-square"></a></li>
+      <li><a target="_blank" href="http://www.tumblr.com/share/link?url=<%= answer_url(@qu.id) %>&name=<%= title_for_share %>&description=<%= desc_for_share %>" class="bt-icon fa fa-tumblr-square"></a></li>    
+      <li><a target="_blank" href="http://news.ycombinator.com/submitlink?u=<%= answer_url(@qu.id) %>&t=<%= title_for_share %>" class="bt-icon fa fa-hacker-news"></a></li>    
+      <li><a target="_blank" href="//www.reddit.com/submit?url=<%= answer_url(@qu.id) %>" class="bt-icon fa fa-reddit"></a></li>
+      <li><a target="_blank" href="http://digg.com/submit?phase=2&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>&bodytext=<%= desc_for_share %>" class="bt-icon fa fa-digg"></a></li>	    
+      <li><a target="_blank" href="https://delicious.com/save?v=5&provider=socialshade&noui&jump=close&url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-delicious"></a></li>
+      <li><a target="_blank" href="http://www.stumbleupon.com/submit?url=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-stumbleupon"></a></li>
+      <li><a target="_blank" href="mailto:you@youremail.com?subject=SocialShade question - <%= title_for_share %>&body=<%= title_for_share %>,<%= answer_url(@qu.id) %>" class="bt-icon fa fa-envelope"></a></li>
+      <li><a target="_blank" href="https://www.google.com/bookmarks/mark?op=edit&bkmk=<%= answer_url(@qu.id) %>&title=<%= title_for_share %>" class="bt-icon fa fa-bookmark"></a></li>
+    </ul>
+    <div style="clear:both;"></div>
+    <div class="sp10"></div>
+  </div>
+
+</center>

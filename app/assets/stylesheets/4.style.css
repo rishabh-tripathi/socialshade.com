@@ -15,18 +15,18 @@ body  {
 }
 
 .bt-menu {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 0;
-	border-width: 0px;
-	border-style: solid;
-	border-color: #333;
-	background-color: rgba(0,0,0,0);
-	-webkit-backface-visibility: hidden;
-	-webkit-transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
-	transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #333;
+    background-color: rgba(0,0,0,0);
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
+    transition: border-width 0.3s, background-color 0.3s, height 0s 0.3s;
 }
 
 .bt-menu.bt-menu-open {
@@ -345,4 +345,24 @@ body  {
 	.bt-menu ul li a:before {
 		font-size: 32px;
 	}
+}
+
+.ask-share {
+    padding: 10px;
+    background: #038b57;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.ask-share ul li {
+    float: left;
+    display: block;
+    padding: 0px 12px;
+}
+
+.ask-share ul li a {
+    font-size: 42px; 
+    color: #ffffff;
+    text-decoration: none;
 }

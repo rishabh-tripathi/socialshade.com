@@ -28,24 +28,18 @@ function saveTextAnswer() {
     submit_ajax_form('save-ans-form');    
 }
 
-function submitOptAns(id, all) {
+function submitOptAns(id) {
     setTimeout(function(){ 
-	for(var i=0;i<all.length;i++) {
-	    $('#'+all[i]+'-icon').removeClass('checked');
-	    $('#'+all[i]+'-icon').addClass('unchecked');
-	}
-	$('#'+id+'-icon').removeClass('unchecked');
-	$('#'+id+'-icon').addClass('checked');    
 	ele('ans').value = id;
 	ele('buid').value = getBuid("soclshd");
 	submit_ajax_form('save-ans-form');
-    }, 1000);
+    }, 500);
 }
 
 function submitDiffAns() {
     setTimeout(function(){ 
 	ele_show("qu-txt");
-    }, 1000);
+    }, 500);
 }
 
 function drawChart() {
@@ -59,6 +53,18 @@ function afterSave() {
     if(ele('qu-opt') != null) 
 	ele_del('qu-opt');
     drawChart();
+}
+
+function saveExpireSave(val) {
+    showTrans();
+    setTimeout(function(){ 
+	ele('exp-val').value = val;    
+	submit_ajax_form('change-qu-expire-form');    
+    }, 500);
+}
+
+function afterExpireSave() {
+    ele_hide('qu-exp-pref');
 }
 
 function googleTranslationTextbox(id, value) {
