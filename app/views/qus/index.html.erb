@@ -29,11 +29,16 @@
     <th>Region</th>
     <th>City</th>
     <th>When</th>
+    <th>Tags</th>
     <th></th>
     <th></th>
   </tr>
 
-<% @qus.each do |qu| %>
+  <%
+     extractor = Phrasie::Extractor.new
+     @qus.each do |qu|
+     tags = extractor.phrases(qu.text, :strength => 2, :occur => 1)
+  %>
   <tr>
     <td><a href="<%= qus_url(:uid => qu.uid) %>"><%= qu.uid %></a></td>
     <td><a href="<%= answer_url(qu.id) %>"><%= qu.text %></a></td>
@@ -49,6 +54,7 @@
     <td><%= qu.region_name %> - <%= qu.region_code %></td>
     <td><%= qu.city_name %> - <%= qu.latitude %> - <%= qu.longitude %></td>
     <td><%= time_ago_in_words(qu.created_at) %></td>
+    <td><%= tags %></td>
     <td><%= link_to 'Edit', edit_qu_path(qu) %></td>
     <td><%= link_to 'Destroy', qu, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>

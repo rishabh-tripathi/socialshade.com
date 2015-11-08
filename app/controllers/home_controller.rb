@@ -63,7 +63,28 @@ class HomeController < ApplicationController
     render(:partial => "qu_save_res")
   end
     
-  def answer 
+  def answer
+=begin
+    # you can configure for all calls
+    OpenCalais.configure do |c|
+      c.api_key = "izzyK1YMLu2VV7PBzQt8sDDiaDP9Jqxj"
+    end
+
+    # or you can configure for a single call
+    open_calais = OpenCalais::Client.new(:api_key=>'an api key')
+
+    # it returns a OpenCalais::Response instance
+    response = open_calais.enrich('Ruby on Rails is a fantastic web framework. It uses MVC, and the Ruby programming language invented by Matz in Japan.')
+
+    # which has the 'raw' response
+    response.raw
+
+    logger.info("\n\n\n\n#{response.to_yaml}\n\n\n\n\n")
+    
+    # and has been parsed a bit to get :language, :topics, :tags, :entities, :relations, :locations
+    # as lists of hashes
+    response.tags.each{|t| logger.info("\n\n#{ t[:name] }") }
+=end
     get_next_question   
   end 
 

@@ -27,6 +27,9 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.0.6'
 gem 'whenever', :require => false
+#gem 'open_calais'
+gem 'phrasie'
+
 
 # gem 'fb_graph'
 
