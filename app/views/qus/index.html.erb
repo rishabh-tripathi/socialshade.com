@@ -54,7 +54,7 @@
     <td><%= qu.region_name %> - <%= qu.region_code %></td>
     <td><%= qu.city_name %> - <%= qu.latitude %> - <%= qu.longitude %></td>
     <td><%= time_ago_in_words(qu.created_at) %></td>
-    <td><%= tags %></td>
+    <td><%=raw tags.map{|a| a.first }.join("<br><br>") %></td>
     <td><%= link_to 'Edit', edit_qu_path(qu) %></td>
     <td><%= link_to 'Destroy', qu, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
